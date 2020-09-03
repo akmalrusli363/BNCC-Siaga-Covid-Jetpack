@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="teal">#52B2D0</color>
+    <color name="green">#68C166</color>
+    <color name="red">#E76666</color>
+
+    <color name="indigo">#3E419E</color>
+    <color name="indigo2">#25287A</color>
+    <color name="softIndigo">#71728C</color>
+    <color name="greyishBrown">#757575</color>
+    <color name="shadyGrayBlue">#eeeeff</color>
+    <color name="white">#ffffff</color>
+    <color name="offWhite">#f1f1f1</color>
+    <color name="black">#000000</color>
+
+    <color name="colorPrimary">@color/indigo</color>
+    <color name="colorPrimaryDark">@color/indigo2</color>
+    <color name="colorAccentDark">@color/white</color>
+    <color name="colorAccentLight">@color/black</color>
+
+    <color name="confirmedColor">@color/teal</color>
+    <color name="recoveredColor">@color/green</color>
+    <color name="deathColor">@color/red</color>
+</resources>
