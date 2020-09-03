@@ -12,7 +12,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/green</item>
-        <item name="fontFamily">@font/karla</item>
+<!--        <item name="fontFamily">@font/karla_regular</item>-->
     </style>
 
 </resources>

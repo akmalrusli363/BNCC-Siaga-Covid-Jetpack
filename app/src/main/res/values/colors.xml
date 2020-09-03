@@ -11,12 +11,11 @@
     <color name="shadyGrayBlue">#eeeeff</color>
     <color name="white">#ffffff</color>
     <color name="offWhite">#f1f1f1</color>
-    <color name="black">#000000</color>
 
     <color name="colorPrimary">@color/indigo</color>
     <color name="colorPrimaryDark">@color/indigo2</color>
     <color name="colorAccentDark">@color/white</color>
-    <color name="colorAccentLight">@color/black</color>
+    <color name="colorAccentLight">@color/indigo</color>
 
     <color name="confirmedColor">@color/teal</color>
     <color name="recoveredColor">@color/green</color>

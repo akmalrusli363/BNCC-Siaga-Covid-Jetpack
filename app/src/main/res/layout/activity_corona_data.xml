@@ -141,7 +141,7 @@
                             android:text="36977"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -173,10 +173,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/rubik_bold"
                             android:text="45101"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -208,10 +209,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
+                            android:fontFamily="@font/rubik_bold"
                             android:text="4143"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="22sp"
+                            android:textSize="20sp"
                             android:textStyle="bold" />
 
                         <TextView
@@ -239,6 +241,7 @@
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/lookupButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
