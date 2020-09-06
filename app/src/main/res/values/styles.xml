@@ -12,16 +12,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-<!--        <item name="fontFamily">@font/karla_regular</item>-->
     </style>
 
     <style name="regional_case_overview">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">8dp</item>
-        <item name="android:background">@drawable/gray_round_btn</item>
-        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/shape_gray_round_box</item>
         <item name="android:padding">16dp</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="data_count_ring">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:background">@drawable/shape_ring_highlight</item>
+        <item name="android:elevation">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 </resources>

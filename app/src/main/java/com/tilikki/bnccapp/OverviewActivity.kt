@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_corona_overview.*
 
-class CoronaOverview : AppCompatActivity() {
+class OverviewActivity : AppCompatActivity() {
 
 //    private var returnPoint;
 

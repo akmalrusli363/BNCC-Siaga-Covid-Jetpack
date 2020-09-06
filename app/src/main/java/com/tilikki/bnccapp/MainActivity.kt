@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openCoronaActivity() {
-        val intent = Intent(this, CoronaOverview::class.java).apply {
+        val intent = Intent(this, OverviewActivity::class.java).apply {
             putExtra(callSecondActivity, "Launching Corona App from Main Activity")
         }
         startActivity(intent)

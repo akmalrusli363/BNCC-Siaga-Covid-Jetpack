@@ -12,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingVertical="12dp"
-        android:paddingHorizontal="16dp">
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
 
         <TextView
             android:id="@+id/region"
@@ -34,7 +34,7 @@
             android:id="@+id/returnIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="@drawable/btn_haptic_image"
             android:contentDescription="@string/back_to_overview"
             android:src="?attr/actionModeCloseDrawable"
             android:tint="@color/colorAccentLight"
@@ -46,20 +46,20 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/muteGray"/>
+        android:background="@color/muteGray" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginVertical="16dp"
-        android:background="@drawable/gray_round_btn"
-        android:paddingHorizontal="8dp"
+        android:background="@drawable/shape_gray_round_box"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/searchIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/search_icon_description"
@@ -78,12 +78,14 @@
             android:inputType="textPersonName"
             android:text="" />
 
-        <ImageView
-            android:id="@+id/imageView2"
+        <ImageButton
+            android:id="@+id/clearSearchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/btn_haptic_image"
+            android:contentDescription="@string/clear_search"
             android:paddingHorizontal="8dp"
-            app:srcCompat="@android:drawable/ic_delete"
+            android:src="@android:drawable/ic_delete"
             app:tint="@color/colorAccentLight" />
     </LinearLayout>
 
@@ -122,13 +124,8 @@
 
                     <LinearLayout
                         android:id="@+id/confirmedCountBox1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/recoveredCountBox1"
                         app:layout_constraintStart_toStartOf="parent"
@@ -149,13 +146,8 @@
 
                     <LinearLayout
                         android:id="@+id/recoveredCountBox1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/deathCountBox1"
                         app:layout_constraintStart_toEndOf="@id/confirmedCountBox1"
@@ -176,13 +168,8 @@
 
                     <LinearLayout
                         android:id="@+id/deathCountBox1"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/recoveredCountBox1"
@@ -231,13 +218,8 @@
 
                     <LinearLayout
                         android:id="@+id/confirmedCountBox2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/recoveredCountBox2"
                         app:layout_constraintStart_toStartOf="parent"
@@ -258,13 +240,8 @@
 
                     <LinearLayout
                         android:id="@+id/recoveredCountBox2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/deathCountBox2"
                         app:layout_constraintStart_toEndOf="@id/confirmedCountBox2"
@@ -285,13 +262,8 @@
 
                     <LinearLayout
                         android:id="@+id/deathCountBox2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/recoveredCountBox2"
@@ -340,13 +312,8 @@
 
                     <LinearLayout
                         android:id="@+id/confirmedCountBox3"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/recoveredCountBox3"
                         app:layout_constraintStart_toStartOf="parent"
@@ -367,13 +334,8 @@
 
                     <LinearLayout
                         android:id="@+id/recoveredCountBox3"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/deathCountBox3"
                         app:layout_constraintStart_toEndOf="@id/confirmedCountBox3"
@@ -394,13 +356,8 @@
 
                     <LinearLayout
                         android:id="@+id/deathCountBox3"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/recoveredCountBox3"
@@ -449,13 +406,8 @@
 
                     <LinearLayout
                         android:id="@+id/confirmedCountBox4"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/recoveredCountBox4"
                         app:layout_constraintStart_toStartOf="parent"
@@ -476,13 +428,8 @@
 
                     <LinearLayout
                         android:id="@+id/recoveredCountBox4"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@id/deathCountBox4"
                         app:layout_constraintStart_toEndOf="@id/confirmedCountBox4"
@@ -503,13 +450,8 @@
 
                     <LinearLayout
                         android:id="@+id/deathCountBox4"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/ring_highlight"
+                        style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
-                        android:elevation="4dp"
-                        android:gravity="center"
-                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/recoveredCountBox4"
