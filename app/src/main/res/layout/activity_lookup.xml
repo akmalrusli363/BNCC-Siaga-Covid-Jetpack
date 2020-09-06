@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="16dp"
     tools:context=".LookupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,8 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="12dp">
+        android:layout_marginVertical="12dp"
+        android:paddingHorizontal="16dp">
 
         <TextView
             android:id="@+id/tvRegion"
@@ -38,10 +37,10 @@
             android:background="@drawable/btn_haptic_image"
             android:contentDescription="@string/back_to_overview"
             android:src="?attr/actionModeCloseDrawable"
-            android:tint="@color/colorAccentLight"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorAccentLight" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
@@ -67,7 +66,7 @@
             android:layout_height="wrap_content"
             android:contentDescription="@string/search_icon_description"
             android:paddingHorizontal="8dp"
-            app:srcCompat="@android:drawable/ic_menu_search"
+            android:src="@android:drawable/ic_menu_search"
             app:tint="@color/colorAccentLight" />
 
         <EditText
