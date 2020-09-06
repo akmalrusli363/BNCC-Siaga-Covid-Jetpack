@@ -13,7 +13,7 @@
         <activity
             android:name=".CoronaData"
             android:label="BNCC-COVID19"
-            android:theme="@style/AppThemeNoBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

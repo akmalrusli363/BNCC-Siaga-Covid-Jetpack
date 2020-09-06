@@ -16,14 +16,7 @@ class LookupActivity : AppCompatActivity() {
         setContentView(R.layout.activity_lookup)
 
         returnIcon.setOnClickListener {
-            returnToOverview()
+            finish()
         }
-    }
-
-    private fun returnToOverview() {
-        val intent = Intent(this, CoronaData::class.java).apply {
-            putExtra(callLookupActivity, "Return to Overview...")
-        }
-        startActivity(intent)
     }
 }

@@ -5,5 +5,31 @@
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
-    <string name="hello_world">Hello Square World!</string>
+
+    <!-- Region -->
+    <string name="jawa_timur">Jawa Timur</string>
+    <string name="dki_jakarta">DKI Jakarta</string>
+    <string name="sulawesi_selatan">Sulawesi Selatan</string>
+    <string name="jawa_tengah">Jawa Tengah</string>
+
+    <!-- Label-mates -->
+    <string name="region_indonesia">Indonesia</string>
+    <string name="back_to_overview">Back to overview</string>
+    <string name="search_icon_description">Search</string>
+    <string name="region_search_hint">Wilayah</string>
+    <string name="learn_more_covid19">Get to know more</string>
+    <string name="lookup">Look up</string>
+    <string name="hotline">Hotline</string>
+    <string name="lookup_description">See details by province all over Indonesia</string>
+    <string name="hotline_description"><![CDATA[Cek nomor daruratnya & hubungi faskes terdekat]]></string>
+    <string name="lookup_icon">Look up icon</string>
+    <string name="hotline_icon">Hotline icon</string>
+
+    <!-- Data labels -->
+    <string name="total_cases">Total cases</string>
+    <string name="positive">Positive</string>
+    <string name="recovered">Recovered</string>
+    <string name="death">Death</string>
+    <string name="region_info_icon">Information about coronavirus</string>
+    <string name="corona_vector">Coronavirus vector</string>
 </resources>

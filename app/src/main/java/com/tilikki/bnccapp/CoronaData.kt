@@ -16,7 +16,6 @@ class CoronaData : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val value = intent.identifier
         setContentView(R.layout.activity_corona_data)
 
         lookupButton.setOnClickListener {
