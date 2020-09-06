@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
     android:paddingTop="16dp"
-    tools:context=".CoronaData">
+    tools:context=".CoronaOverview">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

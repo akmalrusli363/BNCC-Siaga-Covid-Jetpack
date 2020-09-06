@@ -3,10 +3,9 @@ package com.tilikki.bnccapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_corona_data.*
-import kotlinx.android.synthetic.main.activity_lookup.*
+import kotlinx.android.synthetic.main.activity_corona_overview.*
 
-class CoronaData : AppCompatActivity() {
+class CoronaOverview : AppCompatActivity() {
 
 //    private var returnPoint;
 
@@ -16,7 +15,7 @@ class CoronaData : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_corona_data)
+        setContentView(R.layout.activity_corona_overview)
 
         lookupButton.setOnClickListener {
             gotoLookupActivity()
