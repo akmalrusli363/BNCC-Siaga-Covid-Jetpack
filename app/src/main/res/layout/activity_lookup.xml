@@ -9,6 +9,7 @@
     tools:context=".LookupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llRegionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -16,7 +17,7 @@
         android:paddingVertical="12dp">
 
         <TextView
-            android:id="@+id/region"
+            android:id="@+id/tvRegion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik"
@@ -31,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
-            android:id="@+id/returnIcon"
+            android:id="@+id/ivReturnIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_haptic_image"
@@ -44,11 +45,13 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
+        android:id="@+id/vSeparator1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/muteGray" />
 
     <LinearLayout
+        android:id="@+id/llSearchBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
@@ -59,7 +62,7 @@
         android:paddingHorizontal="8dp">
 
         <ImageView
-            android:id="@+id/searchIcon"
+            android:id="@+id/ivSearchIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/search_icon_description"
@@ -68,7 +71,7 @@
             app:tint="@color/colorAccentLight" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/etRegionSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -79,7 +82,7 @@
             android:text="" />
 
         <ImageButton
-            android:id="@+id/clearSearchButton"
+            android:id="@+id/ibClearSearch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_haptic_image"
@@ -90,21 +93,23 @@
     </LinearLayout>
 
     <ScrollView
+        android:id="@+id/svRegionData"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/llRegionData"
             android:layout_width="match_parent"
             android:layout_height="600dp"
             android:orientation="vertical"
             android:padding="16dp">
 
             <LinearLayout
-                android:id="@+id/regionBox1"
+                android:id="@+id/llRegionBox1"
                 style="@style/regional_case_overview">
 
                 <TextView
-                    android:id="@+id/regionLabel1"
+                    android:id="@+id/tvRegion1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik"
@@ -115,7 +120,7 @@
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/CoronaCountBox1"
+                    android:id="@+id/clCoronaCountBox1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -123,16 +128,16 @@
                     android:paddingVertical="12dp">
 
                     <LinearLayout
-                        android:id="@+id/confirmedCountBox1"
+                        android:id="@+id/llConfirmedCountBox1"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/recoveredCountBox1"
+                        app:layout_constraintEnd_toStartOf="@id/llRecoveredCountBox1"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/confirmedCount1"
+                            android:id="@+id/tvConfirmedCount1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -145,16 +150,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/recoveredCountBox1"
+                        android:id="@+id/llRecoveredCountBox1"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/deathCountBox1"
-                        app:layout_constraintStart_toEndOf="@id/confirmedCountBox1"
+                        app:layout_constraintEnd_toStartOf="@id/llDeathCountBox1"
+                        app:layout_constraintStart_toEndOf="@id/llConfirmedCountBox1"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/recoveredCount1"
+                            android:id="@+id/tvRecoveredCount1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -167,16 +172,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/deathCountBox1"
+                        android:id="@+id/llDeathCountBox1"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/recoveredCountBox1"
+                        app:layout_constraintStart_toEndOf="@id/llRecoveredCountBox1"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/deathCount1"
+                            android:id="@+id/tvDeathCount1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -194,11 +199,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/regionBox2"
+                android:id="@+id/llRegionBox2"
                 style="@style/regional_case_overview">
 
                 <TextView
-                    android:id="@+id/regionLabel2"
+                    android:id="@+id/tvRegion2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik"
@@ -209,7 +214,7 @@
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/CoronaCountBox2"
+                    android:id="@+id/clCoronaCountBox2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -217,16 +222,16 @@
                     android:paddingVertical="12dp">
 
                     <LinearLayout
-                        android:id="@+id/confirmedCountBox2"
+                        android:id="@+id/llConfirmedCountBox2"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/recoveredCountBox2"
+                        app:layout_constraintEnd_toStartOf="@id/llRecoveredCountBox2"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/confirmedCount2"
+                            android:id="@+id/tvConfirmedCount2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -239,16 +244,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/recoveredCountBox2"
+                        android:id="@+id/llRecoveredCountBox2"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/deathCountBox2"
-                        app:layout_constraintStart_toEndOf="@id/confirmedCountBox2"
+                        app:layout_constraintEnd_toStartOf="@id/llDeathCountBox2"
+                        app:layout_constraintStart_toEndOf="@id/llConfirmedCountBox2"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/recoveredCount2"
+                            android:id="@+id/tvRecoveredCount2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -261,16 +266,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/deathCountBox2"
+                        android:id="@+id/llDeathCountBox2"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/recoveredCountBox2"
+                        app:layout_constraintStart_toEndOf="@id/llRecoveredCountBox2"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/deathCount2"
+                            android:id="@+id/tvDeathCount2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -288,11 +293,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/regionBox3"
+                android:id="@+id/llRegionBox3"
                 style="@style/regional_case_overview">
 
                 <TextView
-                    android:id="@+id/regionLabel3"
+                    android:id="@+id/tvRegion3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik"
@@ -303,7 +308,7 @@
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/CoronaCountBox3"
+                    android:id="@+id/clCoronaCountBox3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -311,16 +316,16 @@
                     android:paddingVertical="12dp">
 
                     <LinearLayout
-                        android:id="@+id/confirmedCountBox3"
+                        android:id="@+id/llConfirmedCountBox3"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/recoveredCountBox3"
+                        app:layout_constraintEnd_toStartOf="@id/llRecoveredCountBox3"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/confirmedCount3"
+                            android:id="@+id/tvConfirmedCount3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -333,16 +338,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/recoveredCountBox3"
+                        android:id="@+id/llRecoveredCountBox3"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/deathCountBox3"
-                        app:layout_constraintStart_toEndOf="@id/confirmedCountBox3"
+                        app:layout_constraintEnd_toStartOf="@id/llDeathCountBox3"
+                        app:layout_constraintStart_toEndOf="@id/llConfirmedCountBox3"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/recoveredCount3"
+                            android:id="@+id/tvRecoveredCount3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -355,16 +360,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/deathCountBox3"
+                        android:id="@+id/llDeathCountBox3"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/recoveredCountBox3"
+                        app:layout_constraintStart_toEndOf="@id/llRecoveredCountBox3"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/deathCount3"
+                            android:id="@+id/tvDeathCount3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -382,11 +387,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/regionBox4"
+                android:id="@+id/llRegionBox4"
                 style="@style/regional_case_overview">
 
                 <TextView
-                    android:id="@+id/regionLabel4"
+                    android:id="@+id/tvRegion4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik"
@@ -397,7 +402,7 @@
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/CoronaCountBox4"
+                    android:id="@+id/clCoronaCountBox4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -405,16 +410,16 @@
                     android:paddingVertical="12dp">
 
                     <LinearLayout
-                        android:id="@+id/confirmedCountBox4"
+                        android:id="@+id/llConfirmedCountBox4"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/confirmedColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/recoveredCountBox4"
+                        app:layout_constraintEnd_toStartOf="@id/llRecoveredCountBox4"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/confirmedCount4"
+                            android:id="@+id/tvConfirmedCount4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -427,16 +432,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/recoveredCountBox4"
+                        android:id="@+id/llRecoveredCountBox4"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/recoveredColor"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/deathCountBox4"
-                        app:layout_constraintStart_toEndOf="@id/confirmedCountBox4"
+                        app:layout_constraintEnd_toStartOf="@id/llDeathCountBox4"
+                        app:layout_constraintStart_toEndOf="@id/llConfirmedCountBox4"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/recoveredCount4"
+                            android:id="@+id/tvRecoveredCount4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -449,16 +454,16 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/deathCountBox4"
+                        android:id="@+id/llDeathCountBox4"
                         style="@style/data_count_ring"
                         android:backgroundTint="@color/deathColor"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/recoveredCountBox4"
+                        app:layout_constraintStart_toEndOf="@id/llRecoveredCountBox4"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/deathCount4"
+                            android:id="@+id/tvDeathCount4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"

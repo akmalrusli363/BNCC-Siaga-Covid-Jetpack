@@ -1,10 +1,8 @@
 package com.tilikki.bnccapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_lookup.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class LookupActivity : AppCompatActivity() {
     companion object {
@@ -15,7 +13,7 @@ class LookupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lookup)
 
-        returnIcon.setOnClickListener {
+        ivReturnIcon.setOnClickListener {
             finish()
         }
     }

@@ -14,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/region"
+            android:id="@+id/tvRegion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik"
@@ -28,18 +28,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/informationIcon"
+        <ImageButton
+            android:id="@+id/ibInfoIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:background="@drawable/btn_haptic_image"
             android:contentDescription="@string/region_info_icon"
             android:src="@android:drawable/ic_dialog_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toEndOf="@+id/region"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintStart_toEndOf="@+id/tvRegion"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/white" />
+            app:tint="@color/colorAccentDark" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +49,7 @@
         android:layout_marginVertical="24dp">
 
         <TextView
-            android:id="@+id/totalCaseCountHighlight"
+            android:id="@+id/tvTotalCaseCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/rubik_bold"
@@ -59,12 +60,12 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/coronavatar"
+            app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
-            android:id="@+id/totalCaseCountHighlightLabel"
+            android:id="@+id/tvTotalCaseCountLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_cases"
@@ -73,12 +74,12 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/coronavatar"
-            app:layout_constraintTop_toBottomOf="@+id/totalCaseCountHighlight"
+            app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
+            app:layout_constraintTop_toBottomOf="@+id/tvTotalCaseCount"
             app:layout_constraintVertical_bias="0.2" />
 
         <ImageView
-            android:id="@+id/coronavatar"
+            android:id="@+id/ivCoronavatar"
             android:layout_width="160dp"
             android:layout_height="144dp"
             android:contentDescription="@string/corona_vector"
@@ -92,26 +93,27 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/svSummaryMenu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/shape_round_roll_box"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="800dp"
-                android:background="@drawable/shape_round_roll_box"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
                 android:orientation="vertical"
-
                 android:paddingHorizontal="20dp"
-                android:paddingTop="24dp">
-
+                android:paddingVertical="24dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/CoronaCountBox"
+                    android:id="@+id/clCoronaCountBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -119,7 +121,7 @@
                     android:paddingVertical="12dp">
 
                     <LinearLayout
-                        android:id="@+id/confirmedCountBox"
+                        android:id="@+id/llConfirmedCountBox"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/shape_round_highlight_box"
@@ -128,12 +130,12 @@
                         android:gravity="center"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/recoveredCountBox"
+                        app:layout_constraintEnd_toStartOf="@id/llRecoveredCountBox"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/confirmedCount"
+                            android:id="@+id/tvConfirmedCount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -145,7 +147,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/confirmedCountLabel"
+                            android:id="@+id/tvConfirmedCountLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/positive"
@@ -155,7 +157,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/recoveredCountBox"
+                        android:id="@+id/llRecoveredCountBox"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/shape_round_highlight_box"
@@ -164,12 +166,12 @@
                         android:gravity="center"
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/deathCountBox"
-                        app:layout_constraintStart_toEndOf="@id/confirmedCountBox"
+                        app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
+                        app:layout_constraintStart_toEndOf="@id/llConfirmedCountBox"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/recoveredCount"
+                            android:id="@+id/tvRecoveredCount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -181,7 +183,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/recoveredCountLabel"
+                            android:id="@+id/tvRecoveredCountLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/recovered"
@@ -191,7 +193,7 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/deathCountBox"
+                        android:id="@+id/llDeathCountBox"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:background="@drawable/shape_round_highlight_box"
@@ -201,11 +203,11 @@
                         android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/recoveredCountBox"
+                        app:layout_constraintStart_toEndOf="@id/llRecoveredCountBox"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <TextView
-                            android:id="@+id/deathCount"
+                            android:id="@+id/tvDeathCount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
@@ -217,7 +219,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/deathCountLabel"
+                            android:id="@+id/tvDeathCountLabel"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/death"
@@ -230,7 +232,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:id="@+id/knowMoreLabel"
+                    android:id="@+id/tvKnowMore"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_bold"
@@ -241,7 +243,7 @@
                     android:textStyle="bold" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/lookupButton"
+                    android:id="@+id/clLookupButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
@@ -252,7 +254,7 @@
                     android:paddingVertical="20dp">
 
                     <ImageView
-                        android:id="@+id/metaIcon1"
+                        android:id="@+id/ivMetaIcon1"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_marginStart="8dp"
@@ -265,7 +267,7 @@
                         tools:layout_marginHorizontal="12dp" />
 
                     <TextView
-                        android:id="@+id/metaTitle1"
+                        android:id="@+id/tvMetaTitle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
@@ -274,26 +276,26 @@
                         android:textColor="@color/indigo2"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@id/metaDescription1"
-                        app:layout_constraintEnd_toStartOf="@id/gotoArrow1"
+                        app:layout_constraintBottom_toTopOf="@id/tvMetaDescription1"
+                        app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@id/metaIcon1"
+                        app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/metaDescription1"
+                        android:id="@+id/tvMetaDescription1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:text="@string/lookup_description"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/gotoArrow1"
+                        app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
                         app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintStart_toEndOf="@id/metaIcon1"
-                        app:layout_constraintTop_toBottomOf="@id/metaTitle1" />
+                        app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
+                        app:layout_constraintTop_toBottomOf="@id/tvMetaTitle1" />
 
                     <ImageView
-                        android:id="@+id/gotoArrow1"
+                        android:id="@+id/ivGotoArrow1"
                         android:layout_width="32dp"
                         android:layout_height="64dp"
                         android:layout_marginStart="8dp"
@@ -301,13 +303,14 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1"
-                        app:layout_constraintStart_toEndOf="@id/metaIcon1"
+                        app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/indigo2" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/clHotlineButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="12dp"
@@ -317,7 +320,7 @@
                     android:padding="12dp">
 
                     <ImageView
-                        android:id="@+id/metaIcon2"
+                        android:id="@+id/ivMetaIcon2"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_marginStart="8dp"
@@ -330,7 +333,7 @@
                         tools:layout_marginHorizontal="12dp" />
 
                     <TextView
-                        android:id="@+id/metaTitle2"
+                        android:id="@+id/tvMetaTitle2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
@@ -339,27 +342,27 @@
                         android:textColor="@color/indigo2"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@id/metaDescription2"
-                        app:layout_constraintEnd_toStartOf="@id/gotoArrow2"
+                        app:layout_constraintBottom_toTopOf="@id/tvMetaDescription2"
+                        app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@id/metaIcon2"
+                        app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/metaDescription2"
+                        android:id="@+id/tvMetaDescription2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:text="@string/hotline_description"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/gotoArrow2"
+                        app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
                         app:layout_constraintHorizontal_bias="0"
-                        app:layout_constraintStart_toEndOf="@id/metaIcon2"
-                        app:layout_constraintTop_toBottomOf="@id/metaTitle2" />
+                        app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
+                        app:layout_constraintTop_toBottomOf="@id/tvMetaTitle2" />
 
 
                     <ImageView
-                        android:id="@+id/gotoArrow2"
+                        android:id="@+id/ivGotoArrow2"
                         android:layout_width="32dp"
                         android:layout_height="64dp"
                         android:layout_marginStart="8dp"
@@ -367,7 +370,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1"
-                        app:layout_constraintStart_toEndOf="@id/metaIcon2"
+                        app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
                         app:layout_constraintTop_toTopOf="parent"
                         app:tint="@color/indigo2" />
 
