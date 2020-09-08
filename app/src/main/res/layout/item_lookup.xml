@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
+    android:layout_margin="24dp"
+    android:backgroundTint="@color/offWhite"
     app:cardCornerRadius="16dp"
     app:cardElevation="8dp">
 
@@ -18,10 +19,10 @@
             style="@style/h4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="8dp"
             android:text="@string/unknown"
             android:textAlignment="center"
             android:textColor="@color/colorAccentLight"
-            android:padding="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,7 +31,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:paddingVertical="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -53,8 +54,8 @@
                     style="@style/h6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccentDark"
                     android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
                     tools:text="12345" />
 
             </LinearLayout>
@@ -77,8 +78,8 @@
                     style="@style/h6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccentDark"
                     android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
                     tools:text="12345" />
             </LinearLayout>
 
@@ -99,8 +100,8 @@
                     style="@style/h6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccentDark"
                     android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
                     tools:text="1234" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

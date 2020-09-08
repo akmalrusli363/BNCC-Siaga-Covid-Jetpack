@@ -9,24 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".siagacovid.OverviewActivity"
-            android:label="BNCC-COVID19">
+            android:label="BNCC Siaga COVID19">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tilikki.bnccapp.siagacovid.lookup.LookupActivity"
-            android:theme="@style/AppTheme.Light">
-        </activity>
+
+        <activity
+            android:name="com.tilikki.bnccapp.siagacovid.lookup.LookupActivity"
+            android:theme="@style/AppTheme.Light" />
+
         <activity
             android:name=".demo.MainActivity"
             android:theme="@style/AppTheme.WithActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
