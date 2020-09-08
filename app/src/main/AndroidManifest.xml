@@ -10,18 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".OverviewActivity"
+            android:name=".siagacovid.OverviewActivity"
             android:label="BNCC-COVID19">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LookupActivity"
+        <activity android:name="com.tilikki.bnccapp.siagacovid.lookup.LookupActivity"
             android:theme="@style/AppTheme.Light">
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".demo.MainActivity"
             android:theme="@style/AppTheme.WithActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

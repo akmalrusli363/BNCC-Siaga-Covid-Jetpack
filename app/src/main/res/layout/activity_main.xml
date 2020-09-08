@@ -7,7 +7,7 @@
     android:layout_gravity="center"
     android:layout_marginHorizontal="16dp"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".demo.MainActivity">
 
     <ImageView
         android:id="@+id/imgView"

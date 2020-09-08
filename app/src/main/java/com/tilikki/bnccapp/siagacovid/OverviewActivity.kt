@@ -1,8 +1,10 @@
-package com.tilikki.bnccapp
+package com.tilikki.bnccapp.siagacovid
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import kotlinx.android.synthetic.main.activity_corona_overview.*
 
 class OverviewActivity : AppCompatActivity() {
