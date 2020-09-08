@@ -17,14 +17,12 @@
 
         <TextView
             android:id="@+id/tvRegion"
+            style="@style/h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik"
             android:text="@string/region_indonesia"
             android:textAlignment="center"
             android:textColor="@color/colorAccentLight"
-            android:textSize="24sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -109,14 +107,12 @@
 
                 <TextView
                     android:id="@+id/tvRegion1"
+                    style="@style/h5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/rubik"
                     android:text="@string/jawa_timur"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccentLight"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/colorAccentLight" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clCoronaCountBox1"
@@ -137,15 +133,13 @@
 
                         <TextView
                             android:id="@+id/tvConfirmedCount1"
+                            style="@style/h6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="18308"
                             android:textAlignment="center"
-                            android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/colorAccentDark" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -159,15 +153,13 @@
 
                         <TextView
                             android:id="@+id/tvRecoveredCount1"
+                            style="@style/h6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="9342"
                             android:textAlignment="center"
-                            android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="@color/colorAccentDark" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -184,12 +176,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="1401"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
 
@@ -203,14 +193,12 @@
 
                 <TextView
                     android:id="@+id/tvRegion2"
+                    style="@style/h5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/rubik"
                     android:text="@string/dki_jakarta"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccentLight"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/colorAccentLight" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clCoronaCountBox2"
@@ -234,12 +222,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="16538"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -256,12 +242,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="10444"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -278,12 +262,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="736"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
 
@@ -297,14 +279,12 @@
 
                 <TextView
                     android:id="@+id/tvRegion3"
+                    style="@style/h5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/rubik"
                     android:text="@string/sulawesi_selatan"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccentLight"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/colorAccentLight" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clCoronaCountBox3"
@@ -328,12 +308,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="8039"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -350,12 +328,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="4198"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -372,12 +348,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="279"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
 
@@ -391,14 +365,12 @@
 
                 <TextView
                     android:id="@+id/tvRegion4"
+                    style="@style/h5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/rubik"
                     android:text="@string/jawa_tengah"
                     android:textAlignment="center"
-                    android:textColor="@color/colorAccentLight"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/colorAccentLight" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clCoronaCountBox4"
@@ -422,12 +394,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="8039"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -444,12 +414,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="4198"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -466,12 +434,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="4dp"
-                            android:fontFamily="@font/rubik_bold"
                             android:text="279"
                             android:textAlignment="center"
                             android:textColor="@color/colorAccentDark"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
+                            style="@style/h6" />
                     </LinearLayout>
 
 

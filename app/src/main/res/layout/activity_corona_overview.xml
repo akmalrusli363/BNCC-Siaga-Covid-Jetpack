@@ -6,23 +6,21 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    android:paddingTop="16dp"
     tools:context=".OverviewActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/tvRegion"
+            style="@style/h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik"
             android:text="@string/region_indonesia"
             android:textAlignment="center"
             android:textColor="@color/colorAccentDark"
-            android:textSize="24sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,14 +48,13 @@
 
         <TextView
             android:id="@+id/tvTotalCaseCount"
+            style="@style/h1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_bold"
             android:text="86521"
             android:textAlignment="center"
             android:textColor="@color/colorAccentDark"
             android:textSize="48sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
@@ -66,12 +63,12 @@
 
         <TextView
             android:id="@+id/tvTotalCaseCountLabel"
+            style="@style/b1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/total_cases"
             android:textAlignment="center"
             android:textColor="@color/colorAccentDark"
-            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
@@ -131,24 +128,22 @@
 
                     <TextView
                         android:id="@+id/tvConfirmedCount"
+                        style="@style/h4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/rubik_bold"
                         android:text="36977"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/colorAccentDark" />
 
                     <TextView
                         android:id="@+id/tvConfirmedCountLabel"
+                        style="@style/b2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/positive"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark"
-                        android:textSize="14sp" />
+                        android:textColor="@color/colorAccentDark" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -167,24 +162,22 @@
 
                     <TextView
                         android:id="@+id/tvRecoveredCount"
+                        style="@style/h4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/rubik_bold"
                         android:text="45101"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/colorAccentDark" />
 
                     <TextView
                         android:id="@+id/tvRecoveredCountLabel"
+                        style="@style/b2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/recovered"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark"
-                        android:textSize="14sp" />
+                        android:textColor="@color/colorAccentDark" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -203,24 +196,22 @@
 
                     <TextView
                         android:id="@+id/tvDeathCount"
+                        style="@style/h4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="4dp"
-                        android:fontFamily="@font/rubik_bold"
                         android:text="4143"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textColor="@color/colorAccentDark" />
 
                     <TextView
                         android:id="@+id/tvDeathCountLabel"
+                        style="@style/b2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/death"
                         android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark"
-                        android:textSize="14sp" />
+                        android:textColor="@color/colorAccentDark" />
                 </LinearLayout>
 
 
@@ -230,12 +221,10 @@
                 android:id="@+id/tvKnowMore"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/rubik_bold"
                 android:paddingVertical="12dp"
                 android:text="@string/learn_more_covid19"
                 android:textColor="@color/indigo2"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                style="@style/h4"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clLookupButton"
@@ -266,11 +255,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:fontFamily="@font/rubik_bold"
                     android:text="@string/lookup"
                     android:textColor="@color/indigo2"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    style="@style/h5"
                     app:layout_constraintBottom_toTopOf="@id/tvMetaDescription1"
                     app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -283,6 +270,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:text="@string/lookup_description"
+                    style="@style/b3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
                     app:layout_constraintHorizontal_bias="0"
@@ -334,11 +322,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
-                    android:fontFamily="@font/rubik_bold"
                     android:text="@string/hotline"
                     android:textColor="@color/indigo2"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
+                    style="@style/h5"
                     app:layout_constraintBottom_toTopOf="@id/tvMetaDescription2"
                     app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -351,6 +337,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:text="@string/hotline_description"
+                    style="@style/b3"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
                     app:layout_constraintHorizontal_bias="0"
