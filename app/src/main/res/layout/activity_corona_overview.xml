@@ -30,11 +30,11 @@
 
         <ImageButton
             android:id="@+id/ibInfoIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:background="@drawable/btn_haptic_image"
             android:contentDescription="@string/region_info_icon"
-            android:src="@android:drawable/ic_dialog_info"
+            android:src="@drawable/ic_outline_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.85"
@@ -83,13 +83,13 @@
             android:layout_width="160dp"
             android:layout_height="144dp"
             android:contentDescription="@string/corona_vector"
-            android:src="@drawable/virus"
+            android:src="@drawable/ic_virus"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/virus" />
+            app:srcCompat="@drawable/ic_virus" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
@@ -254,11 +254,11 @@
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
                     android:contentDescription="@string/lookup_icon"
-                    android:src="@drawable/location_pin"
+                    android:src="@drawable/ic_location_pin"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/location_pin"
+                    app:srcCompat="@drawable/ic_location_pin"
                     tools:layout_marginHorizontal="12dp" />
 
                 <TextView
@@ -295,7 +295,7 @@
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
                     android:contentDescription="@string/goto_lookup"
-                    android:src="@drawable/right_arrow"
+                    android:src="@drawable/ic_right_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
@@ -322,11 +322,11 @@
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
                     android:contentDescription="@string/hotline_icon"
-                    android:src="@drawable/siren"
+                    android:src="@drawable/ic_siren"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/siren"
+                    app:srcCompat="@drawable/ic_siren"
                     tools:layout_marginHorizontal="12dp" />
 
                 <TextView
@@ -364,7 +364,7 @@
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
                     android:contentDescription="@string/goto_hotline"
-                    android:src="@drawable/right_arrow"
+                    android:src="@drawable/ic_right_arrow"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
