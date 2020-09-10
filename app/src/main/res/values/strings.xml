@@ -6,12 +6,6 @@
     values-round/strings.xml for round devices.
     -->
 
-    <!-- Region -->
-    <string name="jawa_timur">Jawa Timur</string>
-    <string name="dki_jakarta">DKI Jakarta</string>
-    <string name="sulawesi_selatan">Sulawesi Selatan</string>
-    <string name="jawa_tengah">Jawa Tengah</string>
-
     <!-- Label-mates -->
     <string name="region_indonesia">Indonesia</string>
     <string name="back_to_overview">Back to overview</string>

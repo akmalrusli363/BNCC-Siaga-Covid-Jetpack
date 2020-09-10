@@ -16,7 +16,7 @@
         android:paddingHorizontal="16dp">
 
         <TextView
-            android:id="@+id/tvRegion"
+            android:id="@+id/tvLookupCountry"
             style="@style/h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             app:tint="@color/colorAccentLight" />
 
         <EditText
-            android:id="@+id/etRegionSearch"
+            android:id="@+id/etRegionLookupSearch"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
