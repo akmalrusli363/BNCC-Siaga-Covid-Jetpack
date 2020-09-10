@@ -29,5 +29,7 @@
     <string name="clear_search">Clear search</string>
     <string name="goto_lookup">Goto lookup</string>
     <string name="goto_hotline">Goto hotline</string>
+    <string name="hotline_contact_logo">Hotline contact logo</string>
+    <string name="call_to_hotline">Call to hotline contact</string>
     <string name="unknown">\???</string>
 </resources>

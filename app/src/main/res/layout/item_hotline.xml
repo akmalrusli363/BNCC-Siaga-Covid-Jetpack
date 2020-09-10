@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginVertical="16dp"
+    android:backgroundTint="@color/offWhite"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/ivHotlineIcon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_wait"
+            android:contentDescription="@string/hotline_contact_logo" />
+
+        <TextView
+            android:id="@+id/tvHotlinePhone"
+            style="@style/h4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccentLight"
+            app:layout_constraintBottom_toTopOf="@id/tvLookUpProvince"
+            app:layout_constraintStart_toEndOf="@id/ivHotlineIcon"
+            app:layout_constraintEnd_toStartOf="@id/ivHotlineCall"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="021-1234-5678" />
+
+        <TextView
+            android:id="@+id/tvLookUpProvince"
+            style="@style/b1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccentLight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ivHotlineIcon"
+            app:layout_constraintEnd_toStartOf="@id/ivHotlineCall"
+            app:layout_constraintTop_toBottomOf="@id/tvHotlinePhone"
+            tools:text="@string/province_dki_jakarta" />
+
+        <ImageView
+            android:id="@+id/ivHotlineCall"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_phone_call"
+            android:contentDescription="@string/call_to_hotline" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -45,8 +45,8 @@
                 android:backgroundTint="@color/teal"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/llLookUpRecoveredCase"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/llLookUpRecoveredCase"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -69,8 +69,8 @@
                 android:backgroundTint="@color/green"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/llLookUpConfirmedCase"
-                app:layout_constraintRight_toLeftOf="@id/llLookUpDeathCase"
+                app:layout_constraintStart_toEndOf="@id/llLookUpConfirmedCase"
+                app:layout_constraintEnd_toStartOf="@id/llLookUpDeathCase"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -91,8 +91,8 @@
                 android:backgroundTint="@color/red"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/llLookUpRecoveredCase"
-                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/llLookUpRecoveredCase"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView

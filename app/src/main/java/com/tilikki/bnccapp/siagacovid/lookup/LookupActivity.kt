@@ -1,16 +1,20 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import kotlinx.android.synthetic.main.activity_lookup.*
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 class LookupActivity : AppCompatActivity() {
-    private lateinit var mockLookupList : MutableList<LookupData>
+    private lateinit var mockLookupList: MutableList<LookupData>
 
-    fun fetchRegionData() {
+    private val okHttpClient = OkHttpClient()
+
+    private fun fetchRegionData() {
         mockLookupList = mutableListOf(
             LookupData("${getText(R.string.province_dki_jakarta)}", 16538, 1044, 736),
             LookupData("${getText(R.string.province_jawa_timur)}", 18308, 9342, 1401),
@@ -19,6 +23,12 @@ class LookupActivity : AppCompatActivity() {
             LookupData("${getText(R.string.province_kalimantan_barat)}", 3045, 2344, 403),
             LookupData("${getText(R.string.province_papua)}", 2133, 1675, 95),
             LookupData("${getText(R.string.province_bali)}", 3412, 2313, 101)
+        )
+    }
+
+    private fun preload() {
+        mockLookupList = mutableListOf(
+            LookupData("Loading...", 0, 0, 0),
         )
     }
 
@@ -39,7 +49,7 @@ class LookupActivity : AppCompatActivity() {
             etRegionLookupSearch.text.clear()
         }
 
-        etRegionLookupSearch.addTextChangedListener{
+        etRegionLookupSearch.addTextChangedListener {
             lookupAdapter.filter.filter(etRegionLookupSearch.text)
         }
     }
