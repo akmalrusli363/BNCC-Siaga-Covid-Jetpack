@@ -47,47 +47,17 @@
         android:layout_height="1dp"
         android:background="@color/muteGray" />
 
-    <LinearLayout
-        android:id="@+id/llSearchBox"
+    <SearchView
+        android:id="@+id/svRegionLookupSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginVertical="16dp"
+        android:theme="@style/AppSearchView"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@drawable/shape_gray_round_box"
         android:background="@drawable/shape_gray_round_box"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:paddingHorizontal="8dp">
-
-        <ImageView
-            android:id="@+id/ivSearchIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/search_icon_description"
-            android:paddingHorizontal="8dp"
-            android:src="@android:drawable/ic_menu_search"
-            app:tint="@color/colorAccentLight" />
-
-        <EditText
-            android:id="@+id/etRegionLookupSearch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:autofillHints="@string/region_search_hint"
-            android:ems="10"
-            android:hint="@string/region_search_hint"
-            android:inputType="textPersonName"
-            android:text="" />
-
-        <ImageButton
-            android:id="@+id/ibClearSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_haptic_image"
-            android:contentDescription="@string/clear_search"
-            android:paddingHorizontal="8dp"
-            android:src="@android:drawable/ic_delete"
-            app:tint="@color/colorAccentLight" />
-    </LinearLayout>
+        android:orientation="horizontal" />
 
     <ProgressBar
         android:id="@+id/pbFetchLookup"

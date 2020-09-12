@@ -32,6 +32,15 @@
         <item name="android:background">@drawable/shape_round_roll_box</item>
     </style>
 
+    <!-- Search Toolbar -->
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+        <!-- Query Text Color -->
+        <item name="android:textColorPrimary">@color/colorAccentLight</item>
+        <!-- Icon Color -->
+        <item name="android:textColorSecondary">@color/colorAccentLight</item>
+        <item name="android:background">@drawable/shape_gray_round_box</item>
+    </style>
+
     <!-- Font Styles -->
     <style name="h1">
         <item name="android:fontFamily">@font/rubik</item>

@@ -2,13 +2,14 @@ package com.tilikki.bnccapp.siagacovid.lookup
 
 import android.os.Bundle
 import android.view.View
+import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import kotlinx.android.synthetic.main.activity_lookup.*
+import okhttp3.OkHttpClient
 
 class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     private val presenter = LookupPresenter(LookupModel(), this)
@@ -40,15 +41,18 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
             finish()
         }
     }
-
     private fun setupSearch(lookupAdapter: LookupAdapter) {
-        ibClearSearch.setOnClickListener {
-            etRegionLookupSearch.text.clear()
-        }
+        svRegionLookupSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
 
-        etRegionLookupSearch.addTextChangedListener {
-            lookupAdapter.filter.filter(etRegionLookupSearch.text)
-        }
+
+            override fun onQueryTextChange(query: String?): Boolean {
+                lookupAdapter.filter.filter(query)
+                return false
+            }
+        })
 
         srlLookupData.setOnRefreshListener {
             fetchData()
