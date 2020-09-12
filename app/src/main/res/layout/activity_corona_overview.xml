@@ -1,368 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:orientation="vertical"
     tools:context=".siagacovid.OverviewActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="8dp">
-
-        <TextView
-            android:id="@+id/tvLookupCountry"
-            style="@style/h4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/region_indonesia"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccentDark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageButton
-            android:id="@+id/ibInfoIcon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:background="@drawable/btn_haptic_image"
-            android:contentDescription="@string/region_info_icon"
-            android:src="@drawable/ic_outline_info"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.85"
-            app:layout_constraintStart_toEndOf="@+id/tvLookupCountry"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/colorAccentDark" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="24dp">
-
-        <TextView
-            android:id="@+id/tvTotalCaseCount"
-            style="@style/h1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="86521"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccentDark"
-            android:textSize="48sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
-
-        <TextView
-            android:id="@+id/tvTotalCaseCountLabel"
-            style="@style/b1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/total_cases"
-            android:textAlignment="center"
-            android:textColor="@color/colorAccentDark"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
-            app:layout_constraintTop_toBottomOf="@+id/tvTotalCaseCount"
-            app:layout_constraintVertical_bias="0.2" />
-
-        <ImageView
-            android:id="@+id/ivCoronavatar"
-            android:layout_width="160dp"
-            android:layout_height="144dp"
-            android:contentDescription="@string/corona_vector"
-            android:src="@drawable/ic_virus"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_virus" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <ScrollView
-        android:id="@+id/svSummaryMenuView"
+    <LinearLayout
+        android:id="@+id/llCaseSummary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/llSummaryMenu"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_round_roll_box"
-            android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="24dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clCoronaCountBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginVertical="6dp"
-                android:paddingVertical="12dp">
-
-                <LinearLayout
-                    android:id="@+id/llConfirmedCountBox"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/shape_round_highlight_box"
-                    android:backgroundTint="@color/confirmedColor"
-                    android:elevation="4dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/llRecoveredCountBox"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/tvConfirmedCount"
-                        style="@style/h4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="36977"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark" />
-
-                    <TextView
-                        android:id="@+id/tvConfirmedCountLabel"
-                        style="@style/b2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/positive"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llRecoveredCountBox"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/shape_round_highlight_box"
-                    android:backgroundTint="@color/recoveredColor"
-                    android:elevation="4dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
-                    app:layout_constraintStart_toEndOf="@id/llConfirmedCountBox"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/tvRecoveredCount"
-                        style="@style/h4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="45101"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark" />
-
-                    <TextView
-                        android:id="@+id/tvRecoveredCountLabel"
-                        style="@style/b2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/recovered"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/llDeathCountBox"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:background="@drawable/shape_round_highlight_box"
-                    android:backgroundTint="@color/deathColor"
-                    android:elevation="4dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/llRecoveredCountBox"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/tvDeathCount"
-                        style="@style/h4"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
-                        android:text="4143"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark" />
-
-                    <TextView
-                        android:id="@+id/tvDeathCountLabel"
-                        style="@style/b2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/death"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorAccentDark" />
-                </LinearLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:paddingVertical="8dp">
 
             <TextView
-                android:id="@+id/tvKnowMore"
-                android:layout_width="match_parent"
+                android:id="@+id/tvLookupCountry"
+                style="@style/h4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingVertical="12dp"
-                android:text="@string/learn_more_covid19"
-                android:textColor="@color/indigo2"
-                style="@style/h4"/>
+                android:text="@string/region_indonesia"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccentDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clLookupButton"
-                android:layout_width="match_parent"
+            <ImageButton
+                android:id="@+id/ibInfoIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/btn_haptic_image"
+                android:contentDescription="@string/region_info_icon"
+                android:src="@drawable/ic_outline_info"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.85"
+                app:layout_constraintStart_toEndOf="@+id/tvLookupCountry"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorAccentDark" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="24dp">
+
+            <TextView
+                android:id="@+id/tvTotalCaseCount"
+                style="@style/h1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
-                android:background="@drawable/btn_corona_access"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="20dp">
+                android:text="86521"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccentDark"
+                android:textSize="48sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5" />
 
-                <ImageView
-                    android:id="@+id/ivMetaIcon1"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/lookup_icon"
-                    android:src="@drawable/ic_location_pin"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_location_pin"
-                    tools:layout_marginHorizontal="12dp" />
-
-                <TextView
-                    android:id="@+id/tvMetaTitle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/lookup"
-                    android:textColor="@color/indigo2"
-                    style="@style/h5"
-                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescription1"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvMetaDescription1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/lookup_description"
-                    style="@style/b3"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
-                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitle1" />
-
-                <ImageView
-                    android:id="@+id/ivGotoArrow1"
-                    android:layout_width="32dp"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/goto_lookup"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/indigo2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clHotlineButton"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvTotalCaseCountLabel"
+                style="@style/b1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="12dp"
-                android:background="@drawable/btn_corona_access"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="20dp">
+                android:text="@string/total_cases"
+                android:textAlignment="center"
+                android:textColor="@color/colorAccentDark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
+                app:layout_constraintTop_toBottomOf="@+id/tvTotalCaseCount"
+                app:layout_constraintVertical_bias="0.2" />
 
-                <ImageView
-                    android:id="@+id/ivMetaIcon2"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/hotline_icon"
-                    android:src="@drawable/ic_siren"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_siren"
-                    tools:layout_marginHorizontal="12dp" />
+            <ImageView
+                android:id="@+id/ivCoronavatar"
+                android:layout_width="160dp"
+                android:layout_height="144dp"
+                android:contentDescription="@string/corona_vector"
+                android:src="@drawable/ic_virus"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_virus" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvMetaTitle2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/hotline"
-                    android:textColor="@color/indigo2"
-                    style="@style/h5"
-                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescription2"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
-                    app:layout_constraintTop_toTopOf="parent" />
+    <include layout="@layout/bottom_sheet_summary_menu" />
 
-                <TextView
-                    android:id="@+id/tvMetaDescription2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/hotline_description"
-                    style="@style/b3"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
-                    app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
-                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitle2" />
-
-
-                <ImageView
-                    android:id="@+id/ivGotoArrow2"
-                    android:layout_width="32dp"
-                    android:layout_height="64dp"
-                    android:layout_marginStart="8dp"
-                    android:contentDescription="@string/goto_hotline"
-                    android:src="@drawable/ic_right_arrow"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/indigo2" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

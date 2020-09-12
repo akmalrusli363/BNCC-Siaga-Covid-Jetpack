@@ -23,6 +23,15 @@
         <item name="android:windowLightStatusBar" targetApi="m">true</item>
     </style>
 
+    <!-- Bottom Sheet Style -->
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/shape_round_roll_box</item>
+    </style>
+
+    <style name="AppBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+
     <!-- Font Styles -->
     <style name="h1">
         <item name="android:fontFamily">@font/rubik</item>
