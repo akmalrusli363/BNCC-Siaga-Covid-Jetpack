@@ -43,6 +43,10 @@ class LookupActivity : AppCompatActivity() {
         etRegionLookupSearch.addTextChangedListener {
             lookupAdapter.filter.filter(etRegionLookupSearch.text)
         }
+
+        srlLookupData.setOnRefreshListener {
+            fetchData(lookupAdapter)
+        }
     }
 
     private fun fetchData(lookupAdapter: LookupAdapter) {
@@ -55,6 +59,7 @@ class LookupActivity : AppCompatActivity() {
         return object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 AppEventLogging(this@LookupActivity).logExceptionOnToast(e)
+                srlLookupData.isRefreshing = false
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -78,12 +83,12 @@ class LookupActivity : AppCompatActivity() {
 
                     this@LookupActivity.runOnUiThread {
                         lookupAdapter.updateData(lookupDataFromNetwork)
+                        srlLookupData.isRefreshing = false
                     }
                 } catch (e: Exception) {
                     AppEventLogging(this@LookupActivity).logExceptionOnToast(e)
                 }
             }
-
         }
     }
 }
