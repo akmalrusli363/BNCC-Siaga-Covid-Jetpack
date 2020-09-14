@@ -1,10 +1,10 @@
 package com.tilikki.bnccapp.siagacovid.hotline
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import kotlinx.android.synthetic.main.activity_hotline.*
 import okhttp3.*
 import org.json.JSONArray
@@ -12,6 +12,10 @@ import java.io.IOException
 
 class HotlineActivity : AppCompatActivity() {
     private val okHttpClient = OkHttpClient()
+
+    companion object {
+        const val hotlineApiURL = "https://bncc-corona-versus.firebaseio.com/v1/hotlines.json"
+    }
 
     private val mockHotlineList = mutableListOf(
         HotlineData("@drawable/ic_wait", "Loading...", "???")
@@ -33,9 +37,7 @@ class HotlineActivity : AppCompatActivity() {
     }
 
     private fun fetchData(hotlineAdapter: HotlineAdapter) {
-        val request: Request = Request.Builder()
-            .url("https://bncc-corona-versus.firebaseio.com/v1/hotlines.json")
-            .build()
+        val request: Request = Request.Builder().url(hotlineApiURL).build()
 
         okHttpClient.newCall(request).enqueue(getCallback(hotlineAdapter))
     }
@@ -43,9 +45,7 @@ class HotlineActivity : AppCompatActivity() {
     private fun getCallback(hotlineAdapter: HotlineAdapter): Callback {
         return object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                this@HotlineActivity.runOnUiThread {
-                    Toast.makeText(this@HotlineActivity, e.message, Toast.LENGTH_SHORT).show()
-                }
+                AppEventLogging(this@HotlineActivity).logExceptionOnToast(e)
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -68,9 +68,7 @@ class HotlineActivity : AppCompatActivity() {
                         hotlineAdapter.updateData(hotlineListFromNetwork)
                     }
                 } catch (e: Exception) {
-                    this@HotlineActivity.runOnUiThread {
-                        Toast.makeText(this@HotlineActivity, e.message, Toast.LENGTH_SHORT).show()
-                    }
+                    AppEventLogging(this@HotlineActivity).logExceptionOnToast(e)
                 }
             }
 

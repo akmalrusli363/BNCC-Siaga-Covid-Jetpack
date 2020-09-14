@@ -6,12 +6,11 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.tilikki.bnccapp.R
-import java.util.*
 
 class LookupAdapter(private val lookupList: MutableList<LookupData>) :
     RecyclerView.Adapter<LookupViewHolder>(), Filterable {
 
-    var filteredLookupList: MutableList<LookupData> = sortByPositivityRate(lookupList)
+    var filteredLookupList: MutableList<LookupData> = sortData(lookupList)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LookupViewHolder {
         return LookupViewHolder(
@@ -39,7 +38,7 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
                     } as MutableList<LookupData>
                 }
                 return FilterResults().also {
-                    filteredLookupList = sortByPositivityRate(filteredLookupList)
+                    filteredLookupList = sortData(filteredLookupList)
                     it.values = filteredLookupList
                 }
             }
@@ -50,9 +49,20 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
         }
     }
 
+    fun updateData(newList: List<LookupData>) {
+        lookupList.clear()
+        lookupList.addAll(newList)
+        notifyDataSetChanged()
+        filteredLookupList = lookupList
+    }
+
+    private fun sortData(list: MutableList<LookupData>): MutableList<LookupData> {
+        return sortByPositivityRate(list)
+    }
+
     private fun sortByPositivityRate(list: MutableList<LookupData>): MutableList<LookupData> {
-        return list.sortedByDescending {
-                lookupData: LookupData -> lookupData.numOfPositiveCase
+        return list.sortedByDescending { lookupData: LookupData ->
+            lookupData.numOfPositiveCase
         } as MutableList<LookupData>
     }
 

@@ -5,41 +5,32 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import kotlinx.android.synthetic.main.activity_lookup.*
-import okhttp3.OkHttpClient
-import okhttp3.Request
+import okhttp3.*
+import org.json.JSONArray
+import java.io.IOException
 
 class LookupActivity : AppCompatActivity() {
-    private lateinit var mockLookupList: MutableList<LookupData>
-
     private val okHttpClient = OkHttpClient()
 
-    private fun fetchRegionData() {
-        mockLookupList = mutableListOf(
-            LookupData("${getText(R.string.province_dki_jakarta)}", 16538, 1044, 736),
-            LookupData("${getText(R.string.province_jawa_timur)}", 18308, 9342, 1401),
-            LookupData("${getText(R.string.province_sulawesi_selatan)}", 8039, 4198, 279),
-            LookupData("${getText(R.string.province_jawa_tengah)}", 12114, 5244, 464),
-            LookupData("${getText(R.string.province_kalimantan_barat)}", 3045, 2344, 403),
-            LookupData("${getText(R.string.province_papua)}", 2133, 1675, 95),
-            LookupData("${getText(R.string.province_bali)}", 3412, 2313, 101)
-        )
+    companion object {
+        const val lookupDataApiURL = "https://api.kawalcorona.com/indonesia/provinsi/"
     }
 
-    private fun preload() {
-        mockLookupList = mutableListOf(
-            LookupData("Loading...", 0, 0, 0),
-        )
-    }
+    private var mockLookupList: MutableList<LookupData> = mutableListOf(
+        LookupData("Loading...", 0, 0, 0)
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lookup)
-        fetchRegionData()
 
         val lookupAdapter = LookupAdapter(mockLookupList)
         rvLookUp.layoutManager = LinearLayoutManager(this)
         rvLookUp.adapter = lookupAdapter
+
+        fetchData(lookupAdapter)
 
         ivReturnIcon.setOnClickListener {
             finish()
@@ -51,6 +42,48 @@ class LookupActivity : AppCompatActivity() {
 
         etRegionLookupSearch.addTextChangedListener {
             lookupAdapter.filter.filter(etRegionLookupSearch.text)
+        }
+    }
+
+    private fun fetchData(lookupAdapter: LookupAdapter) {
+        val request: Request = Request.Builder().url(lookupDataApiURL).build()
+
+        okHttpClient.newCall(request).enqueue(getCallback(lookupAdapter))
+    }
+
+    private fun getCallback(lookupAdapter: LookupAdapter): Callback {
+        return object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                AppEventLogging(this@LookupActivity).logExceptionOnToast(e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                try {
+                    val jsonString = response.body?.string()
+                    val jsonArray = JSONArray(jsonString)
+                    val lookupDataFromNetwork = mutableListOf<LookupData>()
+
+                    for (i in 0 until jsonArray.length()) {
+                        val attribute = jsonArray.getJSONObject(i).getJSONObject("attributes")
+                        lookupDataFromNetwork.add(
+                            LookupData(
+                                provinceID = attribute.getInt("Kode_Provi"),
+                                provinceName = attribute.getString("Provinsi"),
+                                numOfPositiveCase = attribute.getInt("Kasus_Posi"),
+                                numOfRecoveredCase = attribute.getInt("Kasus_Semb"),
+                                numOfDeathCase = attribute.getInt("Kasus_Meni")
+                            )
+                        )
+                    }
+
+                    this@LookupActivity.runOnUiThread {
+                        lookupAdapter.updateData(lookupDataFromNetwork)
+                    }
+                } catch (e: Exception) {
+                    AppEventLogging(this@LookupActivity).logExceptionOnToast(e)
+                }
+            }
+
         }
     }
 }
