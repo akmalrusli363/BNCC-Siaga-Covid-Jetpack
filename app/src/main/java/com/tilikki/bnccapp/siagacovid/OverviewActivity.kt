@@ -1,12 +1,14 @@
 package com.tilikki.bnccapp.siagacovid
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Resources
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineActivity
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
-import kotlinx.android.synthetic.main.activity_corona_overview.*
+import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
 
 class OverviewActivity : AppCompatActivity() {
 
@@ -20,6 +22,7 @@ class OverviewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_corona_overview)
+        setupBottomSheet()
 
         clLookupButton.setOnClickListener {
             gotoLookupActivity()
@@ -27,6 +30,24 @@ class OverviewActivity : AppCompatActivity() {
 
         clHotlineButton.setOnClickListener {
             gotoHotlineActivity()
+        }
+    }
+
+    override fun onBackPressed() {
+        if (BottomSheetBehavior.from(bottomSheetSummaryView).state == BottomSheetBehavior.STATE_EXPANDED) {
+            BottomSheetBehavior.from(bottomSheetSummaryView).state =
+                BottomSheetBehavior.STATE_COLLAPSED
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    private fun setupBottomSheet() {
+        BottomSheetBehavior.from(bottomSheetSummaryView).apply {
+            isHideable = false
+            val dpi = Resources.getSystem().displayMetrics.density
+            val peekHeightDPI = (250 * dpi).toInt()
+            peekHeight = Resources.getSystem().displayMetrics.heightPixels - peekHeightDPI
         }
     }
 
