@@ -11,9 +11,11 @@
     app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/llHotline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:background="@drawable/btn_corona_access"
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/ivHotlineIcon"
@@ -34,20 +36,24 @@
             android:text="@string/unknown"
             android:textAlignment="center"
             android:textColor="@color/colorAccentLight"
-            app:layout_constraintBottom_toTopOf="@id/tvLookUpProvince"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toTopOf="@id/tvHotlineContactName"
             app:layout_constraintStart_toEndOf="@id/ivHotlineIcon"
             app:layout_constraintEnd_toStartOf="@id/ivHotlineCall"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="021-1234-5678" />
 
         <TextView
-            android:id="@+id/tvLookUpProvince"
-            style="@style/b1"
+            android:id="@+id/tvHotlineContactName"
+            style="@style/b2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/unknown"
             android:textAlignment="center"
             android:textColor="@color/colorAccentLight"
+            app:layout_constraintHorizontal_bias="0"
+            android:layout_marginHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivHotlineIcon"
             app:layout_constraintEnd_toStartOf="@id/ivHotlineCall"
@@ -56,8 +62,8 @@
 
         <ImageView
             android:id="@+id/ivHotlineCall"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

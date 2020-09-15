@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
-import com.tilikki.bnccapp.siagacovid.hotline.HotlineActivity
+import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
 
@@ -59,9 +59,6 @@ class OverviewActivity : AppCompatActivity() {
     }
 
     private fun gotoHotlineActivity() {
-        val intent = Intent(this, HotlineActivity::class.java).apply {
-            putExtra(callHotlineActivity, "Go to hotline activity...")
-        }
-        startActivity(intent)
+        HotlineBottomDialogFragment.show(supportFragmentManager)
     }
 }

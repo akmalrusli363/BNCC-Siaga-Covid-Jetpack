@@ -32,4 +32,6 @@
     <string name="hotline_contact_logo">Hotline contact logo</string>
     <string name="call_to_hotline">Call to hotline contact</string>
     <string name="unknown">\???</string>
+    <string name="close_hotline_dialog">Close hotline dialog</string>
+    <string name="hotline_advanced_description">Layanan darurat via telepon yang disediakan oleh Kemkes dan juga Pemprov DKI Jakarta</string>
 </resources>

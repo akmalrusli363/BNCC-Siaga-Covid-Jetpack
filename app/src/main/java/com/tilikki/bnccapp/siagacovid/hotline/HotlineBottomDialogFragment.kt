@@ -1,38 +1,55 @@
 package com.tilikki.bnccapp.siagacovid.hotline
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
-import kotlinx.android.synthetic.main.activity_hotline.*
+import kotlinx.android.synthetic.main.bottom_dialog_fragment_hotline.*
 import okhttp3.*
 import org.json.JSONArray
 import java.io.IOException
 
-class HotlineActivity : AppCompatActivity() {
+class HotlineBottomDialogFragment : BottomSheetDialogFragment() {
     private val okHttpClient = OkHttpClient()
 
     companion object {
         const val hotlineApiURL = "https://bncc-corona-versus.firebaseio.com/v1/hotlines.json"
+
+        fun show(fragmentManager: FragmentManager) {
+            val dialogFragment = HotlineBottomDialogFragment()
+            dialogFragment.setStyle(STYLE_NORMAL, R.style.AppBottomSheetDialogTheme)
+            dialogFragment.show(fragmentManager, dialogFragment.tag)
+        }
     }
 
     private val mockHotlineList = mutableListOf(
         HotlineData("@drawable/ic_wait", "Loading...", "???")
     )
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hotline)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.bottom_dialog_fragment_hotline, container, false)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         val hotlineAdapter = HotlineAdapter(mockHotlineList)
-        rvHotline.layoutManager = LinearLayoutManager(this)
+        rvHotline.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         rvHotline.adapter = hotlineAdapter
 
         fetchData(hotlineAdapter)
 
         ivReturnIcon.setOnClickListener {
-            finish()
+            dismiss()
         }
     }
 
@@ -45,7 +62,7 @@ class HotlineActivity : AppCompatActivity() {
     private fun getCallback(hotlineAdapter: HotlineAdapter): Callback {
         return object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                AppEventLogging(this@HotlineActivity).logExceptionOnToast(e)
+                activity?.let { AppEventLogging.logExceptionOnToast(it, e) }
             }
 
             override fun onResponse(call: Call, response: Response) {
@@ -64,11 +81,11 @@ class HotlineActivity : AppCompatActivity() {
                         )
                     }
 
-                    this@HotlineActivity.runOnUiThread {
+                    activity?.runOnUiThread {
                         hotlineAdapter.updateData(hotlineListFromNetwork)
                     }
                 } catch (e: Exception) {
-                    AppEventLogging(this@HotlineActivity).logExceptionOnToast(e)
+                    activity?.let { AppEventLogging.logExceptionOnToast(it, e) }
                 }
             }
 

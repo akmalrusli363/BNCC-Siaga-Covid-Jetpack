@@ -58,7 +58,7 @@ class LookupActivity : AppCompatActivity() {
     private fun getCallback(lookupAdapter: LookupAdapter): Callback {
         return object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                AppEventLogging(this@LookupActivity).logExceptionOnToast(e)
+                AppEventLogging.logExceptionOnToast(this@LookupActivity, e)
                 srlLookupData.isRefreshing = false
             }
 
@@ -86,7 +86,7 @@ class LookupActivity : AppCompatActivity() {
                         srlLookupData.isRefreshing = false
                     }
                 } catch (e: Exception) {
-                    AppEventLogging(this@LookupActivity).logExceptionOnToast(e)
+                    AppEventLogging.logExceptionOnToast(this@LookupActivity, e)
                 }
             }
         }
