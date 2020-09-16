@@ -89,6 +89,13 @@
             app:tint="@color/colorAccentLight" />
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/pbFetchLookup"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlLookupData"
         android:layout_width="match_parent"

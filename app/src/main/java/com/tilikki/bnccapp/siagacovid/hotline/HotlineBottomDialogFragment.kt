@@ -11,7 +11,6 @@ import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import kotlinx.android.synthetic.main.bottom_dialog_fragment_hotline.*
-import kotlinx.android.synthetic.main.bottom_dialog_fragment_hotline.ivReturnIcon
 
 class HotlineBottomDialogFragment : BottomSheetDialogFragment(), PVContract.View<HotlineData> {
     private val presenter = HotlinePresenter(HotlineModel(), this)
@@ -57,6 +56,8 @@ class HotlineBottomDialogFragment : BottomSheetDialogFragment(), PVContract.View
     override fun updateData(listData: List<HotlineData>) {
         this@HotlineBottomDialogFragment.activity?.runOnUiThread {
             hotlineAdapter.updateData(listData)
+            pbFetchHotline.visibility = View.GONE
+            rvHotline.visibility = View.VISIBLE
         }
     }
 

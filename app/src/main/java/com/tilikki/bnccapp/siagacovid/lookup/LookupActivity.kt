@@ -1,6 +1,7 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,8 @@ import kotlinx.android.synthetic.main.activity_lookup.*
 
 class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     private val presenter = LookupPresenter(LookupModel(), this)
+
+    private var isRefreshing = true
 
     private var mockLookupList: MutableList<LookupData> = mutableListOf(
         LookupData("Loading...", 0, 0, 0)
@@ -60,15 +63,16 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
         this@LookupActivity.runOnUiThread {
             lookupAdapter.updateData(listData)
             srlLookupData.isRefreshing = false
+            pbFetchLookup.visibility = View.GONE
+            rvLookUp.visibility = View.VISIBLE
         }
     }
 
     override fun showError(tag: String, e: Exception) {
         runOnUiThread {
-            AppEventLogging.logExceptionOnToast(tag,this@LookupActivity, e)
+            AppEventLogging.logExceptionOnToast(tag, this@LookupActivity, e)
             srlLookupData.isRefreshing = false
         }
     }
-
 
 }

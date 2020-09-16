@@ -56,11 +56,19 @@
                 android:text="@string/hotline_advanced_description"/>
         </LinearLayout>
 
+        <ProgressBar
+            android:id="@+id/pbFetchHotline"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHotline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:listitem="@layout/item_hotline"
+            android:visibility="gone"
             android:clipToPadding="false"/>
 
     </LinearLayout>
