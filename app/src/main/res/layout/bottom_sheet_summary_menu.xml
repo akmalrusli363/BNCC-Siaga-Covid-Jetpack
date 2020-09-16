@@ -27,7 +27,7 @@
             android:paddingVertical="12dp">
 
             <LinearLayout
-                android:id="@+id/llConfirmedCountBox"
+                android:id="@+id/llActiveCaseCountBox"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/shape_round_highlight_box"
@@ -41,12 +41,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tvConfirmedCount"
+                    android:id="@+id/tvActiveCaseCount"
                     style="@style/h4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="36977"
+                    tools:text="36977"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark" />
 
@@ -71,7 +71,7 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
-                app:layout_constraintStart_toEndOf="@id/llConfirmedCountBox"
+                app:layout_constraintStart_toEndOf="@id/llActiveCaseCountBox"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="45101"
+                    tools:text="45101"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark" />
 
@@ -114,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="4dp"
-                    android:text="4143"
+                    tools:text="4143"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark" />
 

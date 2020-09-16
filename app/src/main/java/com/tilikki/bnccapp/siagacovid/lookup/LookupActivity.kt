@@ -5,18 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import kotlinx.android.synthetic.main.activity_lookup.*
-import okhttp3.*
-import org.json.JSONArray
-import java.io.IOException
 
-class LookupActivity : AppCompatActivity() {
-    private val okHttpClient = OkHttpClient()
-
-    companion object {
-        const val lookupDataApiURL = "https://api.kawalcorona.com/indonesia/provinsi/"
-    }
+class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
+    private val presenter = LookupPresenter(LookupModel(), this)
 
     private var mockLookupList: MutableList<LookupData> = mutableListOf(
         LookupData("Loading...", 0, 0, 0)
@@ -25,17 +19,26 @@ class LookupActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lookup)
+        setupRecyclerAdapter()
+        setupReturnButton()
+        setupSearch(lookupAdapter)
+    }
 
-        val lookupAdapter = LookupAdapter(mockLookupList)
-        rvLookUp.layoutManager = LinearLayoutManager(this)
+    private val lookupAdapter = LookupAdapter(mockLookupList)
+
+    private fun setupRecyclerAdapter() {
+        rvLookUp.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         rvLookUp.adapter = lookupAdapter
+        fetchData()
+    }
 
-        fetchData(lookupAdapter)
-
+    private fun setupReturnButton() {
         ivReturnIcon.setOnClickListener {
             finish()
         }
+    }
 
+    private fun setupSearch(lookupAdapter: LookupAdapter) {
         ibClearSearch.setOnClickListener {
             etRegionLookupSearch.text.clear()
         }
@@ -45,50 +48,27 @@ class LookupActivity : AppCompatActivity() {
         }
 
         srlLookupData.setOnRefreshListener {
-            fetchData(lookupAdapter)
+            fetchData()
         }
     }
 
-    private fun fetchData(lookupAdapter: LookupAdapter) {
-        val request: Request = Request.Builder().url(lookupDataApiURL).build()
-
-        okHttpClient.newCall(request).enqueue(getCallback(lookupAdapter))
+    private fun fetchData() {
+        presenter.fetchData()
     }
 
-    private fun getCallback(lookupAdapter: LookupAdapter): Callback {
-        return object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                AppEventLogging.logExceptionOnToast(this@LookupActivity, e)
-                srlLookupData.isRefreshing = false
-            }
-
-            override fun onResponse(call: Call, response: Response) {
-                try {
-                    val jsonString = response.body?.string()
-                    val jsonArray = JSONArray(jsonString)
-                    val lookupDataFromNetwork = mutableListOf<LookupData>()
-
-                    for (i in 0 until jsonArray.length()) {
-                        val attribute = jsonArray.getJSONObject(i).getJSONObject("attributes")
-                        lookupDataFromNetwork.add(
-                            LookupData(
-                                provinceID = attribute.getInt("Kode_Provi"),
-                                provinceName = attribute.getString("Provinsi"),
-                                numOfPositiveCase = attribute.getInt("Kasus_Posi"),
-                                numOfRecoveredCase = attribute.getInt("Kasus_Semb"),
-                                numOfDeathCase = attribute.getInt("Kasus_Meni")
-                            )
-                        )
-                    }
-
-                    this@LookupActivity.runOnUiThread {
-                        lookupAdapter.updateData(lookupDataFromNetwork)
-                        srlLookupData.isRefreshing = false
-                    }
-                } catch (e: Exception) {
-                    AppEventLogging.logExceptionOnToast(this@LookupActivity, e)
-                }
-            }
+    override fun updateData(listData: List<LookupData>) {
+        this@LookupActivity.runOnUiThread {
+            lookupAdapter.updateData(listData)
+            srlLookupData.isRefreshing = false
         }
     }
+
+    override fun showError(tag: String, e: Exception) {
+        runOnUiThread {
+            AppEventLogging.logExceptionOnToast(tag,this@LookupActivity, e)
+            srlLookupData.isRefreshing = false
+        }
+    }
+
+
 }
