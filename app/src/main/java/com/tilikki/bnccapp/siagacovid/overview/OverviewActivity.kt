@@ -3,6 +3,10 @@ package com.tilikki.bnccapp.siagacovid.overview
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
+import android.view.View
+import android.widget.ProgressBar
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
@@ -15,16 +19,17 @@ import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
 
 class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData> {
 
+    private val presenter = OverviewPresenter(OverviewModel(), this)
+
     companion object {
         const val callLookupActivity = "GOTO_LOOKUP_ACTIVITY"
-        const val callHotlineActivity = "GOTO_HOTLINE_ACTIVITY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_corona_overview)
         setupBottomSheet()
-        OverviewPresenter(OverviewModel(), this).fetchData()
+        fetchData()
 
         clLookupButton.setOnClickListener {
             gotoLookupActivity()
@@ -32,6 +37,14 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
         clHotlineButton.setOnClickListener {
             gotoHotlineActivity()
+        }
+
+        ibInfoIcon.setOnClickListener {
+            Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
+        }
+
+        ibReloadIcon.setOnClickListener {
+            fetchData()
         }
     }
 
@@ -42,6 +55,18 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         } else {
             super.onBackPressed()
         }
+    }
+
+    private fun fetchData() {
+        presenter.fetchData()
+        toggleFetchState(true)
+    }
+
+    private fun toggleFetchState(isFetching: Boolean) {
+        toggleFetchState(isFetching, tvTotalCaseCount, pbTotalCase)
+        toggleFetchState(isFetching, tvPositiveCaseCount, pbPositive)
+        toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
+        toggleFetchState(isFetching, tvDeathCount, pbDeath)
     }
 
     private fun setupBottomSheet() {
@@ -64,18 +89,29 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         HotlineBottomDialogFragment.show(supportFragmentManager)
     }
 
-    override fun updateData(data: OverviewData) {
+    override fun updateData(objectData: OverviewData) {
         runOnUiThread {
-            tvTotalCaseCount.text = "${data.totalConfirmedCase}"
-            tvActiveCaseCount.text = "${data.totalActiveCase}"
-            tvRecoveredCount.text = "${data.totalRecoveredCase}"
-            tvDeathCount.text = "${data.totalDeathCase}"
+            tvTotalCaseCount.text = "${objectData.totalConfirmedCase}"
+            tvPositiveCaseCount.text = "${objectData.totalActiveCase}"
+            tvRecoveredCount.text = "${objectData.totalRecoveredCase}"
+            tvDeathCount.text = "${objectData.totalDeathCase}"
+            toggleFetchState(false)
         }
     }
 
     override fun showError(tag: String, e: Exception) {
         runOnUiThread {
             AppEventLogging.logExceptionOnToast(tag, this@OverviewActivity, e)
+        }
+    }
+
+    private fun toggleFetchState(isFetching: Boolean, textView: TextView, progressBar: ProgressBar) {
+        if (isFetching) {
+            textView.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
+        } else {
+            textView.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
         }
     }
 }

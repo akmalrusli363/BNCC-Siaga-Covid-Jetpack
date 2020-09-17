@@ -16,7 +16,7 @@ interface PVContract {
     }
 
     interface ObjectView<T> {
-        fun updateData(listData: T)
+        fun updateData(objectData: T)
         fun showError(tag: String, e: Exception)
     }
 }

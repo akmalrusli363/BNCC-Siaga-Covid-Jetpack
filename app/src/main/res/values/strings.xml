@@ -24,7 +24,8 @@
     <string name="positive">Positive</string>
     <string name="recovered">Recovered</string>
     <string name="death">Death</string>
-    <string name="region_info_icon">Information about coronavirus</string>
+    <string name="about_icon">About this app</string>
+    <string name="reload_icon">Reload data</string>
     <string name="corona_vector">Coronavirus vector</string>
     <string name="clear_search">Clear search</string>
     <string name="goto_lookup">Goto lookup</string>
@@ -34,4 +35,5 @@
     <string name="unknown">\???</string>
     <string name="close_hotline_dialog">Close hotline dialog</string>
     <string name="hotline_advanced_description">Layanan darurat via telepon yang disediakan oleh Kemkes dan juga Pemprov DKI Jakarta</string>
+    <string name="loading">…</string>
 </resources>

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context=".siagacovid.OverviewActivity">
+    tools:context=".siagacovid.overview.OverviewActivity">
 
     <LinearLayout
         android:id="@+id/llCaseSummary"
@@ -17,6 +17,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="8dp">
+
+            <ImageButton
+                android:id="@+id/ibReloadIcon"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="fitXY"
+                android:background="@drawable/btn_haptic_image"
+                android:contentDescription="@string/reload_icon"
+                android:src="@drawable/ic_refresh"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintEnd_toStartOf="@+id/tvLookupCountry"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/colorAccentDark" />
 
             <TextView
                 android:id="@+id/tvLookupCountry"
@@ -33,10 +48,11 @@
 
             <ImageButton
                 android:id="@+id/ibInfoIcon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:scaleType="fitXY"
                 android:background="@drawable/btn_haptic_image"
-                android:contentDescription="@string/region_info_icon"
+                android:contentDescription="@string/about_icon"
                 android:src="@drawable/ic_outline_info"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -49,22 +65,35 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="24dp">
+            android:layout_marginVertical="24dp"
+            android:paddingHorizontal="16dp">
+
+            <ProgressBar
+                android:id="@+id/pbTotalCase"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:indeterminateTint="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/tvTotalCaseCountLabel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
+                app:layout_constraintTop_toTopOf="parent"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/tvTotalCaseCount"
                 style="@style/h1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="86521"
                 android:textAlignment="center"
                 android:textColor="@color/colorAccentDark"
-                android:textSize="48sp"
+                android:textSize="36sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.5" />
+                app:layout_constraintVertical_bias="0.4"
+                android:text="@string/loading"
+                tools:text="86521" />
 
             <TextView
                 android:id="@+id/tvTotalCaseCountLabel"
@@ -86,11 +115,10 @@
                 android:layout_height="144dp"
                 android:contentDescription="@string/corona_vector"
                 android:src="@drawable/ic_virus"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:srcCompat="@drawable/ic_virus" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
