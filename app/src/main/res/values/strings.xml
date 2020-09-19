@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">BNCC App</string>
-    <string name="title_activity_lookup">LookupActivity</string>
+    <string name="app_name">BNCC Siaga COVID-19</string>
+
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
@@ -8,32 +8,45 @@
 
     <!-- Label-mates -->
     <string name="region_indonesia">Indonesia</string>
-    <string name="back_to_overview">Back to overview</string>
-    <string name="search_icon_description">Search</string>
-    <string name="region_search_hint">Wilayah</string>
     <string name="learn_more_covid19">Get to know more</string>
+    <string name="back_to_overview">Back to overview</string>
     <string name="lookup">Look up</string>
     <string name="hotline">Hotline</string>
     <string name="lookup_description">See details by province all over Indonesia</string>
-    <string name="hotline_description"><![CDATA[Cek nomor daruratnya & hubungi faskes terdekat]]></string>
+    <string name="hotline_description">Check emergency phone number to contact</string>
     <string name="lookup_icon">Look up icon</string>
     <string name="hotline_icon">Hotline icon</string>
+    <string name="about_icon">About this app</string>
+    <string name="goto_lookup">Goto lookup</string>
+    <string name="goto_hotline">Goto hotline</string>
 
     <!-- Data labels -->
     <string name="total_cases">Total cases</string>
     <string name="positive">Positive</string>
     <string name="recovered">Recovered</string>
     <string name="death">Death</string>
-    <string name="about_icon">About this app</string>
-    <string name="reload_icon">Reload data</string>
-    <string name="corona_vector">Coronavirus vector</string>
+
+    <!-- Lookup -->
+    <string name="search_icon_description">Search</string>
+    <string name="region_search_hint">Wilayah</string>
     <string name="clear_search">Clear search</string>
-    <string name="goto_lookup">Goto lookup</string>
-    <string name="goto_hotline">Goto hotline</string>
+
+    <!-- Hot-line -->
+    <string name="hotline_advanced_description">Layanan darurat via telepon yang disediakan oleh Kemkes dan juga Pemprov DKI Jakarta</string>
     <string name="hotline_contact_logo">Hotline contact logo</string>
     <string name="call_to_hotline">Call to hotline contact</string>
-    <string name="unknown">\???</string>
     <string name="close_hotline_dialog">Close hotline dialog</string>
-    <string name="hotline_advanced_description">Layanan darurat via telepon yang disediakan oleh Kemkes dan juga Pemprov DKI Jakarta</string>
+
+    <!-- About App -->
+    <string name="copyright">Copyright 2020</string>
+    <string name="author">Created by @akmalrusli363 as part of COVID-19 mitigation in Indonesia.</string>
+    <string name="part_of">Powered by BNCC x Go-Academy</string>
+    <string name="version">Version 1.0.0</string>
+
+    <!-- Misc -->
+    <string name="bottom_sheet_grapple">Bottom sheet swipe to expand</string>
+    <string name="corona_vector">Coronavirus vector</string>
+    <string name="reload_icon">Reload data</string>
+    <string name="unknown">\???</string>
     <string name="loading">…</string>
 </resources>

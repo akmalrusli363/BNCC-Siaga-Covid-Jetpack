@@ -16,7 +16,15 @@
         android:background="@drawable/shape_round_roll_box"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:paddingVertical="24dp">
+        android:paddingVertical="16dp">
+
+        <ImageView
+            android:id="@+id/grapple"
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_grapple"
+            android:contentDescription="@string/bottom_sheet_grapple" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clCoronaCountBox"
@@ -160,6 +168,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="12dp"
+            android:paddingHorizontal="4dp"
             android:text="@string/learn_more_covid19"
             android:textColor="@color/indigo2"
             style="@style/h4" />
