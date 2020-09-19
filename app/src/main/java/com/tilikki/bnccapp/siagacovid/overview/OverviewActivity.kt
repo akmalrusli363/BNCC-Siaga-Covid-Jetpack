@@ -63,10 +63,10 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
     }
 
     private fun toggleFetchState(isFetching: Boolean) {
-        toggleFetchState(isFetching, tvTotalCaseCount, pbTotalCase)
-        toggleFetchState(isFetching, tvPositiveCaseCount, pbPositive)
-        toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
-        toggleFetchState(isFetching, tvDeathCount, pbDeath)
+        toggleFetchState(isFetching, tvDailyTotalCaseCount, tvTotalCaseCount, pbTotalCase)
+        toggleFetchState(isFetching, tvDailyPositiveCount, tvPositiveCount, pbPositive)
+        toggleFetchState(isFetching, tvDailyRecoveredCount, tvRecoveredCount, pbRecovered)
+        toggleFetchState(isFetching, tvDailyDeathCount, tvDeathCount, pbDeath)
     }
 
     private fun setupBottomSheet() {
@@ -92,9 +92,13 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
     override fun updateData(objectData: OverviewData) {
         runOnUiThread {
             tvTotalCaseCount.text = "${objectData.totalConfirmedCase}"
-            tvPositiveCaseCount.text = "${objectData.totalActiveCase}"
+            tvPositiveCount.text = "${objectData.totalActiveCase}"
             tvRecoveredCount.text = "${objectData.totalRecoveredCase}"
             tvDeathCount.text = "${objectData.totalDeathCase}"
+            tvDailyTotalCaseCount.text = displayDailyCaseCount(objectData.dailyConfirmedCase)
+            tvDailyPositiveCount.text = displayDailyCaseCount(objectData.dailyActiveCase)
+            tvDailyRecoveredCount.text = displayDailyCaseCount(objectData.dailyRecoveredCase)
+            tvDailyDeathCount.text = displayDailyCaseCount(objectData.dailyDeathCase)
             toggleFetchState(false)
         }
     }
@@ -105,13 +109,23 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         }
     }
 
-    private fun toggleFetchState(isFetching: Boolean, textView: TextView, progressBar: ProgressBar) {
+    private fun toggleFetchState(
+        isFetching: Boolean,
+        tvDaily: TextView,
+        tvCumulative: TextView,
+        progressBar: ProgressBar
+    ) {
         if (isFetching) {
-            textView.visibility = View.GONE
+            tvDaily.visibility = View.GONE
+            tvCumulative.visibility = View.GONE
             progressBar.visibility = View.VISIBLE
         } else {
-            textView.visibility = View.VISIBLE
+            tvDaily.visibility = View.VISIBLE
+            tvCumulative.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
         }
     }
+
+    private fun displayDailyCaseCount(dailyCaseCount: Int): String
+        = "+(${dailyCaseCount})"
 }

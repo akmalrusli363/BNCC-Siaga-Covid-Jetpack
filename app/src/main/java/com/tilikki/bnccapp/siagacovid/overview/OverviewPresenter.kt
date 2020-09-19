@@ -27,12 +27,18 @@ class OverviewPresenter(
             override fun onResponse(call: Call, response: Response) {
                 try {
                     val jsonString = response.body!!.string()
-                    val jsonObject = JSONArray(jsonString).getJSONObject(0)
+                    val jsonObject = JSONObject(jsonString).getJSONObject("update")
+                    val dailyUpdate = jsonObject.getJSONObject("penambahan")
+                    val cumulativeUpdate = jsonObject.getJSONObject("total")
                     val overviewData = OverviewData(
-                        totalConfirmedCase = parseInt(jsonObject.getString("positif")),
-                        totalActiveCase = parseInt(jsonObject.getString("dirawat")),
-                        totalRecoveredCase = parseInt(jsonObject.getString("sembuh")),
-                        totalDeathCase = parseInt(jsonObject.getString("meninggal"))
+                        totalConfirmedCase = parseInt(cumulativeUpdate.getString("jumlah_positif")),
+                        totalActiveCase = parseInt(cumulativeUpdate.getString("jumlah_dirawat")),
+                        totalRecoveredCase = parseInt(cumulativeUpdate.getString("jumlah_sembuh")),
+                        totalDeathCase = parseInt(cumulativeUpdate.getString("jumlah_meninggal")),
+                        dailyConfirmedCase = parseInt(dailyUpdate.getString("jumlah_positif")),
+                        dailyActiveCase = parseInt(dailyUpdate.getString("jumlah_dirawat")),
+                        dailyRecoveredCase = parseInt(dailyUpdate.getString("jumlah_sembuh")),
+                        dailyDeathCase = parseInt(dailyUpdate.getString("jumlah_meninggal"))
                     )
 
                     view.updateData(overviewData)

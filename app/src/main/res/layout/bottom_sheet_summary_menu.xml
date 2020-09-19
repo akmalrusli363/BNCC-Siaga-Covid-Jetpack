@@ -36,7 +36,7 @@
             <LinearLayout
                 android:id="@+id/llPositiveCaseCountBox"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:background="@drawable/shape_round_highlight_box"
                 android:backgroundTint="@color/confirmedColor"
                 android:elevation="4dp"
@@ -55,15 +55,25 @@
                     android:visibility="gone"/>
 
                 <TextView
-                    android:id="@+id/tvPositiveCaseCount"
+                    android:id="@+id/tvPositiveCount"
                     style="@style/h4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
                     android:text="@string/loading"
                     tools:text="36977" />
+
+                <TextView
+                    android:id="@+id/tvDailyPositiveCount"
+                    style="@style/b1"
+                    android:textStyle="italic|bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:text="@string/loading"
+                    tools:text="(+2977)" />
 
                 <TextView
                     android:id="@+id/tvPositiveCountLabel"
@@ -78,7 +88,7 @@
             <LinearLayout
                 android:id="@+id/llRecoveredCountBox"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:background="@drawable/shape_round_highlight_box"
                 android:backgroundTint="@color/recoveredColor"
                 android:elevation="4dp"
@@ -102,11 +112,21 @@
                     style="@style/h4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
                     android:text="@string/loading"
                     tools:text="45101" />
+
+                <TextView
+                    android:id="@+id/tvDailyRecoveredCount"
+                    style="@style/b1"
+                    android:textStyle="italic|bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:text="@string/loading"
+                    tools:text="(+2977)" />
 
                 <TextView
                     android:id="@+id/tvRecoveredCountLabel"
@@ -121,7 +141,7 @@
             <LinearLayout
                 android:id="@+id/llDeathCountBox"
                 android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_height="110dp"
                 android:background="@drawable/shape_round_highlight_box"
                 android:backgroundTint="@color/deathColor"
                 android:elevation="4dp"
@@ -144,11 +164,21 @@
                     style="@style/h4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
                     android:text="@string/loading"
                     tools:text="4143" />
+
+                <TextView
+                    android:id="@+id/tvDailyDeathCount"
+                    style="@style/b1"
+                    android:textStyle="italic|bold"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:text="@string/loading"
+                    tools:text="(+107)" />
 
                 <TextView
                     android:id="@+id/tvDeathCountLabel"

@@ -6,6 +6,6 @@ class OverviewModel : ApiCallModel {
     override val apiURL: String = lookupSummaryApiURL
 
     companion object {
-        const val lookupSummaryApiURL = "https://api.kawalcorona.com/indonesia/"
+        const val lookupSummaryApiURL = "https://data.covid19.go.id/public/api/update.json"
     }
 }
