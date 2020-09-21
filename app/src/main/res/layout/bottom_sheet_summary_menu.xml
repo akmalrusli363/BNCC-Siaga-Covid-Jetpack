@@ -31,7 +31,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginVertical="12dp">
+            android:layout_marginVertical="4dp"
+            android:paddingVertical="8dp">
 
             <LinearLayout
                 android:id="@+id/llPositiveCaseCountBox"
@@ -190,7 +191,6 @@
                     android:textColor="@color/colorAccentDark" />
             </LinearLayout>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
@@ -338,6 +338,16 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:id="@+id/tvLastUpdated"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:text="@string/last_updated"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            style="@style/b2" />
 
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>

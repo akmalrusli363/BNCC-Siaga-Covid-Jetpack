@@ -9,7 +9,6 @@ import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import kotlinx.android.synthetic.main.activity_lookup.*
-import okhttp3.OkHttpClient
 
 class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     private val presenter = LookupPresenter(LookupModel(), this)

@@ -2,10 +2,10 @@ package com.tilikki.bnccapp.siagacovid.overview
 
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
@@ -31,14 +31,33 @@ class OverviewPresenter(
                     val dailyUpdate = jsonObject.getJSONObject("penambahan")
                     val cumulativeUpdate = jsonObject.getJSONObject("total")
                     val overviewData = OverviewData(
-                        totalConfirmedCase = parseInt(cumulativeUpdate.getString("jumlah_positif")),
-                        totalActiveCase = parseInt(cumulativeUpdate.getString("jumlah_dirawat")),
-                        totalRecoveredCase = parseInt(cumulativeUpdate.getString("jumlah_sembuh")),
-                        totalDeathCase = parseInt(cumulativeUpdate.getString("jumlah_meninggal")),
-                        dailyConfirmedCase = parseInt(dailyUpdate.getString("jumlah_positif")),
-                        dailyActiveCase = parseInt(dailyUpdate.getString("jumlah_dirawat")),
-                        dailyRecoveredCase = parseInt(dailyUpdate.getString("jumlah_sembuh")),
-                        dailyDeathCase = parseInt(dailyUpdate.getString("jumlah_meninggal"))
+                        totalConfirmedCase = StringParser.parseInt(
+                            cumulativeUpdate.getString("jumlah_positif")
+                        ),
+                        totalActiveCase = StringParser.parseInt(
+                            cumulativeUpdate.getString("jumlah_dirawat")
+                        ),
+                        totalRecoveredCase = StringParser.parseInt(
+                            cumulativeUpdate.getString("jumlah_sembuh")
+                        ),
+                        totalDeathCase = StringParser.parseInt(
+                            cumulativeUpdate.getString("jumlah_meninggal")
+                        ),
+                        dailyConfirmedCase = StringParser.parseInt(
+                            dailyUpdate.getString("jumlah_positif")
+                        ),
+                        dailyActiveCase = StringParser.parseInt(
+                            dailyUpdate.getString("jumlah_dirawat")
+                        ),
+                        dailyRecoveredCase = StringParser.parseInt(
+                            dailyUpdate.getString("jumlah_sembuh")
+                        ),
+                        dailyDeathCase = StringParser.parseInt(
+                            dailyUpdate.getString("jumlah_meninggal")
+                        ),
+                        lastUpdated = StringParser.parseDate(
+                            dailyUpdate.getString("created")
+                        )
                     )
 
                     view.updateData(overviewData)
@@ -47,9 +66,5 @@ class OverviewPresenter(
                 }
             }
         }
-    }
-
-    private fun parseInt(str : String): Int {
-        return str.replace(",", "").toInt()
     }
 }

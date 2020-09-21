@@ -1,8 +1,6 @@
 package com.tilikki.bnccapp.siagacovid
 
 import okhttp3.Callback
-import okhttp3.OkHttpClient
-import okhttp3.Request
 
 interface PVContract {
     interface Presenter {

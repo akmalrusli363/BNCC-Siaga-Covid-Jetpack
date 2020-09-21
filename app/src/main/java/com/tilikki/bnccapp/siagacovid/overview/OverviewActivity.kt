@@ -14,6 +14,7 @@ import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import kotlinx.android.synthetic.main.activity_corona_overview.*
 import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
 
@@ -29,8 +30,20 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_corona_overview)
         setupBottomSheet()
+        setupUiButtons()
         fetchData()
+    }
 
+    override fun onBackPressed() {
+        if (BottomSheetBehavior.from(bottomSheetSummaryView).state == BottomSheetBehavior.STATE_EXPANDED) {
+            BottomSheetBehavior.from(bottomSheetSummaryView).state =
+                BottomSheetBehavior.STATE_COLLAPSED
+        } else {
+            super.onBackPressed()
+        }
+    }
+
+    private fun setupUiButtons() {
         clLookupButton.setOnClickListener {
             gotoLookupActivity()
         }
@@ -45,15 +58,6 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
         ibReloadIcon.setOnClickListener {
             fetchData()
-        }
-    }
-
-    override fun onBackPressed() {
-        if (BottomSheetBehavior.from(bottomSheetSummaryView).state == BottomSheetBehavior.STATE_EXPANDED) {
-            BottomSheetBehavior.from(bottomSheetSummaryView).state =
-                BottomSheetBehavior.STATE_COLLAPSED
-        } else {
-            super.onBackPressed()
         }
     }
 
@@ -95,10 +99,15 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
             tvPositiveCount.text = "${objectData.totalActiveCase}"
             tvRecoveredCount.text = "${objectData.totalRecoveredCase}"
             tvDeathCount.text = "${objectData.totalDeathCase}"
+
             tvDailyTotalCaseCount.text = displayDailyCaseCount(objectData.dailyConfirmedCase)
             tvDailyPositiveCount.text = displayDailyCaseCount(objectData.dailyActiveCase)
             tvDailyRecoveredCount.text = displayDailyCaseCount(objectData.dailyRecoveredCase)
             tvDailyDeathCount.text = displayDailyCaseCount(objectData.dailyDeathCase)
+
+            tvLastUpdated.text = getString(R.string.last_updated)
+                .replace("???", StringParser.formatDate(objectData.lastUpdated))
+
             toggleFetchState(false)
         }
     }
@@ -126,6 +135,5 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         }
     }
 
-    private fun displayDailyCaseCount(dailyCaseCount: Int): String
-        = "+(${dailyCaseCount})"
+    private fun displayDailyCaseCount(dailyCaseCount: Int): String = "(+${dailyCaseCount})"
 }

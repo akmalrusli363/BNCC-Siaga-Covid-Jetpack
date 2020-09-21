@@ -1,5 +1,7 @@
 package com.tilikki.bnccapp.siagacovid.overview
 
+import java.util.*
+
 data class OverviewData (
     val totalConfirmedCase: Int = 0,
     val totalActiveCase: Int = 0,
@@ -8,5 +10,6 @@ data class OverviewData (
     val dailyConfirmedCase: Int = 0,
     val dailyActiveCase: Int = 0,
     val dailyRecoveredCase: Int = 0,
-    val dailyDeathCase: Int = 0
+    val dailyDeathCase: Int = 0,
+    val lastUpdated: Date
 )
