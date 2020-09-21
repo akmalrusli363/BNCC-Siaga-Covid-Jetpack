@@ -22,11 +22,7 @@
             android:background="@drawable/btn_haptic_image"
             android:contentDescription="@string/close_hotline_dialog"
             android:src="@drawable/ic_close"
-            app:layout_constraintBottom_toTopOf="@id/llHotlineDescription"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:tint="@color/colorAccentLight" />
+            android:tint="@color/colorAccentLight" />
 
         <LinearLayout
             android:id="@+id/llHotlineDescription"
