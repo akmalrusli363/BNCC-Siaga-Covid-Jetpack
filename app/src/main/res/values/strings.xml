@@ -39,9 +39,10 @@
     <string name="close_hotline_dialog">Close hotline dialog</string>
 
     <!-- About App -->
-    <string name="copyright">Copyright 2020</string>
+    <string name="copyright">Copyright © 2020</string>
     <string name="author">Created by @akmalrusli363 as part of COVID-19 mitigation in Indonesia.</string>
-    <string name="part_of">Powered by BNCC x Go-Academy</string>
+    <string name="part_of">Powered by BNCC x GoAcademy</string>
+    <string name="bncc_x_goacademy">BNCC x GoAcademy</string>
     <string name="version">Version 1.0.0</string>
 
     <!-- Misc -->
@@ -50,4 +51,11 @@
     <string name="reload_icon">Reload data</string>
     <string name="unknown">\???</string>
     <string name="loading">…</string>
+
+    <!-- 3M Tips for COVID19 Preventions -->
+    <string name="tips_3m">Ayo jaga dirimu dengan 3M!</string>
+    <string name="tips_3m_physical_distancing">Menjaga Jarak</string>
+    <string name="tips_3m_hand_wash">Mencuci Tangan</string>
+    <string name="tips_3m_wear_mask">Mengenakan Masker</string>
+    <string name="covid19_prevention_suggestions">Ayo #dirumahAja selagi anda tidak bepergian untuk kepentingan sangat mendesak</string>
 </resources>

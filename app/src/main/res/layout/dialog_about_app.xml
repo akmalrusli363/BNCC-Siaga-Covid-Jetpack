@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape_round_dialog_box"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/ivCloseDialog"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/btn_haptic_image"
+            android:contentDescription="@string/close_hotline_dialog"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_close"
+            android:tint="@color/colorAccentLight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvAppTitle"
+            style="@style/h3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            android:text="@string/app_name_alt"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccentLight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivCloseDialog" />
+
+        <TextView
+            android:id="@+id/tvVersion"
+            style="@style/b1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:gravity="center"
+            android:text="@string/version"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/filler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvAppTitle" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/filler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:padding="16dp"
+            android:backgroundTint="@color/shadyGrayBlue"
+            android:background="@drawable/shape_round_dialog_box"
+            app:layout_constraintBottom_toTopOf="@id/tvAuthorNotes"
+            app:layout_constraintTop_toBottomOf="@id/tvVersion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/tvTips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/h5"
+                android:textAlignment="center"
+                android:textColor="@color/teal"
+                android:text="@string/tips_3m"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginVertical="8dp"
+                app:layout_constraintTop_toBottomOf="@id/tvTips"
+                app:layout_constraintBottom_toTopOf="@id/tvSuggestion"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/tv3mWearMask"
+                    style="@style/b3"
+                    android:textStyle="bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/ic_3m_wear_mask"
+                    android:text="@string/tips_3m_wear_mask" />
+
+                <TextView
+                    android:id="@+id/tv3mPhysicalDistancing"
+                    style="@style/b3"
+                    android:textStyle="bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/ic_3m_physical_distancing"
+                    android:text="@string/tips_3m_physical_distancing" />
+
+                <TextView
+                    android:id="@+id/tv3mHandWash"
+                    style="@style/b3"
+                    android:textStyle="bold"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:textAlignment="center"
+                    app:drawableTopCompat="@drawable/ic_3m_hand_wash"
+                    android:text="@string/tips_3m_hand_wash" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvSuggestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/b3"
+                android:textAlignment="center"
+                android:text="@string/covid19_prevention_suggestions"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvAuthorNotes"
+            style="@style/b2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/author"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@id/llCollaboration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llCollaboration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginVertical="16dp"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/ivCollaboration"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/bncc_x_goacademy"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bncc_goacademy" />
+
+            <TextView
+                android:id="@+id/tvPoweredByCollaboration"
+                style="@style/h6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/part_of"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/tvCopyright"
+                style="@style/b2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/copyright"
+                android:textAlignment="center" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+
