@@ -6,6 +6,6 @@ class LookupModel : ApiCallModel {
     override val apiURL: String = lookupDataApiURL
 
     companion object {
-        const val lookupDataApiURL = "https://api.kawalcorona.com/indonesia/provinsi/"
+        const val lookupDataApiURL = "https://data.covid19.go.id/public/api/prov.json"
     }
 }

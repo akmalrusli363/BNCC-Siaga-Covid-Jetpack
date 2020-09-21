@@ -77,5 +77,4 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
             srlLookupData.isRefreshing = false
         }
     }
-
 }

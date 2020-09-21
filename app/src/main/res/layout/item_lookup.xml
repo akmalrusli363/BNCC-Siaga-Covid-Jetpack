@@ -19,14 +19,14 @@
             style="@style/h4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="4dp"
             android:text="@string/unknown"
             android:textAlignment="center"
             android:textColor="@color/colorAccentLight"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="@string/province_dki_jakarta" />
+            tools:text="@string/region_search_hint" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                 android:background="@drawable/shape_ring_highlight"
                 android:backgroundTint="@color/teal"
                 android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/llLookUpRecoveredCase"
@@ -58,6 +59,16 @@
                     android:textColor="@color/colorAccentDark"
                     tools:text="12345" />
 
+                <TextView
+                    android:id="@+id/tvLookUpDailyConfirmedCase"
+                    style="@style/b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccentDark"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    tools:text="(+200)" />
+
             </LinearLayout>
 
 
@@ -68,6 +79,7 @@
                 android:background="@drawable/shape_ring_highlight"
                 android:backgroundTint="@color/green"
                 android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/llLookUpConfirmedCase"
                 app:layout_constraintEnd_toStartOf="@id/llLookUpDeathCase"
@@ -81,6 +93,16 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
                     tools:text="12345" />
+
+                <TextView
+                    android:id="@+id/tvLookUpDailyRecoveredCase"
+                    style="@style/b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccentDark"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    tools:text="(+150)" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,6 +112,7 @@
                 android:background="@drawable/shape_ring_highlight"
                 android:backgroundTint="@color/red"
                 android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/llLookUpRecoveredCase"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -103,6 +126,16 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
                     tools:text="1234" />
+
+                <TextView
+                    android:id="@+id/tvLookUpDailyDeathCase"
+                    style="@style/b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccentDark"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    tools:text="(+10)" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

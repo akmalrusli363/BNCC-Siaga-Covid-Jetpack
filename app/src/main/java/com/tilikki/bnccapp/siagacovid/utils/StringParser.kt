@@ -17,7 +17,7 @@ object StringParser {
     }
 
     fun formatDate(date: Date): String {
-        val dateFormat: DateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG)
+        val dateFormat: DateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.UK)
         return dateFormat.format(date)
     }
 }
