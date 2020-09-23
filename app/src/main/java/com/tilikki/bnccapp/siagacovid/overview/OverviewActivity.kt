@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.PVContract
+import com.tilikki.bnccapp.siagacovid.about.AboutAppDialog
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
@@ -53,7 +54,7 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         }
 
         ibInfoIcon.setOnClickListener {
-            Toast.makeText(this, "Coming soon!", Toast.LENGTH_SHORT).show()
+            openAboutDialog()
         }
 
         ibReloadIcon.setOnClickListener {
@@ -91,6 +92,10 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
     private fun gotoHotlineActivity() {
         HotlineBottomDialogFragment.show(supportFragmentManager)
+    }
+
+    private fun openAboutDialog() {
+        AboutAppDialog().show(supportFragmentManager, "aboutAppDialog")
     }
 
     override fun updateData(objectData: OverviewData) {

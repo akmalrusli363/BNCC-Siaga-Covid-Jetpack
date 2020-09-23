@@ -15,8 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".siagacovid.overview.OverviewActivity"
-            android:label="BNCC Siaga COVID19">
+            android:name=".siagacovid.overview.OverviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -29,8 +28,9 @@
             android:theme="@style/AppTheme.Light" />
 
         <activity
-            android:name=".demo.MainActivity"
-            android:theme="@style/AppTheme.WithActionBar">
+            android:name=".demo.DemoAppActivity"
+            android:theme="@style/AppTheme.WithActionBar"
+            android:label="BNCC App Demo">
         </activity>
     </application>
 

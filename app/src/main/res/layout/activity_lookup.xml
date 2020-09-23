@@ -53,11 +53,11 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginVertical="16dp"
-        android:theme="@style/AppSearchView"
         android:iconifiedByDefault="false"
+        android:theme="@style/AppSearchView"
+        android:elevation="4dp"
         android:queryBackground="@drawable/shape_gray_round_box"
-        android:background="@drawable/shape_gray_round_box"
-        android:orientation="horizontal" />
+        android:background="@drawable/shape_gray_round_box" />
 
     <ProgressBar
         android:id="@+id/pbFetchLookup"
@@ -72,7 +72,7 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvLookUp"
+            android:id="@+id/rvLookupData"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:listitem="@layout/item_lookup" />

@@ -30,8 +30,8 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     private val lookupAdapter = LookupAdapter(mockLookupList)
 
     private fun setupRecyclerAdapter() {
-        rvLookUp.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rvLookUp.adapter = lookupAdapter
+        rvLookupData.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        rvLookupData.adapter = lookupAdapter
         fetchData()
     }
 
@@ -67,7 +67,7 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
             lookupAdapter.updateData(listData)
             srlLookupData.isRefreshing = false
             pbFetchLookup.visibility = View.GONE
-            rvLookUp.visibility = View.VISIBLE
+            rvLookupData.visibility = View.VISIBLE
         }
     }
 

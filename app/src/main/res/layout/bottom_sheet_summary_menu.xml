@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheetSummaryView"
     android:layout_width="match_parent"
@@ -50,10 +50,10 @@
                 <ProgressBar
                     android:id="@+id/pbPositive"
                     style="?android:attr/progressBarStyleSmall"
-                    android:indeterminateTint="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvPositiveCount"
@@ -103,10 +103,10 @@
                 <ProgressBar
                     android:id="@+id/pbRecovered"
                     style="?android:attr/progressBarStyleSmall"
-                    android:indeterminateTint="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvRecoveredCount"
@@ -155,10 +155,10 @@
                 <ProgressBar
                     android:id="@+id/pbDeath"
                     style="?android:attr/progressBarStyleSmall"
-                    android:indeterminateTint="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tvDeathCount"
@@ -195,13 +195,13 @@
 
         <TextView
             android:id="@+id/tvKnowMore"
+            style="@style/h4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="12dp"
             android:paddingHorizontal="4dp"
+            android:paddingVertical="12dp"
             android:text="@string/learn_more_covid19"
-            android:textColor="@color/indigo2"
-            style="@style/h4" />
+            android:textColor="@color/indigo2" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clLookupButton"
@@ -216,8 +216,8 @@
 
             <ImageView
                 android:id="@+id/ivMetaIcon1"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:contentDescription="@string/lookup_icon"
                 android:src="@drawable/ic_location_pin"
@@ -229,12 +229,13 @@
 
             <TextView
                 android:id="@+id/tvMetaTitle1"
+                style="@style/h5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/lookup"
                 android:textColor="@color/indigo2"
-                style="@style/h5"
                 app:layout_constraintBottom_toTopOf="@id/tvMetaDescription1"
                 app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -243,11 +244,12 @@
 
             <TextView
                 android:id="@+id/tvMetaDescription1"
+                style="@style/b3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/lookup_description"
-                style="@style/b3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
                 app:layout_constraintHorizontal_bias="0"
@@ -283,8 +285,8 @@
 
             <ImageView
                 android:id="@+id/ivMetaIcon2"
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="8dp"
                 android:contentDescription="@string/hotline_icon"
                 android:src="@drawable/ic_siren"
@@ -296,12 +298,13 @@
 
             <TextView
                 android:id="@+id/tvMetaTitle2"
+                style="@style/h5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/hotline"
                 android:textColor="@color/indigo2"
-                style="@style/h5"
                 app:layout_constraintBottom_toTopOf="@id/tvMetaDescription2"
                 app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -310,11 +313,12 @@
 
             <TextView
                 android:id="@+id/tvMetaDescription2"
+                style="@style/b3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/hotline_description"
-                style="@style/b3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
                 app:layout_constraintHorizontal_bias="0"

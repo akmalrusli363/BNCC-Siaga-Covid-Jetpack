@@ -17,16 +17,13 @@
 
         <ImageButton
             android:id="@+id/ivReturnIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:scaleType="fitXY"
             android:background="@drawable/btn_haptic_image"
             android:contentDescription="@string/close_hotline_dialog"
             android:src="@drawable/ic_close"
-            app:layout_constraintBottom_toTopOf="@id/llHotlineDescription"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:tint="@color/colorAccentLight" />
+            android:tint="@color/colorAccentLight" />
 
         <LinearLayout
             android:id="@+id/llHotlineDescription"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="24dp"
+    android:layout_marginHorizontal="24dp"
+    android:layout_marginVertical="16dp"
     android:backgroundTint="@color/offWhite"
     app:cardCornerRadius="16dp"
     app:cardElevation="8dp">
@@ -12,13 +13,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <TextView
-            android:id="@+id/tvLookUpProvince"
+            android:id="@+id/tvLookupProvince"
             style="@style/h4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:padding="4dp"
             android:text="@string/unknown"
             android:textAlignment="center"
@@ -26,19 +28,21 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/clLookupProvinceStats"
             tools:text="@string/region_search_hint" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLookupProvinceStats"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingVertical="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvLookUpProvince">
+            app:layout_constraintTop_toBottomOf="@id/tvLookupProvince">
 
             <LinearLayout
-                android:id="@+id/llLookUpConfirmedCase"
+                android:id="@+id/llLookupConfirmedCase"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/shape_ring_highlight"
@@ -47,11 +51,11 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/llLookUpRecoveredCase"
+                app:layout_constraintEnd_toStartOf="@id/llLookupRecoveredCase"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tvLookUpConfirmedCase"
+                    android:id="@+id/tvLookupConfirmedCase"
                     style="@style/h6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +64,7 @@
                     tools:text="12345" />
 
                 <TextView
-                    android:id="@+id/tvLookUpDailyConfirmedCase"
+                    android:id="@+id/tvLookupDailyConfirmedCase"
                     style="@style/b3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,7 +77,7 @@
 
 
             <LinearLayout
-                android:id="@+id/llLookUpRecoveredCase"
+                android:id="@+id/llLookupRecoveredCase"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/shape_ring_highlight"
@@ -81,12 +85,12 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/llLookUpConfirmedCase"
-                app:layout_constraintEnd_toStartOf="@id/llLookUpDeathCase"
+                app:layout_constraintStart_toEndOf="@id/llLookupConfirmedCase"
+                app:layout_constraintEnd_toStartOf="@id/llLookupDeathCase"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tvLookUpRecoveredCase"
+                    android:id="@+id/tvLookupRecoveredCase"
                     style="@style/h6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,7 +99,7 @@
                     tools:text="12345" />
 
                 <TextView
-                    android:id="@+id/tvLookUpDailyRecoveredCase"
+                    android:id="@+id/tvLookupDailyRecoveredCase"
                     style="@style/b3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -106,7 +110,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llLookUpDeathCase"
+                android:id="@+id/llLookupDeathCase"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:background="@drawable/shape_ring_highlight"
@@ -114,12 +118,12 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/llLookUpRecoveredCase"
+                app:layout_constraintStart_toEndOf="@id/llLookupRecoveredCase"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tvLookUpDeathCase"
+                    android:id="@+id/tvLookupDeathCase"
                     style="@style/h6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -128,7 +132,7 @@
                     tools:text="1234" />
 
                 <TextView
-                    android:id="@+id/tvLookUpDailyDeathCase"
+                    android:id="@+id/tvLookupDailyDeathCase"
                     style="@style/b3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -137,8 +141,8 @@
                     android:textStyle="bold"
                     tools:text="(+10)" />
             </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

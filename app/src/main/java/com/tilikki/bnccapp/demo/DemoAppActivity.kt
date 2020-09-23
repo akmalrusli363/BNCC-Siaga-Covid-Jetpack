@@ -5,16 +5,16 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.overview.OverviewActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_demo_activity.*
 
-class MainActivity : AppCompatActivity() {
+class DemoAppActivity : AppCompatActivity() {
     companion object {
         const val callSecondActivity = "LAUNCH_ACTIVITY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_demo_activity)
 
         okButton.setOnClickListener {
             openCoronaActivity()
