@@ -43,6 +43,7 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     private fun setupSearch(lookupAdapter: LookupAdapter) {
         svRegionLookupSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                lookupAdapter.filter.filter(query)
                 return false
             }
 
@@ -68,6 +69,7 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
             srlLookupData.isRefreshing = false
             pbFetchLookup.visibility = View.GONE
             rvLookupData.visibility = View.VISIBLE
+            svRegionLookupSearch.setQuery(svRegionLookupSearch.query, true)
         }
     }
 
