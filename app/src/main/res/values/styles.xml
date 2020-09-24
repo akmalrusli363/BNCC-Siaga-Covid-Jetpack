@@ -15,7 +15,7 @@
         <item name="bottomSheetDialogTheme">@style/AppBottomSheetDialogTheme</item>
     </style>
 
-    <style name="AppTheme.Light" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme.Light" parent="AppTheme">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -46,6 +46,14 @@
         <!-- Icon Color -->
         <item name="android:textColorSecondary">@color/colorAccentLight</item>
         <item name="android:drawable">@drawable/shape_gray_round_box</item>
+    </style>
+
+    <!-- Spinner Toolbar -->
+    <style name="AppSpinner.Sort" parent="AppTheme" >
+        <item name="android:textColorPrimary">@color/colorAccentLight</item>
+        <item name="android:textColorSecondary">@color/colorAccentLight</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <!-- Font Styles -->

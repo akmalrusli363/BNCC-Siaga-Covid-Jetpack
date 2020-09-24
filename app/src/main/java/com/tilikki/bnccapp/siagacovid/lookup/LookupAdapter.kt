@@ -10,7 +10,8 @@ import com.tilikki.bnccapp.R
 class LookupAdapter(private val lookupList: MutableList<LookupData>) :
     RecyclerView.Adapter<LookupViewHolder>(), Filterable {
 
-    var filteredLookupList: MutableList<LookupData> = sortData(lookupList)
+    private var lookupListComparator: Comparator<LookupData> = LookupComparator.compareByPositivityRate
+    private var filteredLookupList: MutableList<LookupData> = sortData(lookupList)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LookupViewHolder {
         return LookupViewHolder(
@@ -53,17 +54,22 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
         lookupList.clear()
         lookupList.addAll(newList)
         notifyDataSetChanged()
+        sortData(lookupList)
         filteredLookupList = lookupList
     }
 
-    private fun sortData(list: MutableList<LookupData>): MutableList<LookupData> {
-        return sortByPositivityRate(list)
+    fun sortDataWith(lookupComparator: LookupComparator) {
+        lookupListComparator = lookupComparator.comparator
+        filteredLookupList = sortData(filteredLookupList, lookupListComparator)
+        notifyDataSetChanged()
     }
 
-    private fun sortByPositivityRate(list: MutableList<LookupData>): MutableList<LookupData> {
-        return list.sortedByDescending { lookupData: LookupData ->
-            lookupData.numOfPositiveCase
-        } as MutableList<LookupData>
+    private fun sortData(list: MutableList<LookupData>?): MutableList<LookupData> {
+        return sortData(list, lookupListComparator)
+    }
+
+    private fun sortData(list: MutableList<LookupData>?, comparator: Comparator<LookupData>): MutableList<LookupData> {
+        return list?.sortedWith(comparator) as MutableList<LookupData>
     }
 
 }
