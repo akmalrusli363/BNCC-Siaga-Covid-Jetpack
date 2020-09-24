@@ -60,4 +60,13 @@
     <string name="tips_3m_hand_wash">Mencuci Tangan</string>
     <string name="tips_3m_wear_mask">Mengenakan Masker</string>
     <string name="covid19_prevention_suggestions">Ayo #dirumahAja selagi anda tidak bepergian untuk kepentingan sangat mendesak</string>
+    
+    <string-array name="sortLookup">
+        <item>Positive Cases</item>
+        <item>Recovered Cases</item>
+        <item>Death Cases</item>
+        <item>Daily Positive Cases</item>
+        <item>Daily Recovered Cases</item>
+        <item>Daily Death Cases</item>
+    </string-array>
 </resources>

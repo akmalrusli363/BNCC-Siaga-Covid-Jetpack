@@ -2,6 +2,8 @@ package com.tilikki.bnccapp.siagacovid.lookup
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,6 +27,7 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
         setupRecyclerAdapter()
         setupReturnButton()
         setupSearch(lookupAdapter)
+        setupSearchSorting()
     }
 
     private val lookupAdapter = LookupAdapter(mockLookupList)
@@ -40,6 +43,7 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
             finish()
         }
     }
+
     private fun setupSearch(lookupAdapter: LookupAdapter) {
         svRegionLookupSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -60,6 +64,33 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
 
     private fun fetchData() {
         presenter.fetchData()
+    }
+
+    private fun setupSearchSorting() {
+        val sortTypes: Array<LookupComparator> = arrayOf(
+            LookupComparator("Positive Cases", LookupComparator.compareByPositivityRate),
+            LookupComparator("Recovered Cases", LookupComparator.compareByRecoveryRate),
+            LookupComparator("Death Cases", LookupComparator.compareByDeathRate),
+            LookupComparator("Daily Positive Cases", LookupComparator.compareByDailyPositivityRate),
+            LookupComparator("Daily Recovered Cases", LookupComparator.compareByDailyRecoveryRate),
+            LookupComparator("Daily Death Cases", LookupComparator.compareByDailyDeathRate),
+        )
+        val adapter: ArrayAdapter<LookupComparator> =
+            ArrayAdapter(this, R.layout.custom_spinner_dropdown_item, sortTypes)
+
+        spRegionLookupSort.apply {
+            this.adapter = adapter
+            this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, i: Int, l: Long) {
+                    val selectedItem = adapter.getItem(i)
+                    lookupAdapter.sortDataWith(selectedItem!!)
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+
+            }
+        }
     }
 
     private fun outputDate(date: Date?) :String {
