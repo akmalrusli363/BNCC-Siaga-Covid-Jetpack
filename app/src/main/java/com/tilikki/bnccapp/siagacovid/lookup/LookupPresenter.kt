@@ -2,10 +2,10 @@ package com.tilikki.bnccapp.siagacovid.lookup
 
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.utils.RegionParser
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
-import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 
@@ -35,7 +35,7 @@ class LookupPresenter(
                         val dailyCases = attribute.getJSONObject("penambahan")
                         lookupDataFromNetwork.add(
                             LookupData(
-                                provinceName = attribute.getString("key"),
+                                provinceName = RegionParser.capitalizeRegionName(attribute.getString("key")),
                                 numOfPositiveCase = attribute.getInt("jumlah_kasus"),
                                 numOfRecoveredCase = attribute.getInt("jumlah_sembuh"),
                                 numOfDeathCase = attribute.getInt("jumlah_meninggal"),
