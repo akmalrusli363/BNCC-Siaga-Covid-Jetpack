@@ -24,14 +24,17 @@
         </activity>
 
         <activity
-            android:name="com.tilikki.bnccapp.siagacovid.lookup.LookupActivity"
+            android:name=".siagacovid.lookup.LookupActivity"
+            android:theme="@style/AppTheme.Light" />
+
+        <activity
+            android:name=".siagacovid.worldstats.WorldStatisticsActivity"
             android:theme="@style/AppTheme.Light" />
 
         <activity
             android:name=".demo.DemoAppActivity"
-            android:theme="@style/AppTheme.WithActionBar"
-            android:label="BNCC App Demo">
-        </activity>
+            android:label="BNCC App Demo"
+            android:theme="@style/AppTheme.WithActionBar" />
     </application>
 
 </manifest>

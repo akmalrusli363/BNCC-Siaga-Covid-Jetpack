@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
@@ -15,6 +14,7 @@ import com.tilikki.bnccapp.siagacovid.about.AboutAppDialog
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.worldstats.WorldStatisticsActivity
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import kotlinx.android.synthetic.main.activity_corona_overview.*
 import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
@@ -26,6 +26,7 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
     companion object {
         const val callLookupActivity = "GOTO_LOOKUP_ACTIVITY"
+        const val callWorldStatActivity = "GOTO_WORLD_STATISTICS_ACTIVITY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +53,10 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
         clHotlineButton.setOnClickListener {
             gotoHotlineActivity()
+        }
+
+        clWorldStatsButton.setOnClickListener {
+            gotoWorldStatActivity()
         }
 
         ibInfoIcon.setOnClickListener {
@@ -93,6 +98,13 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
     private fun gotoHotlineActivity() {
         HotlineBottomDialogFragment.show(supportFragmentManager)
+    }
+
+    private fun gotoWorldStatActivity() {
+        val intent = Intent(this, WorldStatisticsActivity::class.java).apply {
+            putExtra(callWorldStatActivity, "Go to world statistics activity...")
+        }
+        startActivity(intent)
     }
 
     private fun openAboutDialog() {

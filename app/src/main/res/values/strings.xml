@@ -13,13 +13,17 @@
     <string name="back_to_overview">Back to overview</string>
     <string name="lookup">Look up</string>
     <string name="hotline">Hotline</string>
+    <string name="world_stats">World case statistics</string>
     <string name="lookup_description">See details by province all over Indonesia</string>
     <string name="hotline_description">Check emergency phone number to contact</string>
+    <string name="world_stats_description">Seek and view COVID-19 cases statistics around the world</string>
     <string name="lookup_icon">Look up icon</string>
     <string name="hotline_icon">Hotline icon</string>
+    <string name="world_stats_icon">World statistics icon</string>
     <string name="about_icon">About this app</string>
     <string name="goto_lookup">Goto lookup</string>
     <string name="goto_hotline">Goto hotline</string>
+    <string name="goto_world_stats">Goto world stats</string>
     <string name="last_updated">Last updated: ???</string>
 
     <!-- Data labels -->
@@ -38,6 +42,9 @@
     <string name="hotline_contact_logo">Hotline contact logo</string>
     <string name="call_to_hotline">Call to hotline contact</string>
     <string name="close_hotline_dialog">Close hotline dialog</string>
+
+    <!-- Worldwide statistics -->
+    <string name="worldwide_stats">Worldwide Statistics</string>
 
     <!-- About App -->
     <string name="copyright">Copyright © 2020</string>
@@ -60,7 +67,7 @@
     <string name="tips_3m_hand_wash">Mencuci Tangan</string>
     <string name="tips_3m_wear_mask">Mengenakan Masker</string>
     <string name="covid19_prevention_suggestions">Ayo #dirumahAja selagi anda tidak bepergian untuk kepentingan sangat mendesak</string>
-    
+
     <string-array name="sortLookup">
         <item>Positive Cases</item>
         <item>Recovered Cases</item>
