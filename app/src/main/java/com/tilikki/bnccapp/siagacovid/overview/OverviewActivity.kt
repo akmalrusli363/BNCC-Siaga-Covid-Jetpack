@@ -18,6 +18,7 @@ import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import kotlinx.android.synthetic.main.activity_corona_overview.*
 import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
+import kotlin.math.absoluteValue
 
 class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData> {
 
@@ -140,5 +141,11 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         }
     }
 
-    private fun displayDailyCaseCount(dailyCaseCount: Int): String = "(+${dailyCaseCount})"
+    private fun displayDailyCaseCount(dailyCaseCount: Int): String {
+        val sign = when {
+            dailyCaseCount < 0 -> '-'
+            else -> '+'
+        }
+        return "(${sign}${dailyCaseCount.absoluteValue})"
+    }
 }
