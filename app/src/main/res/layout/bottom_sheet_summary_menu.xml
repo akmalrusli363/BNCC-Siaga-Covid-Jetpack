@@ -5,7 +5,8 @@
     android:id="@+id/bottomSheetSummaryView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:background="@drawable/shape_round_roll_box"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:showIn="@layout/activity_corona_overview">
 
@@ -13,7 +14,6 @@
         android:id="@+id/llSummaryMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shape_round_roll_box"
         android:orientation="vertical"
         android:paddingHorizontal="20dp"
         android:paddingVertical="16dp">
