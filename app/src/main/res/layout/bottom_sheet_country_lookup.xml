@@ -5,17 +5,16 @@
     android:id="@+id/bottomSheetWorldLookup"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="300dp"
     android:fillViewport="true"
     android:background="@color/white"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_world_statistics">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="16dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingVertical="16dp">
 
         <View
             android:id="@+id/grapple"
@@ -31,16 +30,25 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
             android:layout_marginVertical="16dp"
+            android:background="@drawable/shape_gray_round_box"
             android:iconifiedByDefault="false"
-            android:theme="@style/AppSearchView"
             android:queryBackground="@drawable/shape_gray_round_box"
-            android:background="@drawable/shape_gray_round_box" />
+            android:theme="@style/AppSearchView" />
+
+        <ProgressBar
+            android:id="@+id/pbFetchLookup"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="visible"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCountryLookupData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            tools:listitem="@layout/item_country_lookup" />
+            tools:listitem="@layout/item_country_lookup"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

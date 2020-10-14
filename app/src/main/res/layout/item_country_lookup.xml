@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:layout_marginHorizontal="40dp"
+            android:layout_marginHorizontal="48dp"
             android:paddingVertical="4dp"
             android:text="@string/unknown"
             android:textAlignment="center"
@@ -33,7 +33,7 @@
             tools:text="Sunda Empire" />
 
         <TextView
-            android:id="@+id/tvLookupFlag"
+            android:id="@+id/tvLookupCountryFlag"
             style="@style/h3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
             <LinearLayout
                 android:id="@+id/llLookupConfirmedCase"
                 android:layout_width="100dp"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
                 android:background="@drawable/shape_rounder_highlight"
                 android:backgroundTint="@color/teal"
                 android:gravity="center"
@@ -81,6 +81,16 @@
                     tools:text="1234567" />
 
                 <TextView
+                    android:id="@+id/tvLookupDailyConfirmedCase"
+                    style="@style/b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="bold"
+                    tools:text="(+25000)" />
+
+                <TextView
                     android:id="@+id/tvLookupConfirmedCaseDesc"
                     style="@style/b3"
                     android:layout_width="wrap_content"
@@ -88,7 +98,7 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
                     android:textStyle="italic"
-                    tools:text="(5.12% peoples)" />
+                    tools:text="(5.12% active)" />
 
             </LinearLayout>
 
@@ -96,7 +106,7 @@
             <LinearLayout
                 android:id="@+id/llLookupRecoveredCase"
                 android:layout_width="100dp"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
                 android:background="@drawable/shape_rounder_highlight"
                 android:backgroundTint="@color/green"
                 android:gravity="center"
@@ -116,6 +126,16 @@
                     tools:text="932345" />
 
                 <TextView
+                    android:id="@+id/tvLookupDailyRecoveredCase"
+                    style="@style/b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="bold"
+                    tools:text="(+44000)" />
+
+                <TextView
                     android:id="@+id/tvLookupRecoveredCaseDesc"
                     style="@style/b3"
                     android:layout_width="wrap_content"
@@ -130,7 +150,7 @@
             <LinearLayout
                 android:id="@+id/llLookupDeathCase"
                 android:layout_width="100dp"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
                 android:background="@drawable/shape_rounder_highlight"
                 android:backgroundTint="@color/red"
                 android:gravity="center"
@@ -148,6 +168,16 @@
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
                     tools:text="19234" />
+
+                <TextView
+                    android:id="@+id/tvLookupDailyDeathCase"
+                    style="@style/b3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="bold"
+                    tools:text="(+120)" />
 
                 <TextView
                     android:id="@+id/tvLookupDeathCaseDesc"
