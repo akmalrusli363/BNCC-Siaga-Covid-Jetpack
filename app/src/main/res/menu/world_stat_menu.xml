@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menuItemRefresh"
+        android:icon="@drawable/ic_refresh"
+        android:title="Refresh Data"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/menuItemSortOptions"
+        android:icon="@drawable/ic_sort"
+        android:title="Sort Country Data"
+        app:showAsAction="never">
+        <menu>
+            <group
+                android:id="@+id/menuGroupSortData"
+                android:checkableBehavior="single">
+                <item
+                    android:id="@+id/submenuSortByCountryName"
+                    android:title="Country name"/>
+                <item
+                    android:id="@+id/submenuSortByCountryCode"
+                    android:title="Country code"/>
+                <item
+                    android:id="@+id/submenuSortByConfirmedCase"
+                    android:title="Confirmed cases"/>
+                <item
+                    android:id="@+id/submenuSortByRecoveryCase"
+                    android:title="Recovered cases"/>
+                <item
+                    android:id="@+id/submenuSortByDeathCase"
+                    android:title="Death cases"/>
+                <item
+                    android:id="@+id/submenuSortByDailyConfirmedCase"
+                    android:title="Daily confirmed cases"/>
+                <item
+                    android:id="@+id/submenuSortByDailyRecoveryCase"
+                    android:title="Daily recovered cases"/>
+                <item
+                    android:id="@+id/submenuSortByDailyDeathCase"
+                    android:title="Daily death cases"/>
+            </group>
+        </menu>
+    </item>
+</menu>

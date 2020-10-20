@@ -12,261 +12,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:hapticFeedbackEnabled="true"
-            android:theme="@style/AppToolBar"
-            app:contentInsetEnd="16dp"
-            app:contentInsetEndWithActions="16dp"
-            app:contentInsetStart="16dp"
-            app:contentInsetStartWithNavigation="16dp"
-            app:layout_collapseMode="pin"
-            app:layout_scrollFlags="enterAlways">
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:titleEnabled="false"
+            android:hapticFeedbackEnabled="true">
 
-            <ImageButton
-                android:id="@+id/ivReturnIcon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/btn_haptic_image"
-                android:contentDescription="@string/back_to_overview"
-                android:src="?attr/actionModeCloseDrawable" />
+            <include layout="@layout/widget_world_statistics_summary" />
 
-            <TextView
-                android:id="@+id/tvWorldStatistics"
-                style="@style/h4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/worldwide_stats"
-                android:textAlignment="center" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:hapticFeedbackEnabled="true"
+                android:theme="@style/AppToolBar"
+                app:contentInsetEnd="16dp"
+                app:contentInsetEndWithActions="16dp"
+                app:contentInsetStart="16dp"
+                app:contentInsetStartWithNavigation="16dp"
+                app:menu="@menu/world_stat_menu"
+                app:layout_collapseMode="pin">
 
-        </Toolbar>
+                <ImageButton
+                    android:id="@+id/ivReturnIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_haptic_image"
+                    android:contentDescription="@string/back_to_overview"
+                    android:src="?attr/actionModeCloseDrawable" />
+
+                <TextView
+                    android:id="@+id/tvWorldStatistics"
+                    style="@style/h4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:text="@string/worldwide_stats"
+                    android:textAlignment="center" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/srlWorldStats"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/indigo2"
-            android:fillViewport="true">
+        <include layout="@layout/bottom_sheet_country_lookup" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/indigo2"
-                    android:padding="16dp">
-
-                    <LinearLayout
-                        android:id="@+id/clTotalCaseCount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:background="@drawable/shape_gray_round_box"
-                        android:backgroundTint="@color/indigo"
-                        android:elevation="4dp"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        app:layout_constraintBottom_toTopOf="@id/clCoronaCountBox"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ProgressBar
-                            android:id="@+id/pbTotalCase"
-                            style="?android:attr/progressBarStyleSmall"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:indeterminateTint="@color/colorAccentDark"
-                            android:visibility="gone" />
-
-                        <TextView
-                            android:id="@+id/tvTotalCaseCount"
-                            style="@style/h1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/colorAccentDark"
-                            tools:text="5000000" />
-
-                        <TextView
-                            android:id="@+id/tvTotalCaseCountLabel"
-                            style="@style/b1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:text="@string/total_cases"
-                            android:textAlignment="center"
-                            android:textColor="@color/colorAccentDark" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/clCoronaCountBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="8dp"
-                        android:baselineAligned="false"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/clTotalCaseCount">
-
-                        <LinearLayout
-                            android:id="@+id/llPositiveCaseCountBox"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/shape_round_highlight_box"
-                            android:backgroundTint="@color/confirmedColor"
-                            android:elevation="4dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ProgressBar
-                                android:id="@+id/pbPositive"
-                                style="?android:attr/progressBarStyleSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:indeterminateTint="@color/colorAccentDark"
-                                android:visibility="gone" />
-
-                            <TextView
-                                android:id="@+id/tvPositiveCaseCount"
-                                style="@style/h5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="@string/loading"
-                                android:textAlignment="center"
-                                android:textColor="@color/colorAccentDark"
-                                tools:text="3697700" />
-
-                            <TextView
-                                android:id="@+id/tvPositiveCountLabel"
-                                style="@style/b2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/positive"
-                                android:textAlignment="center"
-                                android:textColor="@color/colorAccentDark" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llRecoveredCountBox"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_marginHorizontal="4dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/shape_round_highlight_box"
-                            android:backgroundTint="@color/recoveredColor"
-                            android:elevation="4dp"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
-                            app:layout_constraintStart_toEndOf="@id/llPositiveCaseCountBox"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ProgressBar
-                                android:id="@+id/pbRecovered"
-                                style="?android:attr/progressBarStyleSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:indeterminateTint="@color/colorAccentDark"
-                                android:visibility="gone" />
-
-                            <TextView
-                                android:id="@+id/tvRecoveredCount"
-                                style="@style/h5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="@string/loading"
-                                android:textAlignment="center"
-                                android:textColor="@color/colorAccentDark"
-                                tools:text="4510100" />
-
-                            <TextView
-                                android:id="@+id/tvRecoveredCountLabel"
-                                style="@style/b2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/recovered"
-                                android:textAlignment="center"
-                                android:textColor="@color/colorAccentDark" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/llDeathCountBox"
-                            android:layout_width="0dp"
-                            android:layout_height="80dp"
-                            android:layout_marginStart="4dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/shape_round_highlight_box"
-                            android:backgroundTint="@color/deathColor"
-                            android:elevation="4dp"
-                            android:gravity="center"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ProgressBar
-                                android:id="@+id/pbDeath"
-                                style="?android:attr/progressBarStyleSmall"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:indeterminateTint="@color/colorAccentDark"
-                                android:visibility="gone" />
-
-                            <TextView
-                                android:id="@+id/tvDeathCount"
-                                style="@style/h5"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
-                                android:text="@string/loading"
-                                android:textAlignment="center"
-                                android:textColor="@color/colorAccentDark"
-                                tools:text="414300" />
-
-                            <TextView
-                                android:id="@+id/tvDeathCountLabel"
-                                style="@style/b2"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/death"
-                                android:textAlignment="center"
-                                android:textColor="@color/colorAccentDark" />
-                        </LinearLayout>
-
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <include layout="@layout/bottom_sheet_country_lookup" />
-
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

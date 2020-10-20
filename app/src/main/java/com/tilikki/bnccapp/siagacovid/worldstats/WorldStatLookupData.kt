@@ -10,7 +10,7 @@ data class WorldStatLookupData(
     val numOfDailyRecoveredCase: Int,
     val numOfDailyDeathCase: Int,
 ) {
-    private fun numOfActiveCase(): Int = numOfConfirmedCase - numOfRecoveredCase
+    private fun numOfActiveCase(): Int = numOfConfirmedCase - numOfRecoveredCase - numOfDeathCase
     fun positivityRate(): Double = numOfActiveCase() / numOfRecoveredCase.toDouble()
     fun recoveryRate(): Double = numOfRecoveredCase / numOfRecoveredCase.toDouble()
     fun deathRate(): Double = numOfDeathCase / numOfRecoveredCase.toDouble()

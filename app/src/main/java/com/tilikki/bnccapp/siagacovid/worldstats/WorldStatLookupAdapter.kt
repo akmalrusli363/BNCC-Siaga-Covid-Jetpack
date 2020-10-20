@@ -11,7 +11,7 @@ class WorldStatLookupAdapter(private val worldStatLookupData: MutableList<WorldS
     RecyclerView.Adapter<WorldStatLookupViewHolder>(), Filterable {
 
     var filteredWorldStatLookupData: MutableList<WorldStatLookupData> = worldStatLookupData
-    private var worldStatLookupDataComparator: Comparator<WorldStatLookupData> = WorldStatDataComparator.COMPARE_BY_POSITIVITY_RATE
+    private var lookupDataComparator: Comparator<WorldStatLookupData> = WorldStatDataComparator.COMPARE_BY_POSITIVITY_RATE
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorldStatLookupViewHolder {
         return WorldStatLookupViewHolder(
@@ -50,6 +50,12 @@ class WorldStatLookupAdapter(private val worldStatLookupData: MutableList<WorldS
         }
     }
 
+    fun setDataComparator(lookupDataComparator: Comparator<WorldStatLookupData>) {
+        this.lookupDataComparator = lookupDataComparator
+        filteredWorldStatLookupData = sortData(filteredWorldStatLookupData, lookupDataComparator)
+        notifyDataSetChanged()
+    }
+
     fun updateData(newList: List<WorldStatLookupData>) {
         worldStatLookupData.clear()
         worldStatLookupData.addAll(newList)
@@ -58,17 +64,11 @@ class WorldStatLookupAdapter(private val worldStatLookupData: MutableList<WorldS
     }
 
     private fun sortData(list: MutableList<WorldStatLookupData>): MutableList<WorldStatLookupData> {
-        return sortData(list, worldStatLookupDataComparator)
+        return sortData(list, lookupDataComparator)
     }
 
     private fun sortData(list: MutableList<WorldStatLookupData>?, comparator: Comparator<WorldStatLookupData>): MutableList<WorldStatLookupData> {
         return list?.sortedWith(comparator) as MutableList<WorldStatLookupData>
-    }
-
-    private fun sortByPositivityRate(list: MutableList<WorldStatLookupData>): MutableList<WorldStatLookupData> {
-        return list.sortedByDescending { worldStatLookupData: WorldStatLookupData ->
-            worldStatLookupData.numOfConfirmedCase
-        } as MutableList<WorldStatLookupData>
     }
 
 }

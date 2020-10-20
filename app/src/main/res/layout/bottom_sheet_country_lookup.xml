@@ -1,61 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheetWorldLookup"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fillViewport="true"
+    android:fitsSystemWindows="true"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_world_statistics">
+    tools:showIn="@layout/activity_world_statistics"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <SearchView
+        android:id="@+id/svCountryLookupSearch"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingVertical="16dp">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="16dp"
+        android:background="@drawable/shape_gray_round_box"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@drawable/shape_gray_round_box"
+        android:theme="@style/AppSearchView" />
 
-        <View
-            android:id="@+id/grapple"
-            android:layout_width="40dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center"
-            android:background="@drawable/shape_grapple"
-            android:contentDescription="@string/bottom_sheet_grapple" />
+    <ProgressBar
+        android:id="@+id/pbFetchLookup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible" />
 
-        <SearchView
-            android:id="@+id/svCountryLookupSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginVertical="16dp"
-            android:background="@drawable/shape_gray_round_box"
-            android:iconifiedByDefault="false"
-            android:queryBackground="@drawable/shape_gray_round_box"
-            android:theme="@style/AppSearchView" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCountryLookupData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="4dp"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:listitem="@layout/item_country_lookup" />
 
-        <ProgressBar
-            android:id="@+id/pbFetchLookup"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:visibility="visible" />
-
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCountryLookupData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="4dp"
-                    android:paddingVertical="8dp"
-                    android:visibility="gone"
-                    tools:listitem="@layout/item_country_lookup" />
-        </androidx.core.widget.NestedScrollView>
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>
