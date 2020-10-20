@@ -56,6 +56,25 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <!-- ToolBar -->
+    <style name="AppToolBar" parent="AppTheme">
+        <item name="android:background">@color/backgroundLight</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColorSecondary">@color/colorPrimary</item>
+        <item name="android:titleTextColor">@color/colorPrimary</item>
+        <item name="android:subtitleTextColor">@color/colorPrimary</item>
+        <item name="android:tint">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppToolBar.Dark" parent="AppToolBar">
+        <item name="android:background">@color/backgroundDark</item>
+        <item name="android:textColor">@color/colorAccentDark</item>
+        <item name="android:textColorSecondary">@color/colorAccentDark</item>
+        <item name="android:titleTextColor">@color/colorAccentDark</item>
+        <item name="android:subtitleTextColor">@color/colorAccentDark</item>
+        <item name="android:tint">@color/colorAccentDark</item>
+    </style>
+
     <!-- Font Styles -->
     <style name="h1">
         <item name="android:fontFamily">@font/rubik</item>

@@ -4,33 +4,64 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
     tools:context=".siagacovid.worldstats.WorldStatisticsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbarLayout"
+        android:layout_height="wrap_content">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:hapticFeedbackEnabled="true"
+            android:theme="@style/AppToolBar"
+            app:contentInsetEnd="16dp"
+            app:contentInsetEndWithActions="16dp"
+            app:contentInsetStart="16dp"
+            app:contentInsetStartWithNavigation="16dp"
+            app:layout_collapseMode="pin"
+            app:layout_scrollFlags="enterAlways">
+
+            <ImageButton
+                android:id="@+id/ivReturnIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_haptic_image"
+                android:contentDescription="@string/back_to_overview"
+                android:src="?attr/actionModeCloseDrawable" />
+
+            <TextView
+                android:id="@+id/tvWorldStatistics"
+                style="@style/h4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/worldwide_stats"
+                android:textAlignment="center" />
+
+        </Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlWorldStats"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            android:background="@color/indigo2"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="?attr/actionBarSize"
-                android:background="@color/indigo2"
-                android:orientation="vertical"
-                tools:context=".siagacovid.worldstats.WorldStatisticsActivity">
-
-                <View
-                    android:id="@+id/vSeparator1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/muteGray" />
+                android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -39,7 +70,7 @@
                     android:padding="16dp">
 
                     <LinearLayout
-                        android:id="@+id/clWorldCaseCount"
+                        android:id="@+id/clTotalCaseCount"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -53,8 +84,16 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
+                        <ProgressBar
+                            android:id="@+id/pbTotalCase"
+                            style="?android:attr/progressBarStyleSmall"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:indeterminateTint="@color/colorAccentDark"
+                            android:visibility="gone" />
+
                         <TextView
-                            android:id="@+id/tvWorldTotalCount"
+                            android:id="@+id/tvTotalCaseCount"
                             style="@style/h1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -64,47 +103,48 @@
                             tools:text="5000000" />
 
                         <TextView
-                            android:id="@+id/worldTotalCount"
+                            android:id="@+id/tvTotalCaseCountLabel"
                             style="@style/b1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
+                            android:text="@string/total_cases"
                             android:textAlignment="center"
-                            android:textColor="@color/colorAccentDark"
-                            tools:text="Total cases" />
+                            android:textColor="@color/colorAccentDark" />
 
                     </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <LinearLayout
                         android:id="@+id/clCoronaCountBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="8dp"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/clWorldCaseCount">
+                        app:layout_constraintTop_toBottomOf="@id/clTotalCaseCount">
 
                         <LinearLayout
                             android:id="@+id/llPositiveCaseCountBox"
-                            android:layout_width="110dp"
+                            android:layout_width="0dp"
                             android:layout_height="80dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
                             android:background="@drawable/shape_round_highlight_box"
                             android:backgroundTint="@color/confirmedColor"
                             android:elevation="4dp"
                             android:gravity="center"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:orientation="vertical">
 
                             <ProgressBar
                                 android:id="@+id/pbPositive"
                                 style="?android:attr/progressBarStyleSmall"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:indeterminateTint="@color/white"
+                                android:indeterminateTint="@color/colorAccentDark"
                                 android:visibility="gone" />
 
                             <TextView
@@ -130,8 +170,10 @@
 
                         <LinearLayout
                             android:id="@+id/llRecoveredCountBox"
-                            android:layout_width="110dp"
+                            android:layout_width="0dp"
                             android:layout_height="80dp"
+                            android:layout_marginHorizontal="4dp"
+                            android:layout_weight="1"
                             android:background="@drawable/shape_round_highlight_box"
                             android:backgroundTint="@color/recoveredColor"
                             android:elevation="4dp"
@@ -147,7 +189,7 @@
                                 style="?android:attr/progressBarStyleSmall"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:indeterminateTint="@color/white"
+                                android:indeterminateTint="@color/colorAccentDark"
                                 android:visibility="gone" />
 
                             <TextView
@@ -173,8 +215,10 @@
 
                         <LinearLayout
                             android:id="@+id/llDeathCountBox"
-                            android:layout_width="110dp"
+                            android:layout_width="0dp"
                             android:layout_height="80dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
                             android:background="@drawable/shape_round_highlight_box"
                             android:backgroundTint="@color/deathColor"
                             android:elevation="4dp"
@@ -189,7 +233,7 @@
                                 style="?android:attr/progressBarStyleSmall"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:indeterminateTint="@color/white"
+                                android:indeterminateTint="@color/colorAccentDark"
                                 android:visibility="gone" />
 
                             <TextView
@@ -213,62 +257,16 @@
                                 android:textColor="@color/colorAccentDark" />
                         </LinearLayout>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <include layout="@layout/bottom_sheet_country_lookup" />
 
             </LinearLayout>
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:hapticFeedbackEnabled="true"
-                android:background="@color/colorPrimary"
-                app:contentInsetStart="0dp"
-                app:contentInsetStartWithNavigation="0dp"
-                app:layout_collapseMode="pin"
-                app:layout_scrollFlags="scroll|enterAlways"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        </androidx.core.widget.NestedScrollView>
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/llStatsBar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/white"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp">
-
-                    <TextView
-                        android:id="@+id/tvWorldStatistics"
-                        style="@style/h4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/worldwide_stats"
-                        android:textAlignment="center"
-                        android:textColor="@color/colorAccentLight"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageButton
-                        android:id="@+id/ivReturnIcon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/btn_haptic_image"
-                        android:contentDescription="@string/back_to_overview"
-                        android:src="?attr/actionModeCloseDrawable"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/colorAccentLight" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <include layout="@layout/bottom_sheet_country_lookup" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -11,7 +11,8 @@ import java.io.IOException
 
 class WorldStatPresenter(
     private val model: WorldStatModel,
-    private val view: PVContract.View<WorldStatData>
+    private val view: PVContract.View<WorldStatLookupData>,
+    private val objView: PVContract.ObjectView<WorldStatSummaryData>
 ) :
     PVContract.Presenter {
     override fun fetchData() {
@@ -27,33 +28,49 @@ class WorldStatPresenter(
             override fun onResponse(call: Call, response: Response) {
                 try {
                     val jsonString = response.body!!.string()
-                    val jsonArray = JSONObject(jsonString).getJSONArray("Countries")
-                    val worldStatDataFromNetwork = mutableListOf<WorldStatData>()
+                    val jsonSummary = JSONObject(jsonString).getJSONObject("Global")
+                    val jsonCountries = JSONObject(jsonString).getJSONArray("Countries")
 
-                    for (i in 0 until jsonArray.length()) {
-                        val attribute = jsonArray.getJSONObject(i)
-                        attribute.apply {
-                            worldStatDataFromNetwork.add(
-                                WorldStatData(
-                                    countryCode = getString("CountryCode"),
-                                    countryName = getString("Country"),
-                                    numOfConfirmedCase = getIntOrNothing("TotalConfirmed"),
-                                    numOfRecoveredCase = getIntOrNothing("TotalRecovered"),
-                                    numOfDeathCase = getIntOrNothing("TotalDeaths"),
-                                    numOfDailyConfirmedCase = getIntOrNothing("NewConfirmed"),
-                                    numOfDailyRecoveredCase = getIntOrNothing("NewRecovered"),
-                                    numOfDailyDeathCase = getIntOrNothing("NewDeaths")
-                                )
-                            )
-                        }
+                    var worldStatSummary: WorldStatSummaryData
+                    jsonSummary.apply {
+                        worldStatSummary = WorldStatSummaryData(
+                            numOfConfirmedCase = getIntOrNothing("TotalConfirmed"),
+                            numOfRecoveredCase = getIntOrNothing("TotalRecovered"),
+                            numOfDeathCase = getIntOrNothing("TotalDeaths")
+                        )
                     }
-
+                    objView.updateData(worldStatSummary)
+                    val worldStatDataFromNetwork = fetchCountryStatistics(jsonCountries)
                     view.updateData(worldStatDataFromNetwork)
                 } catch (e: Exception) {
                     view.showError(AppEventLogging.FETCH_FAILURE, e)
                 }
             }
         }
+    }
+
+    private fun fetchCountryStatistics(
+        jsonCountries: JSONArray
+    ): MutableList<WorldStatLookupData> {
+        val worldStatDataFromNetwork: MutableList<WorldStatLookupData> = mutableListOf()
+        for (i in 0 until jsonCountries.length()) {
+            val attribute = jsonCountries.getJSONObject(i)
+            attribute.apply {
+                worldStatDataFromNetwork.add(
+                    WorldStatLookupData(
+                        countryCode = getString("CountryCode"),
+                        countryName = getString("Country"),
+                        numOfConfirmedCase = getIntOrNothing("TotalConfirmed"),
+                        numOfRecoveredCase = getIntOrNothing("TotalRecovered"),
+                        numOfDeathCase = getIntOrNothing("TotalDeaths"),
+                        numOfDailyConfirmedCase = getIntOrNothing("NewConfirmed"),
+                        numOfDailyRecoveredCase = getIntOrNothing("NewRecovered"),
+                        numOfDailyDeathCase = getIntOrNothing("NewDeaths")
+                    )
+                )
+            }
+        }
+        return worldStatDataFromNetwork
     }
 
     private fun JSONObject.getIntOrNothing(key: String): Int {

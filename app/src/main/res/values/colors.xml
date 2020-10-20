@@ -6,6 +6,9 @@
     <color name="colorAccentDark">@color/white</color>
     <color name="colorAccentLight">@color/indigo</color>
 
+    <color name="backgroundDark">@color/indigo2</color>
+    <color name="backgroundLight">@color/white</color>
+
     <color name="teal">#52B2D0</color>
     <color name="green">#68C166</color>
     <color name="red">#E76666</color>

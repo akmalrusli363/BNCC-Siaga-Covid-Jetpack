@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="12dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/tvLookupCountry"
@@ -60,7 +60,7 @@
 
             <LinearLayout
                 android:id="@+id/llLookupConfirmedCase"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="80dp"
                 android:background="@drawable/shape_rounder_highlight"
                 android:backgroundTint="@color/teal"
@@ -105,7 +105,7 @@
 
             <LinearLayout
                 android:id="@+id/llLookupRecoveredCase"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="80dp"
                 android:background="@drawable/shape_rounder_highlight"
                 android:backgroundTint="@color/green"
@@ -149,7 +149,7 @@
 
             <LinearLayout
                 android:id="@+id/llLookupDeathCase"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="80dp"
                 android:background="@drawable/shape_rounder_highlight"
                 android:backgroundTint="@color/red"
