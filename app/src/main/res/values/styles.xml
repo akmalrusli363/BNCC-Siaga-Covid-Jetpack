@@ -34,8 +34,8 @@
     </style>
 
     <style name="AppBottomSheetShapeStyle" parent="">
-        <item name="cornerSize">32dp</item>
-        <item name="cornerRadius">32dp</item>
+        <item name="cornerSizeTopLeft">32dp</item>
+        <item name="cornerSizeTopRight">32dp</item>
         <item name="cornerFamily">rounded</item>
     </style>
 
@@ -112,6 +112,14 @@
         <item name="android:elevation">4dp</item>
         <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="corona_access_menu">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/btn_corona_access</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
 </resources>

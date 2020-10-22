@@ -24,7 +24,7 @@
                 android:layout_height="36dp"
                 android:scaleType="fitXY"
                 android:background="@drawable/btn_haptic_image"
-                android:contentDescription="@string/reload_icon"
+                android:contentDescription="@string/reload_data"
                 android:src="@drawable/ic_refresh"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

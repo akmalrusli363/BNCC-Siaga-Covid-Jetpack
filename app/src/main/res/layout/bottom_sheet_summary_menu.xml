@@ -1,357 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheetSummaryView"
+    style="@style/AppBottomSheetStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/shape_round_roll_box"
+    android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:showIn="@layout/activity_corona_overview">
 
-    <LinearLayout
+    <View
+        android:id="@+id/grapple"
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/shape_grapple"
+        android:contentDescription="@string/bottom_sheet_grapple" />
+
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/llSummaryMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="20dp"
-        android:paddingVertical="16dp">
+        android:overScrollMode="never"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/grapple"
-            android:layout_width="40dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center"
-            android:background="@drawable/shape_grapple"
-            android:contentDescription="@string/bottom_sheet_grapple" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clCoronaCountBox"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="4dp"
-            android:paddingVertical="8dp">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp">
 
-            <LinearLayout
-                android:id="@+id/llPositiveCaseCountBox"
-                android:layout_width="100dp"
-                android:layout_height="110dp"
-                android:background="@drawable/shape_round_highlight_box"
-                android:backgroundTint="@color/confirmedColor"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clCoronaCountBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="4dp">
 
-                <ProgressBar
-                    android:id="@+id/pbPositive"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/white"
-                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/llPositiveCaseCountBox"
+                    android:layout_width="100dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/shape_round_highlight_box"
+                    android:backgroundTint="@color/confirmedColor"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tvPositiveCount"
-                    style="@style/h4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark"
-                    android:text="@string/loading"
-                    tools:text="36977" />
+                    <ProgressBar
+                        android:id="@+id/pbPositive"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/tvDailyPositiveCount"
-                    style="@style/b1"
-                    android:textStyle="italic|bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark"
-                    android:text="@string/loading"
-                    tools:text="(+2977)" />
+                    <TextView
+                        android:id="@+id/tvPositiveCount"
+                        style="@style/h4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark"
+                        tools:text="36977" />
 
-                <TextView
-                    android:id="@+id/tvPositiveCountLabel"
-                    style="@style/b2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/positive"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvDailyPositiveCount"
+                        style="@style/b1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark"
+                        android:textStyle="italic|bold"
+                        tools:text="(+2977)" />
 
-            <LinearLayout
-                android:id="@+id/llRecoveredCountBox"
-                android:layout_width="100dp"
-                android:layout_height="110dp"
-                android:background="@drawable/shape_round_highlight_box"
-                android:backgroundTint="@color/recoveredColor"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
-                app:layout_constraintStart_toEndOf="@id/llPositiveCaseCountBox"
-                app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/tvPositiveCountLabel"
+                        style="@style/b2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/positive"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark" />
+                </LinearLayout>
 
-                <ProgressBar
-                    android:id="@+id/pbRecovered"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/white"
-                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/llRecoveredCountBox"
+                    android:layout_width="100dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/shape_round_highlight_box"
+                    android:backgroundTint="@color/recoveredColor"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
+                    app:layout_constraintStart_toEndOf="@id/llPositiveCaseCountBox"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tvRecoveredCount"
-                    style="@style/h4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark"
-                    android:text="@string/loading"
-                    tools:text="45101" />
+                    <ProgressBar
+                        android:id="@+id/pbRecovered"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/tvDailyRecoveredCount"
-                    style="@style/b1"
-                    android:textStyle="italic|bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark"
-                    android:text="@string/loading"
-                    tools:text="(+2977)" />
+                    <TextView
+                        android:id="@+id/tvRecoveredCount"
+                        style="@style/h4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark"
+                        tools:text="45101" />
 
-                <TextView
-                    android:id="@+id/tvRecoveredCountLabel"
-                    style="@style/b2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/recovered"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvDailyRecoveredCount"
+                        style="@style/b1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark"
+                        android:textStyle="italic|bold"
+                        tools:text="(+2977)" />
 
-            <LinearLayout
-                android:id="@+id/llDeathCountBox"
-                android:layout_width="100dp"
-                android:layout_height="110dp"
-                android:background="@drawable/shape_round_highlight_box"
-                android:backgroundTint="@color/deathColor"
-                android:elevation="4dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/tvRecoveredCountLabel"
+                        style="@style/b2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/recovered"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark" />
+                </LinearLayout>
 
-                <ProgressBar
-                    android:id="@+id/pbDeath"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:indeterminateTint="@color/white"
-                    android:visibility="gone" />
+                <LinearLayout
+                    android:id="@+id/llDeathCountBox"
+                    android:layout_width="100dp"
+                    android:layout_height="110dp"
+                    android:background="@drawable/shape_round_highlight_box"
+                    android:backgroundTint="@color/deathColor"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/tvDeathCount"
-                    style="@style/h4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark"
-                    android:text="@string/loading"
-                    tools:text="4143" />
+                    <ProgressBar
+                        android:id="@+id/pbDeath"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/white"
+                        android:visibility="gone" />
 
-                <TextView
-                    android:id="@+id/tvDailyDeathCount"
-                    style="@style/b1"
-                    android:textStyle="italic|bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark"
-                    android:text="@string/loading"
-                    tools:text="(+107)" />
+                    <TextView
+                        android:id="@+id/tvDeathCount"
+                        style="@style/h4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark"
+                        tools:text="4143" />
 
-                <TextView
-                    android:id="@+id/tvDeathCountLabel"
-                    style="@style/b2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/death"
-                    android:textAlignment="center"
-                    android:textColor="@color/colorAccentDark" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvDailyDeathCount"
+                        style="@style/b1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/loading"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark"
+                        android:textStyle="italic|bold"
+                        tools:text="(+107)" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/tvDeathCountLabel"
+                        style="@style/b2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/death"
+                        android:textAlignment="center"
+                        android:textColor="@color/colorAccentDark" />
+                </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvKnowMore"
-            style="@style/h4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="12dp"
-            android:text="@string/learn_more_covid19"
-            android:textColor="@color/indigo2" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clLookupButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:background="@drawable/btn_corona_access"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="20dp">
-
-            <ImageView
-                android:id="@+id/ivMetaIcon1"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/lookup_icon"
-                android:src="@drawable/ic_location_pin"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_location_pin"
-                tools:layout_marginHorizontal="12dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tvMetaTitle1"
-                style="@style/h5"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvKnowMore"
+                style="@style/h4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/lookup"
-                android:textColor="@color/indigo2"
-                app:layout_constraintBottom_toTopOf="@id/tvMetaDescription1"
-                app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:paddingHorizontal="4dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:text="@string/learn_more_covid19"
+                android:textColor="@color/indigo2" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clLookupButton"
+                style="@style/corona_access_menu"
+                android:layout_marginVertical="8dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp">
+
+                <ImageView
+                    android:id="@+id/ivMetaIcon1"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/lookup_icon"
+                    android:src="@drawable/ic_location_pin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_location_pin"
+                    tools:layout_marginHorizontal="12dp" />
+
+                <TextView
+                    android:id="@+id/tvMetaTitle1"
+                    style="@style/h5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/lookup"
+                    android:textColor="@color/indigo2"
+                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescription1"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvMetaDescription1"
+                    style="@style/b3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/lookup_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
+                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitle1" />
+
+                <ImageView
+                    android:id="@+id/ivGotoArrow1"
+                    android:layout_width="32dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/goto_lookup"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/indigo2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clHotlineButton"
+                style="@style/corona_access_menu"
+                android:layout_marginVertical="8dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp">
+
+                <ImageView
+                    android:id="@+id/ivMetaIcon2"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/hotline_icon"
+                    android:src="@drawable/ic_siren"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_siren"
+                    tools:layout_marginHorizontal="12dp" />
+
+                <TextView
+                    android:id="@+id/tvMetaTitle2"
+                    style="@style/h5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/hotline"
+                    android:textColor="@color/indigo2"
+                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescription2"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvMetaDescription2"
+                    style="@style/b3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/hotline_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
+                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitle2" />
+
+
+                <ImageView
+                    android:id="@+id/ivGotoArrow2"
+                    android:layout_width="32dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/goto_hotline"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/indigo2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
-                android:id="@+id/tvMetaDescription1"
-                style="@style/b3"
-                android:layout_width="0dp"
+                android:id="@+id/tvLastUpdated"
+                style="@style/b2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/lookup_description"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
-                app:layout_constraintTop_toBottomOf="@id/tvMetaTitle1" />
+                android:layout_marginVertical="4dp"
+                android:text="@string/last_updated"
+                android:textAlignment="center"
+                android:textStyle="italic" />
 
-            <ImageView
-                android:id="@+id/ivGotoArrow1"
-                android:layout_width="32dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/goto_lookup"
-                android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1"
-                app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/indigo2" />
+        </LinearLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/clHotlineButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="12dp"
-            android:background="@drawable/btn_corona_access"
-            android:clickable="true"
-            android:focusable="true"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="20dp">
-
-            <ImageView
-                android:id="@+id/ivMetaIcon2"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/hotline_icon"
-                android:src="@drawable/ic_siren"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_siren"
-                tools:layout_marginHorizontal="12dp" />
-
-            <TextView
-                android:id="@+id/tvMetaTitle2"
-                style="@style/h5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/hotline"
-                android:textColor="@color/indigo2"
-                app:layout_constraintBottom_toTopOf="@id/tvMetaDescription2"
-                app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvMetaDescription2"
-                style="@style/b3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/hotline_description"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
-                app:layout_constraintTop_toBottomOf="@id/tvMetaTitle2" />
-
-
-            <ImageView
-                android:id="@+id/ivGotoArrow2"
-                android:layout_width="32dp"
-                android:layout_height="64dp"
-                android:layout_marginStart="8dp"
-                android:contentDescription="@string/goto_hotline"
-                android:src="@drawable/ic_right_arrow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1"
-                app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/indigo2" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
-            android:id="@+id/tvLastUpdated"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="4dp"
-            android:text="@string/last_updated"
-            android:textAlignment="center"
-            android:textStyle="italic"
-            style="@style/b2" />
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+</LinearLayout>
