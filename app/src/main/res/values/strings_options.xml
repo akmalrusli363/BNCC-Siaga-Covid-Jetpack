@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Data sorting for world statistics -->
+    <string name="sort_country_data">Sort Country Data</string>
+    <string name="sort_by_country_name">Country name</string>
+    <string name="sort_by_country_code">Country code</string>
+    <string name="sort_by_confirmed_cases">Confirmed cases</string>
+    <string name="sort_by_recovered_cases">Recovered cases</string>
+    <string name="sort_by_death_cases">Death cases</string>
+    <string name="sort_by_daily_confirmed_cases">Daily confirmed cases</string>
+    <string name="sort_by_daily_recovered_cases">Daily recovered cases</string>
+    <string name="sort_by_daily_death_cases">Daily death cases</string>
+</resources>

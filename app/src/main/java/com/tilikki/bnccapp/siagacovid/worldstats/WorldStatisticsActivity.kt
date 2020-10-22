@@ -35,21 +35,12 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
         setupRecyclerAdapter()
         setupReturnButton()
         setupSearch(worldStatAdapter)
-        setSelectedComparatorMenuItem()
     }
 
     private fun setupToolbar() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
         title = ""
-    }
-
-    private fun setSelectedComparatorMenuItem() {
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        val item: MenuItem = toolbar
-            .menu.findItem(R.id.menuItemSortOptions)
-            .subMenu.findItem(defaultComparatorMenuItem)
-        item.isChecked = true
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
