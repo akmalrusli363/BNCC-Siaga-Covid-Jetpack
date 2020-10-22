@@ -24,6 +24,7 @@
     <string name="goto_lookup">Goto lookup</string>
     <string name="goto_hotline">Goto hotline</string>
     <string name="goto_world_stats">Goto world stats</string>
+    <string name="related_information">Related information</string>
     <string name="last_updated">Last updated: ???</string>
 
     <!-- Data labels -->
