@@ -19,7 +19,6 @@ import kotlinx.android.synthetic.main.widget_world_statistics_summary.*
 
 class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLookupData>, PVContract.ObjectView<WorldStatSummaryData> {
     private val presenter = WorldStatPresenter(WorldStatModel(), this, this)
-    private val defaultComparatorMenuItem: Int = R.id.submenuSortByConfirmedCase
 
     private var mockWorldLookupList: MutableList<WorldStatLookupData> = mutableListOf(
         WorldStatLookupData("??", "Loading...",
@@ -110,6 +109,7 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
     private fun setupSearch(worldStatLookupAdapter: WorldStatLookupAdapter) {
         svCountryLookupSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                worldStatLookupAdapter.filter.filter(query)
                 return false
             }
 
@@ -129,6 +129,7 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
             worldStatAdapter.updateData(listData)
             rvCountryLookupData.visibility = View.VISIBLE
             pbFetchLookup.visibility = View.GONE
+            svCountryLookupSearch.setQuery(svCountryLookupSearch.query, true)
         }
     }
 
