@@ -45,7 +45,7 @@
         <item name="android:textColorPrimary">@color/colorAccentLight</item>
         <!-- Icon Color -->
         <item name="android:textColorSecondary">@color/colorAccentLight</item>
-        <item name="android:background">@drawable/shape_gray_round_box</item>
+        <item name="android:drawable">@drawable/shape_gray_round_box</item>
     </style>
 
     <!-- Font Styles -->
