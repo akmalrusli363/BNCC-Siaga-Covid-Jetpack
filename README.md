@@ -1,7 +1,7 @@
 # BNCC-Academy-Kotlin-Demo
 A repository for an app made during BNCC x Gojek Academy demonstrated using Kotlin, which shows data about COVID19 statistics in Indonesia
 
-> **INFO:** This branch is **different** from `master` branch because this branch serves data from [data.covid19.go.id](https://data.covid19.go.id) in which serves daily cases for national and regional cases, and served officially from government supported (Satgas COVID-19) committee.
+> **INFO:** This branch contains **beyond statistical data** provided for COVID-19 statistics, especially for world data and additional COVID-19 statistics in Indonesia which contains more detailed data (rates in percentage, specimens, and historical data) which divided into parts of experimental branches and may added or removed in that branch before applied into advanced version of BNCC Siaga COVID19 App.
 
 ## Parts & Features
 
@@ -17,7 +17,12 @@ This feature will show a list of phone number that you can reach out if you are 
 ### Lookup Feature
 This feature will show the number of coronavirus cases around Indonesia. You can search for your region for total cases, recovered cases, and death cases in your region (for example: DKI Jakarta, South Sulawesi, West Java, Bali, etc).
 
-In [`dev/public_api-sorting`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api-sorting), you can sort for total cases, recovered cases, death cases, and their daily cases too. 
+In [`dev/public_api-sorting`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api-sorting), you can sort for total cases, recovered cases, death cases, and their daily cases too.
+
+### World Statistics (`develop` & `experiments` branch only!)
+This feature shows the number of coronavirus cases around the world. Each country has confirmed cases, active cases in percentage, recovery, and death cases (in counts and percentages). Not all data from the country may be accurate served because some countries may not served some data parts (such as recovery counts) due of data confidentiality in that country.
+
+User can search countries using search box in world stat page and sort the country list based on country code, name, overall cases, or daily cases (e.g. confirmed, recovery, and deaths) from world stat menu.
 
 ## The COVID-19 API URL
 This application uses COVID-19 data API supplied from [data.covid19.go.id](https://data.covid19.go.id) which fetches data for Case Overview and Regional Lookup features. For emergency call and phone number for regional emergency services, we uses BNCC Corona's Firebase API Services provided at [bncc-corona-versus.firebaseio.com/v1/hotlines.json](https://bncc-corona-versus.firebaseio.com/v1/hotlines.json).
@@ -27,10 +32,11 @@ Summarily, the list of API we've provided for this app:
 | Feature | Data APIs URL | Branch |
 | --- | --- | :---: |
 | National Data Overview | https://api.kawalcorona.com/indonesia/ | `master` |
-|  | https://data.covid19.go.id/public/api/update.json | `dev/public_api` |
+|  | https://data.covid19.go.id/public/api/update.json | `dev/public_api`, `develop` |
 | Regional Data Overview | https://api.kawalcorona.com/indonesia/provinsi | `master` |
-|  | https://data.covid19.go.id/public/api/prov.json | `dev/public_api` |
+|  | https://data.covid19.go.id/public/api/prov.json | `dev/public_api`, `develop` |
 | Hotline | https://bncc-corona-versus.firebaseio.com/v1/hotlines.json | any |
+| World Statistics (summary + countries) | https://api.covid19api.com/summary | `develop` |
 
 ## Image/Asset Credits
 
@@ -48,3 +54,4 @@ Image/asset related URL's:
 8. Phone call icon: https://www.flaticon.com/free-icon/phone-call_2122018
 9. Close icon: https://www.flaticon.com/free-icon/close_1828774
 10. Arrow icon: https://www.flaticon.com/free-icon/arrow_507257
+11. Globe icon: https://www.flaticon.com/free-icon/global_3190466
