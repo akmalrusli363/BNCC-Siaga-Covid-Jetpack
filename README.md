@@ -1,6 +1,8 @@
 # BNCC-Academy-Kotlin-Demo
 A repository for an app made during BNCC x Gojek Academy demonstrated using Kotlin, which shows data about COVID19 statistics in Indonesia
 
+> **INFO:** This branch is **different** from `master` branch because this branch serves data from [data.covid19.go.id](https://data.covid19.go.id) in which serves daily cases for national and regional cases, and served officially from government supported (Satgas COVID-19) committee.
+
 ## Parts & Features
 
 ### The Case Overview (Main screen)
@@ -18,11 +20,11 @@ This feature will show the number of coronavirus cases around Indonesia. You can
 In [`dev/public_api-sorting`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api-sorting), you can sort for total cases, recovered cases, death cases, and their daily cases too. 
 
 ## The COVID-19 API URL
-This application uses COVID-19 data API supplied from [api.kawalcorona.com](api.kawalcorona.com) which fetches data for Case Overview and Regional Lookup features. For emergency call and phone number for regional emergency services, we uses BNCC Corona's Firebase API Services provided at [bncc-corona-versus.firebaseio.com/v1/hotlines.json](https://bncc-corona-versus.firebaseio.com/v1/hotlines.json).
+This application uses COVID-19 data API supplied from [data.covid19.go.id](https://data.covid19.go.id) which fetches data for Case Overview and Regional Lookup features. For emergency call and phone number for regional emergency services, we uses BNCC Corona's Firebase API Services provided at [bncc-corona-versus.firebaseio.com/v1/hotlines.json](https://bncc-corona-versus.firebaseio.com/v1/hotlines.json).
 
-Summarically, the list of API we've provided for this app:
+Summarily, the list of API we've provided for this app:
 
-| Feature | Data API's URL | Branch |
+| Feature | Data APIs URL | Branch |
 | --- | --- | :---: |
 | National Data Overview | https://api.kawalcorona.com/indonesia/ | `master` |
 |  | https://data.covid19.go.id/public/api/update.json | `dev/public_api` |
