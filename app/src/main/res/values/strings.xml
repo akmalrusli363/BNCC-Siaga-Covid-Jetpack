@@ -44,7 +44,7 @@
     <string name="author">Created by @akmalrusli363 as part of COVID-19 mitigation in Indonesia.</string>
     <string name="part_of">Powered by BNCC x GoAcademy</string>
     <string name="bncc_x_goacademy">BNCC x GoAcademy</string>
-    <string name="version">Version 1.1.1 (public-api)</string>
+    <string name="version">Version 1.1.2 (public-api)</string>
 
     <!-- Misc -->
     <string name="bottom_sheet_grapple">Bottom sheet swipe to expand</string>
@@ -52,6 +52,7 @@
     <string name="reload_data">Reload Data</string>
     <string name="unknown">\???</string>
     <string name="loading">…</string>
+    <string name="data_provided_url">Data provided from <a href="https://data.covid19.go.id/public/index.html">data.covid19.go.id</a></string>
 
     <!-- 3M Tips for COVID19 Preventions -->
     <string name="tips_3m">Ayo jaga dirimu dengan 3M!</string>

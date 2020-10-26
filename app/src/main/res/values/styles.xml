@@ -94,6 +94,11 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="b4">
+        <item name="android:fontFamily">@font/karla</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
 
     <!-- Data Widget Themes -->
     <style name="regional_case_overview">
