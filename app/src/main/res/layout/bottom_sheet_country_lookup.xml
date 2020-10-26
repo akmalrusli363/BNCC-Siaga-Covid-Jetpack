@@ -15,7 +15,7 @@
         android:id="@+id/svCountryLookupSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="24dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="16dp"
         android:background="@drawable/shape_gray_round_box"
         android:elevation="4dp"
@@ -26,10 +26,12 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCountryLookupData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:overScrollMode="never"
             android:paddingHorizontal="4dp"
             android:visibility="gone"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
