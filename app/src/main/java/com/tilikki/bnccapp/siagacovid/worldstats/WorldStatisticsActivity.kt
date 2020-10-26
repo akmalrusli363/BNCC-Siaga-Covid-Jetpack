@@ -15,7 +15,7 @@ import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import kotlinx.android.synthetic.main.activity_world_statistics.*
 import kotlinx.android.synthetic.main.bottom_sheet_country_lookup.*
-import kotlinx.android.synthetic.main.widget_world_statistics_summary.*
+import kotlinx.android.synthetic.main.widget_world_case_summary.*
 
 class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLookupData>, PVContract.ObjectView<WorldStatSummaryData> {
     private val presenter = WorldStatPresenter(WorldStatModel(), this, this)

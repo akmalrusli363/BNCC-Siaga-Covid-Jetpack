@@ -20,7 +20,7 @@
             app:titleEnabled="false"
             android:hapticFeedbackEnabled="true">
 
-            <include layout="@layout/widget_world_statistics_summary" />
+            <include layout="@layout/widget_world_case_summary" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

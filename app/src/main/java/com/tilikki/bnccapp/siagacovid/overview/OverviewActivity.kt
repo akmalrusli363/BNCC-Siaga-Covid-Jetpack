@@ -14,8 +14,8 @@ import com.tilikki.bnccapp.siagacovid.about.AboutAppDialog
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
-import com.tilikki.bnccapp.siagacovid.worldstats.WorldStatisticsActivity
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
+import com.tilikki.bnccapp.siagacovid.worldstats.WorldStatisticsActivity
 import kotlinx.android.synthetic.main.activity_corona_overview.*
 import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
 import kotlin.math.absoluteValue

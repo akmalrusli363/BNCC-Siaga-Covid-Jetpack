@@ -24,8 +24,8 @@ android {
         }
         develop {
             dimension "default"
-            versionCode 102
-            versionName "1.2.1"
+            versionCode 104
+            versionName "1.2.2"
             applicationIdSuffix ".dev"
             resValue "string", "app_name", "@string/app_name_alt"
         }
