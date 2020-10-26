@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BNCC Siaga COVID-19</string>
+    <string name="app_name_main">BNCC Siaga COVID-19</string>
     <string name="app_name_alt">Siaga COVID-19</string>
 
     <!--

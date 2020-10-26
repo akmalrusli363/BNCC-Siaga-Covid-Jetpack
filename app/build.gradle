@@ -12,6 +12,7 @@ android {
         targetSdkVersion 30
         versionCode 13
         versionName "1.1.2"
+        resValue "string", "app_name", "@string/app_name_main"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,8 +25,9 @@ android {
         develop {
             dimension "default"
             versionCode 102
-            versionName "1.2.0"
+            versionName "1.2.1"
             applicationIdSuffix ".dev"
+            resValue "string", "app_name", "@string/app_name_alt"
         }
     }
 
