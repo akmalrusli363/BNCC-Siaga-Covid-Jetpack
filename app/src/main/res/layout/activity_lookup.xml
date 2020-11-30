@@ -23,10 +23,21 @@
             android:text="@string/region_indonesia"
             android:textAlignment="center"
             android:textColor="@color/colorAccentLight"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLastUpdated"
+            style="@style/b2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/last_updated"
+            android:textAlignment="center"
+            app:layout_constraintTop_toBottomOf="@id/tvLookupCountry"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageButton
             android:id="@+id/ivReturnIcon"
@@ -40,6 +51,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/colorAccentLight" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <View
         android:id="@+id/vSeparator1"
