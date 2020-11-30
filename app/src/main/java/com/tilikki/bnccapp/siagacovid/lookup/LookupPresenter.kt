@@ -3,15 +3,17 @@ package com.tilikki.bnccapp.siagacovid.lookup
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.RegionParser
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
 import org.json.JSONObject
 import java.io.IOException
+import java.util.*
 
 class LookupPresenter(
     private val model: LookupModel,
-    private val view: PVContract.View<LookupData>
+    private val view: PVContract.ObjectView<LookupSummaryData>
 ) :
     PVContract.Presenter {
     override fun fetchData() {
@@ -35,7 +37,11 @@ class LookupPresenter(
                         val dailyCases = attribute.getJSONObject("penambahan")
                         lookupDataFromNetwork.add(
                             LookupData(
-                                provinceName = RegionParser.capitalizeRegionName(attribute.getString("key")),
+                                provinceName = RegionParser.capitalizeRegionName(
+                                    attribute.getString(
+                                        "key"
+                                    )
+                                ),
                                 numOfPositiveCase = attribute.getInt("jumlah_kasus"),
                                 numOfRecoveredCase = attribute.getInt("jumlah_sembuh"),
                                 numOfDeathCase = attribute.getInt("jumlah_meninggal"),
@@ -46,7 +52,15 @@ class LookupPresenter(
                         )
                     }
 
-                    view.updateData(lookupDataFromNetwork)
+                    val lastUpdated: Date?
+                    lastUpdated = try {
+                        StringParser.parseShortDate(JSONObject(jsonString).getString("last_date"))
+                    } catch (ex: Exception) {
+                        null
+                    }
+
+                    val lookupSummaryData = LookupSummaryData(lookupDataFromNetwork, lastUpdated)
+                    view.updateData(lookupSummaryData)
                 } catch (e: Exception) {
                     view.showError(AppEventLogging.FETCH_FAILURE, e)
                 }

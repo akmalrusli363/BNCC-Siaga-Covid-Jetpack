@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import kotlinx.android.synthetic.main.activity_lookup.*
+import java.util.*
 
-class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
+class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryData> {
     private val presenter = LookupPresenter(LookupModel(), this)
-
-    private var isRefreshing = true
 
     private var mockLookupList: MutableList<LookupData> = mutableListOf(
         LookupData("Loading...", 0, 0, 0)
@@ -47,7 +47,6 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
                 return false
             }
 
-
             override fun onQueryTextChange(query: String?): Boolean {
                 lookupAdapter.filter.filter(query)
                 return false
@@ -63,9 +62,20 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
         presenter.fetchData()
     }
 
-    override fun updateData(listData: List<LookupData>) {
+    private fun outputDate(date: Date?) :String {
+        return if (date != null) {
+            StringParser.formatShortDate(date)
+        } else {
+            "Not Available"
+        }
+    }
+
+    override fun updateData(objectData: LookupSummaryData) {
         this@LookupActivity.runOnUiThread {
-            lookupAdapter.updateData(listData)
+            lookupAdapter.updateData(objectData.lookupData)
+            tvLastUpdated.text = getString(R.string.last_updated)
+                .replace("???", outputDate(objectData.lastUpdated))
+
             srlLookupData.isRefreshing = false
             pbFetchLookup.visibility = View.GONE
             rvLookupData.visibility = View.VISIBLE
