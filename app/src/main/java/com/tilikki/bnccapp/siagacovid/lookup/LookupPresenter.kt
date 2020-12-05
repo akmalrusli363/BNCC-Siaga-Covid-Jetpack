@@ -9,7 +9,7 @@ import java.io.IOException
 
 class LookupPresenter(
     private val model: LookupModel,
-    private val view: PVContract.View<LookupData>
+    private val view: PVContract.ObjectView<LookupSummaryData>
 ) :
     PVContract.Presenter {
     override fun fetchData() {

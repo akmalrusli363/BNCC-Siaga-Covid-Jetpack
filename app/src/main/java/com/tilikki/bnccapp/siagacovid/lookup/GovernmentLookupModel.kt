@@ -1,14 +1,16 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
 import com.tilikki.bnccapp.siagacovid.utils.RegionParser
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import okhttp3.Response
 import org.json.JSONObject
+import java.util.*
 
 class GovernmentLookupModel : LookupModel() {
     override fun apiURL(): String = lookupDataApiURL
     override fun apiProvider(): String = provider
 
-    override fun obtainData(response: Response): MutableList<LookupData> {
+    override fun obtainData(response: Response): LookupSummaryData {
         val jsonString = response.body!!.string()
         val jsonArray = JSONObject(jsonString).getJSONArray("list_data")
         val lookupDataFromNetwork = mutableListOf<LookupData>()
@@ -30,7 +32,13 @@ class GovernmentLookupModel : LookupModel() {
                 )
             )
         }
-        return lookupDataFromNetwork
+        val lastUpdated: Date?
+        lastUpdated = try {
+            StringParser.parseShortDate(JSONObject(jsonString).getString("last_date"))
+        } catch (ex: Exception) {
+            null
+        }
+        return LookupSummaryData(lookupDataFromNetwork, apiProvider(), lastUpdated)
     }
 
     companion object {

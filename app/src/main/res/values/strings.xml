@@ -37,6 +37,7 @@
     <string name="search_icon_description">Search</string>
     <string name="region_search_hint">Wilayah</string>
     <string name="clear_search">Clear search</string>
+    <string name="data_source_info">Fetching source data…</string>
 
     <!-- Hot-line -->
     <string name="hotline_advanced_description">Layanan darurat via telepon yang disediakan oleh Kemkes dan juga Pemprov DKI Jakarta</string>

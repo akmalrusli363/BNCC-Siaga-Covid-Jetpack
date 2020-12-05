@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import kotlinx.android.synthetic.main.activity_lookup.*
+import java.util.*
 
-class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
+class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryData> {
     private var presenter = LookupPresenter(GovernmentLookupModel(), this)
 
     private var mockLookupList: MutableList<LookupData> = mutableListOf(
@@ -91,7 +93,8 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     }
 
     private fun setupSearchSorting() {
-        val sortTypes: List<LookupComparator> = CaseDataSorter.getSortTypes(!tbDataProviderSwitch.isChecked)
+        val sortTypes: List<LookupComparator> =
+            CaseDataSorter.getSortTypes(!tbDataProviderSwitch.isChecked)
 
         val adapter: ArrayAdapter<LookupComparator> =
             ArrayAdapter(this, R.layout.custom_spinner_dropdown_item, sortTypes)
@@ -99,7 +102,12 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
         spRegionLookupSort.apply {
             this.adapter = adapter
             this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, i: Int, l: Long) {
+                override fun onItemSelected(
+                    adapterView: AdapterView<*>?,
+                    view: View?,
+                    i: Int,
+                    l: Long
+                ) {
                     val selectedItem = adapter.getItem(i)
                     lookupAdapter.sortDataWith(selectedItem!!)
                 }
@@ -110,9 +118,10 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
         }
     }
 
-    override fun updateData(listData: List<LookupData>) {
+    override fun updateData(objectData: LookupSummaryData) {
         this@LookupActivity.runOnUiThread {
-            lookupAdapter.updateData(listData)
+            lookupAdapter.updateData(objectData.lookupData)
+            tvLastUpdated.text = getDataSourceInformation(objectData)
             srlLookupData.isRefreshing = false
             pbFetchLookup.visibility = View.GONE
             rvLookupData.visibility = View.VISIBLE
@@ -124,6 +133,27 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
         runOnUiThread {
             AppEventLogging.logExceptionOnToast(tag, this@LookupActivity, e)
             srlLookupData.isRefreshing = false
+        }
+    }
+
+    private fun getDataSourceInformation(objectData: LookupSummaryData): String {
+        return if (objectData.lastUpdated != null)
+            String.format(
+                Locale.ROOT, "%s | Updated: %s",
+                objectData.provider, outputDate(objectData.lastUpdated)
+            )
+        else
+            String.format(
+                Locale.ROOT, "%s",
+                objectData.provider
+            )
+    }
+
+    private fun outputDate(date: Date?): String {
+        return if (date != null) {
+            StringParser.formatShortDate(date)
+        } else {
+            "Not Available"
         }
     }
 

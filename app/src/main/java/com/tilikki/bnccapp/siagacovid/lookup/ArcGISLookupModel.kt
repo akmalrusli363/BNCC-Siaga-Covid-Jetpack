@@ -8,7 +8,7 @@ class ArcGISLookupModel : LookupModel() {
     override fun apiURL(): String = lookupDataApiURL
     override fun apiProvider(): String = provider
 
-    override fun obtainData(response: Response): MutableList<LookupData> {
+    override fun obtainData(response: Response): LookupSummaryData {
         val jsonString = response.body!!.string()
         val jsonArray = JSONArray(jsonString)
         val lookupDataFromNetwork = mutableListOf<LookupData>()
@@ -29,7 +29,7 @@ class ArcGISLookupModel : LookupModel() {
                 )
             )
         }
-        return lookupDataFromNetwork
+        return LookupSummaryData(lookupDataFromNetwork, apiProvider(), null)
     }
 
     companion object {
