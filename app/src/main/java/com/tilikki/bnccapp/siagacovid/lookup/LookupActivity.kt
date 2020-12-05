@@ -46,6 +46,8 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     private fun setupToggleButton() {
         tbDataProviderSwitch.setOnClickListener {
             val fromGovernment = !tbDataProviderSwitch.isChecked
+            setSearchSort(fromGovernment)
+
             val lookupModel = if (fromGovernment) {
                 GovernmentLookupModel()
             } else {
@@ -53,6 +55,7 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
             }
             presenter = LookupPresenter(lookupModel, this)
             fetchData()
+
             lookupAdapter.toggleDailyCaseVisibility(fromGovernment)
             lookupAdapter.notifyDataSetChanged()
         }
@@ -80,21 +83,15 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
         presenter.fetchData()
     }
 
-    private fun updateSearchSort(dailyCaseVisibility: Boolean) {
-        val sortTypes: MutableList<LookupComparator> = CaseDataSorter.sortTypes
-
-        if (dailyCaseVisibility) {
-            sortTypes.addAll(CaseDataSorter.dailySortTypes)
-        }
-        
+    private fun setSearchSort(dailyCaseVisibility: Boolean) {
+        val sortTypes: List<LookupComparator> = CaseDataSorter.getSortTypes(dailyCaseVisibility)
+        val adapter: ArrayAdapter<LookupComparator> =
+            ArrayAdapter(this, R.layout.custom_spinner_dropdown_item, sortTypes)
+        spRegionLookupSort.adapter = adapter
     }
 
     private fun setupSearchSorting() {
-        val sortTypes: MutableList<LookupComparator> = CaseDataSorter.sortTypes
-
-        if (true) {
-            sortTypes.addAll(CaseDataSorter.dailySortTypes)
-        }
+        val sortTypes: List<LookupComparator> = CaseDataSorter.getSortTypes(!tbDataProviderSwitch.isChecked)
 
         val adapter: ArrayAdapter<LookupComparator> =
             ArrayAdapter(this, R.layout.custom_spinner_dropdown_item, sortTypes)
@@ -109,7 +106,6 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
-
             }
         }
     }
@@ -132,7 +128,7 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
     }
 
     private object CaseDataSorter {
-        val sortTypes: MutableList<LookupComparator> = mutableListOf(
+        val sortTypes: List<LookupComparator> = listOf(
             LookupComparator("Positive Cases", LookupComparator.compareByPositivityRate),
             LookupComparator("Recovered Cases", LookupComparator.compareByRecoveryRate),
             LookupComparator("Death Cases", LookupComparator.compareByDeathRate),
@@ -142,5 +138,11 @@ class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
             LookupComparator("Daily Recovered Cases", LookupComparator.compareByDailyRecoveryRate),
             LookupComparator("Daily Death Cases", LookupComparator.compareByDailyDeathRate),
         )
+
+        fun getSortTypes(dailyCaseVisibility: Boolean): List<LookupComparator> {
+            val sortTypeList = sortTypes.toMutableList()
+            if (dailyCaseVisibility) sortTypeList.addAll(dailySortTypes)
+            return sortTypeList.toList()
+        }
     }
 }
