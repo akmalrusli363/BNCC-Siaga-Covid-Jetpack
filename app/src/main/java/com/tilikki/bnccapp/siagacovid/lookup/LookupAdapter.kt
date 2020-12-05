@@ -1,14 +1,18 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.tilikki.bnccapp.R
+import kotlinx.android.synthetic.main.item_lookup.view.*
 
-class LookupAdapter(private val lookupList: MutableList<LookupData>) :
+class LookupAdapter(private val lookupList: MutableList<LookupData>, private var dailyCaseVisibility: Boolean) :
     RecyclerView.Adapter<LookupViewHolder>(), Filterable {
+
+    constructor(lookupList: MutableList<LookupData>) : this(lookupList, true)
 
     private var lookupListComparator: Comparator<LookupData> = LookupComparator.compareByPositivityRate
     private var filteredLookupList: MutableList<LookupData> = sortData(lookupList)
@@ -20,6 +24,15 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
     }
 
     override fun onBindViewHolder(holder: LookupViewHolder, position: Int) {
+        if (dailyCaseVisibility) {
+            holder.itemView.tvLookupDailyConfirmedCase.visibility = View.VISIBLE
+            holder.itemView.tvLookupDailyRecoveredCase.visibility = View.VISIBLE
+            holder.itemView.tvLookupDailyDeathCase.visibility = View.VISIBLE
+        } else {
+            holder.itemView.tvLookupDailyConfirmedCase.visibility = View.GONE
+            holder.itemView.tvLookupDailyRecoveredCase.visibility = View.GONE
+            holder.itemView.tvLookupDailyDeathCase.visibility = View.GONE
+        }
         holder.bind(filteredLookupList[position])
     }
 
@@ -50,17 +63,25 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
         }
     }
 
-    fun updateData(newList: List<LookupData>) {
-        lookupList.clear()
-        lookupList.addAll(newList)
-        notifyDataSetChanged()
-        sortData(lookupList)
-        filteredLookupList = lookupList
-    }
-
     fun sortDataWith(lookupComparator: LookupComparator) {
         lookupListComparator = lookupComparator.comparator
         filteredLookupList = sortData(filteredLookupList, lookupListComparator)
+        notifyDataSetChanged()
+    }
+
+    fun toggleDailyCaseVisibility(dailyCaseVisibility: Boolean) {
+        this.dailyCaseVisibility = dailyCaseVisibility
+        updateData()
+    }
+
+    fun updateData(newList: List<LookupData>) {
+        lookupList.clear()
+        lookupList.addAll(newList)
+        updateData()
+    }
+
+    fun updateData() {
+        filteredLookupList = sortData(lookupList)
         notifyDataSetChanged()
     }
 

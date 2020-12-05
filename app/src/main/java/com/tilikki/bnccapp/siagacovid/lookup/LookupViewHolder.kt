@@ -3,7 +3,6 @@ package com.tilikki.bnccapp.siagacovid.lookup
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_lookup.view.*
-import java.util.*
 
 class LookupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(data: LookupData){
@@ -15,6 +14,8 @@ class LookupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.tvLookupDailyRecoveredCase.text = displayDailyCaseCount(data.numOfDailyRecoveredCase)
         itemView.tvLookupDailyDeathCase.text = displayDailyCaseCount(data.numOfDailyDeathCase)
     }
+
+
 
     private fun displayDailyCaseCount(dailyCaseCount: Int): String = "(+${dailyCaseCount})"
 }

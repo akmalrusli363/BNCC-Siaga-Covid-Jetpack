@@ -1,11 +1,11 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
 import com.tilikki.bnccapp.siagacovid.ApiCallModel
+import okhttp3.Response
 
-class LookupModel : ApiCallModel {
-    override val apiURL: String = lookupDataApiURL
-
-    companion object {
-        const val lookupDataApiURL = "https://data.covid19.go.id/public/api/prov.json"
-    }
+abstract class LookupModel : ApiCallModel {
+    override val apiURL: String by lazy { apiURL() }
+    abstract fun apiURL(): String
+    abstract fun apiProvider(): String
+    abstract fun obtainData(response: Response): MutableList<LookupData>
 }

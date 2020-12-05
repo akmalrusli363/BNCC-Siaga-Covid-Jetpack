@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
-import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import kotlinx.android.synthetic.main.activity_lookup.*
-import java.util.*
 
-class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryData> {
-    private val presenter = LookupPresenter(LookupModel(), this)
+class LookupActivity : AppCompatActivity(), PVContract.View<LookupData> {
+    private var presenter = LookupPresenter(GovernmentLookupModel(), this)
 
     private var mockLookupList: MutableList<LookupData> = mutableListOf(
         LookupData("Loading...", 0, 0, 0)
@@ -28,6 +26,7 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
         setupReturnButton()
         setupSearch(lookupAdapter)
         setupSearchSorting()
+        setupToggleButton()
     }
 
     private val lookupAdapter = LookupAdapter(mockLookupList)
@@ -41,6 +40,21 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
     private fun setupReturnButton() {
         ivReturnIcon.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun setupToggleButton() {
+        tbDataProviderSwitch.setOnClickListener {
+            val fromGovernment = !tbDataProviderSwitch.isChecked
+            val lookupModel = if (fromGovernment) {
+                GovernmentLookupModel()
+            } else {
+                ArcGISLookupModel()
+            }
+            presenter = LookupPresenter(lookupModel, this)
+            fetchData()
+            lookupAdapter.toggleDailyCaseVisibility(fromGovernment)
+            lookupAdapter.notifyDataSetChanged()
         }
     }
 
@@ -66,15 +80,22 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
         presenter.fetchData()
     }
 
+    private fun updateSearchSort(dailyCaseVisibility: Boolean) {
+        val sortTypes: MutableList<LookupComparator> = CaseDataSorter.sortTypes
+
+        if (dailyCaseVisibility) {
+            sortTypes.addAll(CaseDataSorter.dailySortTypes)
+        }
+        
+    }
+
     private fun setupSearchSorting() {
-        val sortTypes: Array<LookupComparator> = arrayOf(
-            LookupComparator("Positive Cases", LookupComparator.compareByPositivityRate),
-            LookupComparator("Recovered Cases", LookupComparator.compareByRecoveryRate),
-            LookupComparator("Death Cases", LookupComparator.compareByDeathRate),
-            LookupComparator("Daily Positive Cases", LookupComparator.compareByDailyPositivityRate),
-            LookupComparator("Daily Recovered Cases", LookupComparator.compareByDailyRecoveryRate),
-            LookupComparator("Daily Death Cases", LookupComparator.compareByDailyDeathRate),
-        )
+        val sortTypes: MutableList<LookupComparator> = CaseDataSorter.sortTypes
+
+        if (true) {
+            sortTypes.addAll(CaseDataSorter.dailySortTypes)
+        }
+
         val adapter: ArrayAdapter<LookupComparator> =
             ArrayAdapter(this, R.layout.custom_spinner_dropdown_item, sortTypes)
 
@@ -93,20 +114,9 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
         }
     }
 
-    private fun outputDate(date: Date?) :String {
-        return if (date != null) {
-            StringParser.formatShortDate(date)
-        } else {
-            "Not Available"
-        }
-    }
-
-    override fun updateData(objectData: LookupSummaryData) {
+    override fun updateData(listData: List<LookupData>) {
         this@LookupActivity.runOnUiThread {
-            lookupAdapter.updateData(objectData.lookupData)
-            tvLastUpdated.text = getString(R.string.last_updated)
-                .replace("???", outputDate(objectData.lastUpdated))
-
+            lookupAdapter.updateData(listData)
             srlLookupData.isRefreshing = false
             pbFetchLookup.visibility = View.GONE
             rvLookupData.visibility = View.VISIBLE
@@ -119,5 +129,18 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
             AppEventLogging.logExceptionOnToast(tag, this@LookupActivity, e)
             srlLookupData.isRefreshing = false
         }
+    }
+
+    private object CaseDataSorter {
+        val sortTypes: MutableList<LookupComparator> = mutableListOf(
+            LookupComparator("Positive Cases", LookupComparator.compareByPositivityRate),
+            LookupComparator("Recovered Cases", LookupComparator.compareByRecoveryRate),
+            LookupComparator("Death Cases", LookupComparator.compareByDeathRate),
+        )
+        val dailySortTypes: List<LookupComparator> = listOf(
+            LookupComparator("Daily Positive Cases", LookupComparator.compareByDailyPositivityRate),
+            LookupComparator("Daily Recovered Cases", LookupComparator.compareByDailyRecoveryRate),
+            LookupComparator("Daily Death Cases", LookupComparator.compareByDailyDeathRate),
+        )
     }
 }

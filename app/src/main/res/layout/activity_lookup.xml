@@ -50,9 +50,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/colorAccentLight" />
+
+        <ToggleButton
+            android:id="@+id/tbDataProviderSwitch"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            android:background="@drawable/btn_lookup_data_source_toggle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 
     <View
         android:id="@+id/vSeparator1"
@@ -90,6 +100,7 @@
             android:textAlignment="textStart"
             android:theme="@style/AppSpinner.Sort"
             android:visibility="visible"/>
+
     </LinearLayout>
 
     <ProgressBar
