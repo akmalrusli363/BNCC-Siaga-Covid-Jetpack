@@ -10,8 +10,8 @@ android {
         applicationId "com.tilikki.bnccapp"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 13
-        versionName "1.1.2"
+        versionCode 14
+        versionName "1.1.3"
         resValue "string", "app_name", "@string/app_name_main"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -24,8 +24,8 @@ android {
         }
         develop {
             dimension "default"
-            versionCode 104
-            versionName "1.2.2"
+            versionCode 110
+            versionName "1.3.0"
             applicationIdSuffix ".dev"
             resValue "string", "app_name", "@string/app_name_alt"
         }
