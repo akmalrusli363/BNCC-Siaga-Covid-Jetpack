@@ -92,7 +92,7 @@
                 app:layout_constraintStart_toEndOf="@+id/ivCoronavatar"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="@string/loading"
-                tools:text="86521" />
+                tools:text="1586521" />
 
             <TextView
                 android:id="@+id/tvDailyTotalCaseCount"

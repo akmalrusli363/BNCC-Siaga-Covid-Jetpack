@@ -43,8 +43,8 @@
 
             <LinearLayout
                 android:id="@+id/llLookupConfirmedCase"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="@dimen/circle_width_size"
+                android:layout_height="@dimen/circle_size"
                 android:background="@drawable/shape_ring_highlight"
                 android:backgroundTint="@color/teal"
                 android:gravity="center"
@@ -61,7 +61,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
-                    tools:text="12345" />
+                    tools:text="212345" />
 
                 <TextView
                     android:id="@+id/tvLookupDailyConfirmedCase"
@@ -78,8 +78,8 @@
 
             <LinearLayout
                 android:id="@+id/llLookupRecoveredCase"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="@dimen/circle_width_size"
+                android:layout_height="@dimen/circle_size"
                 android:background="@drawable/shape_ring_highlight"
                 android:backgroundTint="@color/green"
                 android:gravity="center"
@@ -96,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
-                    tools:text="12345" />
+                    tools:text="212345" />
 
                 <TextView
                     android:id="@+id/tvLookupDailyRecoveredCase"
@@ -111,8 +111,8 @@
 
             <LinearLayout
                 android:id="@+id/llLookupDeathCase"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="@dimen/circle_width_size"
+                android:layout_height="@dimen/circle_size"
                 android:background="@drawable/shape_ring_highlight"
                 android:backgroundTint="@color/red"
                 android:gravity="center"
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
-                    tools:text="1234" />
+                    tools:text="3124" />
 
                 <TextView
                     android:id="@+id/tvLookupDailyDeathCase"
