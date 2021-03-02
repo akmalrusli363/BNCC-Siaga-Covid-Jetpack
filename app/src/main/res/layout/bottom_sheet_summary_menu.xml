@@ -35,14 +35,18 @@
 
             <LinearLayout
                 android:id="@+id/llPositiveCaseCountBox"
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:background="@drawable/shape_round_highlight_box"
                 android:backgroundTint="@color/confirmedColor"
                 android:elevation="4dp"
                 android:gravity="center"
                 android:orientation="vertical"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/llRecoveredCountBox"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -63,7 +67,7 @@
                     android:text="@string/loading"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
-                    tools:text="36977" />
+                    tools:text="386977" />
 
                 <TextView
                     android:id="@+id/tvPositiveCountLabel"
@@ -77,16 +81,18 @@
 
             <LinearLayout
                 android:id="@+id/llRecoveredCountBox"
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:background="@drawable/shape_round_highlight_box"
                 android:backgroundTint="@color/recoveredColor"
                 android:elevation="4dp"
                 android:gravity="center"
                 android:orientation="vertical"
+                android:layout_marginHorizontal="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
-                app:layout_constraintStart_toEndOf="@id/llPositiveCaseCountBox"
+                app:layout_constraintEnd_toStartOf="@+id/llDeathCountBox"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/llPositiveCaseCountBox"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ProgressBar
@@ -106,7 +112,7 @@
                     android:text="@string/loading"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
-                    tools:text="45101" />
+                    tools:text="1457101" />
 
                 <TextView
                     android:id="@+id/tvRecoveredCountLabel"
@@ -120,15 +126,18 @@
 
             <LinearLayout
                 android:id="@+id/llDeathCountBox"
-                android:layout_width="100dp"
+                android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:background="@drawable/shape_round_highlight_box"
                 android:backgroundTint="@color/deathColor"
                 android:elevation="4dp"
                 android:gravity="center"
                 android:orientation="vertical"
+                android:layout_marginStart="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/llRecoveredCountBox"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ProgressBar
@@ -148,7 +157,7 @@
                     android:text="@string/loading"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark"
-                    tools:text="4143" />
+                    tools:text="14143" />
 
                 <TextView
                     android:id="@+id/tvDeathCountLabel"
