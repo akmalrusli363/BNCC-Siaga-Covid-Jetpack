@@ -1,7 +1,10 @@
 # BNCC-Academy-Kotlin-Demo
 
-A repository for an app made during BNCC x Gojek Academy demonstrated using Kotlin, which shows data about COVID-19 statistics in Indonesia
+> Alias **BNCC Siaga COVID-19** or simplified as **Siaga COVID-19**
 
+![BNCC Siaga Project Banner](project-banner.png)
+
+A repository for an app made during BNCC x Gojek Academy demonstrated using Kotlin, which shows data about COVID-19 statistics in Indonesia.
 
 > **INFO:** This branch is **different** from `master` branch because this branch serves data from [data.covid19.go.id](https://data.covid19.go.id) in which serves daily cases for national and regional cases, and served officially from government supported (Satgas COVID-19) committee.
 
