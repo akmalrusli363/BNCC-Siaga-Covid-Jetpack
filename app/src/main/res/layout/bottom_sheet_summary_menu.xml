@@ -43,14 +43,18 @@
 
                 <LinearLayout
                     android:id="@+id/llPositiveCaseCountBox"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="110dp"
                     android:background="@drawable/shape_round_highlight_box"
                     android:backgroundTint="@color/confirmedColor"
                     android:elevation="4dp"
                     android:gravity="center"
                     android:orientation="vertical"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/llRecoveredCountBox"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -95,16 +99,18 @@
 
                 <LinearLayout
                     android:id="@+id/llRecoveredCountBox"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="110dp"
                     android:background="@drawable/shape_round_highlight_box"
                     android:backgroundTint="@color/recoveredColor"
                     android:elevation="4dp"
+                    android:layout_marginHorizontal="8dp"
                     android:gravity="center"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/llDeathCountBox"
-                    app:layout_constraintStart_toEndOf="@id/llPositiveCaseCountBox"
+                    app:layout_constraintEnd_toStartOf="@+id/llDeathCountBox"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/llPositiveCaseCountBox"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ProgressBar
@@ -148,15 +154,18 @@
 
                 <LinearLayout
                     android:id="@+id/llDeathCountBox"
-                    android:layout_width="100dp"
+                    android:layout_width="0dp"
                     android:layout_height="110dp"
                     android:background="@drawable/shape_round_highlight_box"
                     android:backgroundTint="@color/deathColor"
                     android:elevation="4dp"
                     android:gravity="center"
+                    android:layout_marginStart="8dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/llRecoveredCountBox"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ProgressBar
