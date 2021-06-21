@@ -2,22 +2,28 @@ package com.tilikki.bnccapp.siagacovid.lookup
 
 import androidx.recyclerview.widget.RecyclerView
 import com.tilikki.bnccapp.databinding.ItemLookupBinding
-import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionData
+import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
+import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 
 class LookupViewHolder(private val itemLookupBinding: ItemLookupBinding) :
     RecyclerView.ViewHolder(itemLookupBinding.root) {
 
-    fun bind(data: RegionData) {
+    fun bind(data: RegionLookupData) {
         itemLookupBinding.run {
             tvLookupProvince.text = data.province
-            tvLookupConfirmedCase.text = data.totalConfirmedCase.toString()
-            tvLookupRecoveredCase.text = data.totalRecoveredCase.toString()
-            tvLookupDeathCase.text = data.totalDeathCase.toString()
-            tvLookupDailyConfirmedCase.text = displayDailyCaseCount(data.dailyCase.confirmedCase)
-            tvLookupDailyRecoveredCase.text = displayDailyCaseCount(data.dailyCase.recoveredCase)
-            tvLookupDailyDeathCase.text = displayDailyCaseCount(data.dailyCase.deathCase)
+            ViewUtility.run {
+                setStatisticPairs(
+                    data.confirmedCase,
+                    tvLookupConfirmedCase,
+                    tvLookupDailyConfirmedCase
+                )
+                setStatisticPairs(
+                    data.recoveredCase,
+                    tvLookupRecoveredCase,
+                    tvLookupDailyRecoveredCase
+                )
+                setStatisticPairs(data.deathCase, tvLookupDeathCase, tvLookupDailyDeathCase)
+            }
         }
     }
-
-    private fun displayDailyCaseCount(dailyCaseCount: Int): String = "(+${dailyCaseCount})"
 }

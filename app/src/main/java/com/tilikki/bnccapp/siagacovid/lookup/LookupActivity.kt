@@ -7,53 +7,30 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.databinding.ActivityLookupBinding
-import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionData
-import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionSummaryData
+import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import java.util.*
 
-class LookupActivity : AppCompatActivity(), PVContract.ObjectView<RegionSummaryData> {
-    private val presenter = LookupPresenter(LookupModel(), this)
-
+class LookupActivity : AppCompatActivity() {
+    private lateinit var viewModel: LookupViewModel
     private lateinit var binding: ActivityLookupBinding
 
-    private var mockLookupList: MutableList<RegionData> = mutableListOf(
-        RegionData("Loading...")
+    private val mockLookupList: MutableList<RegionLookupData> = mutableListOf(
+        RegionData("Loading...").toRegionLookupData()
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLookupBinding.inflate(layoutInflater)
+        viewModel = LookupViewModel()
         setContentView(binding.root)
         setupRecyclerAdapter()
         setupReturnButton()
         setupSearch(lookupAdapter)
-    }
-
-    override fun updateData(objectData: RegionSummaryData) {
-        this@LookupActivity.runOnUiThread {
-            lookupAdapter.updateData(objectData.regionData)
-            binding.apply {
-                tvLastUpdated.text = getString(R.string.last_updated)
-                    .replace("???", outputDate(objectData.lastUpdated))
-
-                srlLookupData.isRefreshing = false
-                pbFetchLookup.visibility = View.GONE
-                rvLookupData.visibility = View.VISIBLE
-                svRegionLookupSearch.apply {
-                    setQuery(query, true)
-                }
-            }
-        }
-    }
-
-    override fun showError(tag: String, e: Exception) {
-        runOnUiThread {
-            AppEventLogging.logExceptionOnToast(tag, this@LookupActivity, e)
-            binding.srlLookupData.isRefreshing = false
-        }
+        viewModel.fetchData()
+        startObserve()
     }
 
     private val lookupAdapter = LookupAdapter(mockLookupList)
@@ -63,7 +40,6 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<RegionSummaryD
             it.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             it.adapter = lookupAdapter
         }
-        fetchData()
     }
 
     private fun setupReturnButton() {
@@ -71,6 +47,7 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<RegionSummaryD
             finish()
         }
     }
+
     private fun setupSearch(lookupAdapter: LookupAdapter) {
         binding.svRegionLookupSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -85,12 +62,39 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<RegionSummaryD
         })
 
         binding.srlLookupData.setOnRefreshListener {
-            fetchData()
+            viewModel.fetchData()
         }
     }
 
-    private fun fetchData() {
-        presenter.fetchData()
+    private fun startObserve() {
+        viewModel.regionData.observe(this) {
+            lookupAdapter.updateData(it)
+        }
+        viewModel.lastUpdated.observe(this) {
+            binding.tvLastUpdated.text = getString(R.string.last_updated)
+                .replace("???", outputDate(it))
+        }
+        viewModel.successResponse.observe(this) {
+            if (!it.success && it.error != null) {
+                showError(AppEventLogging.FETCH_FAILURE, it.error as Exception)
+            } else {
+                binding.apply {
+                    srlLookupData.isRefreshing = false
+                    pbFetchLookup.visibility = View.GONE
+                    rvLookupData.visibility = View.VISIBLE
+                    svRegionLookupSearch.apply {
+                        setQuery(query, true)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showError(tag: String, e: Exception) {
+        runOnUiThread {
+            AppEventLogging.logExceptionOnToast(tag, this@LookupActivity, e)
+            binding.srlLookupData.isRefreshing = false
+        }
     }
 
     private fun outputDate(date: Date?) :String {

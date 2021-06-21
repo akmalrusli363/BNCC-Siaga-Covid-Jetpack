@@ -6,12 +6,12 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.tilikki.bnccapp.databinding.ItemLookupBinding
-import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionData
+import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
 
-class LookupAdapter(private val regionData: MutableList<RegionData>) :
+class LookupAdapter(private val regionData: MutableList<RegionLookupData>) :
     RecyclerView.Adapter<LookupViewHolder>(), Filterable {
 
-    var filteredRegionData: MutableList<RegionData> = sortData(regionData)
+    var filteredRegionData: MutableList<RegionLookupData> = sortData(regionData)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LookupViewHolder {
         return LookupViewHolder(
@@ -36,7 +36,7 @@ class LookupAdapter(private val regionData: MutableList<RegionData>) :
                 } else {
                     regionData.filter {
                         it.province.contains(query, true)
-                    } as MutableList<RegionData>
+                    } as MutableList<RegionLookupData>
                 }
                 return FilterResults().also {
                     filteredRegionData = sortData(filteredRegionData)
@@ -50,21 +50,21 @@ class LookupAdapter(private val regionData: MutableList<RegionData>) :
         }
     }
 
-    fun updateData(newList: List<RegionData>) {
+    fun updateData(newList: List<RegionLookupData>) {
         regionData.clear()
         regionData.addAll(newList)
         notifyDataSetChanged()
         filteredRegionData = regionData
     }
 
-    private fun sortData(list: MutableList<RegionData>): MutableList<RegionData> {
+    private fun sortData(list: MutableList<RegionLookupData>): MutableList<RegionLookupData> {
         return sortByPositivityRate(list)
     }
 
-    private fun sortByPositivityRate(list: MutableList<RegionData>): MutableList<RegionData> {
+    private fun sortByPositivityRate(list: MutableList<RegionLookupData>): MutableList<RegionLookupData> {
         return list.sortedByDescending {
-            it.totalConfirmedCase
-        } as MutableList<RegionData>
+            it.confirmedCase.total
+        } as MutableList<RegionLookupData>
     }
 
 }

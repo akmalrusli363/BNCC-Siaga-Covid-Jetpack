@@ -10,18 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.databinding.ActivityCoronaOverviewBinding
-import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.about.AboutAppDialog
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.model.CaseOverview
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
-import kotlin.math.absoluteValue
+import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 
-class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<CaseOverview> {
-    private val presenter = OverviewPresenter(OverviewModel(), this)
-
+class OverviewActivity : AppCompatActivity() {
+    private lateinit var viewModel: OverviewViewModel
     private lateinit var binding: ActivityCoronaOverviewBinding
 
     companion object {
@@ -31,10 +29,12 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<CaseOverview
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCoronaOverviewBinding.inflate(layoutInflater)
+        viewModel = OverviewViewModel()
         setContentView(binding.root)
         setupBottomSheet()
         setupUiButtons()
         fetchData()
+        startObserve()
     }
 
     override fun onBackPressed() {
@@ -48,9 +48,12 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<CaseOverview
         }
     }
 
-    override fun updateData(objectData: CaseOverview) {
-        runOnUiThread {
-            updateCaseCountData(objectData)
+    private fun setupBottomSheet() {
+        BottomSheetBehavior.from(binding.bottomSheetSummaryView.root).apply {
+            isHideable = false
+            val dpi = Resources.getSystem().displayMetrics.density
+            val peekHeightDPI = (250 * dpi).toInt()
+            peekHeight = Resources.getSystem().displayMetrics.heightPixels - peekHeightDPI
         }
     }
 
@@ -60,20 +63,6 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<CaseOverview
             ibReloadIcon.setOnClickListener { fetchData() }
             bottomSheetSummaryView.clLookupButton.setOnClickListener { gotoLookupActivity() }
             bottomSheetSummaryView.clHotlineButton.setOnClickListener { gotoHotlineActivity() }
-        }
-    }
-
-    private fun fetchData() {
-        presenter.fetchData()
-        toggleFetchState(true)
-    }
-
-    private fun setupBottomSheet() {
-        BottomSheetBehavior.from(binding.bottomSheetSummaryView.root).apply {
-            isHideable = false
-            val dpi = Resources.getSystem().displayMetrics.density
-            val peekHeightDPI = (250 * dpi).toInt()
-            peekHeight = Resources.getSystem().displayMetrics.heightPixels - peekHeightDPI
         }
     }
 
@@ -92,30 +81,38 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<CaseOverview
         AboutAppDialog().show(supportFragmentManager, "aboutAppDialog")
     }
 
-    private fun updateCaseCountData(objectData: CaseOverview) {
+    private fun fetchData() {
+        toggleFetchState(true)
+        viewModel.fetchData()
+    }
+
+    private fun startObserve() {
+        viewModel.overviewData.observe(this) {
+            updateCaseCountData(it)
+        }
+        viewModel.successResponse.observe(this) {
+            if (!it.success && it.error != null) {
+                showError(AppEventLogging.FETCH_FAILURE, it.error as Exception)
+            }
+        }
+    }
+
+    private fun updateCaseCountData(data: CaseOverview) {
         binding.apply {
-            tvTotalCaseCount.text = "${objectData.totalConfirmedCase}"
-            tvDailyTotalCaseCount.text = displayDailyCaseCount(objectData.dailyConfirmedCase)
+            ViewUtility.setStatisticPairs(data.confirmedCase, tvTotalCaseCount, tvDailyTotalCaseCount)
             binding.bottomSheetSummaryView.apply {
-                tvPositiveCount.text = "${objectData.totalActiveCase}"
-                tvRecoveredCount.text = "${objectData.totalRecoveredCase}"
-                tvDeathCount.text = "${objectData.totalDeathCase}"
-
-                tvDailyPositiveCount.text = displayDailyCaseCount(objectData.dailyActiveCase)
-                tvDailyRecoveredCount.text = displayDailyCaseCount(objectData.dailyRecoveredCase)
-                tvDailyDeathCount.text = displayDailyCaseCount(objectData.dailyDeathCase)
-
+                ViewUtility.setStatisticPairs(data.activeCase, tvPositiveCount, tvDailyPositiveCount)
+                ViewUtility.setStatisticPairs(data.recoveredCase, tvRecoveredCount, tvDailyRecoveredCount)
+                ViewUtility.setStatisticPairs(data.deathCase, tvDeathCount, tvDailyDeathCount)
                 tvLastUpdated.text = getString(R.string.last_updated)
-                    .replace("???", StringParser.formatDate(objectData.lastUpdated))
+                    .replace("???", StringParser.formatDate(data.lastUpdated))
             }
             toggleFetchState(false)
         }
     }
 
-    override fun showError(tag: String, e: Exception) {
-        runOnUiThread {
-            AppEventLogging.logExceptionOnToast(tag, this@OverviewActivity, e)
-        }
+    private fun showError(tag: String, e: Exception) {
+        AppEventLogging.logExceptionOnToast(tag, this@OverviewActivity, e)
     }
 
     private fun toggleFetchState(isFetching: Boolean) {
@@ -144,13 +141,5 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<CaseOverview
             tvCumulative.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
         }
-    }
-
-    private fun displayDailyCaseCount(dailyCaseCount: Int): String {
-        val sign = when {
-            dailyCaseCount < 0 -> '-'
-            else -> '+'
-        }
-        return "(${sign}${dailyCaseCount.absoluteValue})"
     }
 }

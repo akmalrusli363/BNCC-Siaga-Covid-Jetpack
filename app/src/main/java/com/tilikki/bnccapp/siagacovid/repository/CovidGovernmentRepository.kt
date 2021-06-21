@@ -2,9 +2,10 @@ package com.tilikki.bnccapp.siagacovid.repository
 
 import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionSummaryData
 import com.tilikki.bnccapp.siagacovid.overview.netmodel.OverviewRootData
+import io.reactivex.Observable
 import retrofit2.Response
 
 interface CovidGovernmentRepository {
-    fun getCaseOverview(): Response<OverviewRootData>
-    fun getRegionCaseOverview(): Response<RegionSummaryData>
+    fun getCaseOverview(): Observable<Response<OverviewRootData>>
+    fun getRegionCaseOverview(): Observable<Response<RegionSummaryData>>
 }

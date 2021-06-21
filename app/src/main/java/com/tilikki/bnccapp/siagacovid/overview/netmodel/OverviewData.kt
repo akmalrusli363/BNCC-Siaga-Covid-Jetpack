@@ -28,16 +28,6 @@ data class OverviewData(
     )
 
     fun toCaseOverview(): CaseOverview {
-        return CaseOverview(
-            totalConfirmedCase = totalCase.confirmedCase,
-            totalActiveCase = totalCase.activeCase,
-            totalRecoveredCase = totalCase.recoveredCase,
-            totalDeathCase = totalCase.deathCase,
-            dailyConfirmedCase = dailyCase.confirmedCase,
-            dailyActiveCase = dailyCase.activeCase,
-            dailyRecoveredCase = dailyCase.recoveredCase,
-            dailyDeathCase = dailyCase.deathCase,
-            lastUpdated = dailyCase.lastUpdated
-        )
+        return CaseOverview(totalCase, dailyCase)
     }
 }

@@ -1,11 +1,18 @@
 package com.tilikki.bnccapp.siagacovid.utils.jsonadapter
 
+import android.util.Log
 import com.squareup.moshi.*
+import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MoshiDateAdapter : JsonAdapter<Date>() {
-    private val dateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH).apply {
+    companion object {
+        private const val SHORT_FORMAT = "yyyy-MM-dd"
+        private const val LONG_FORMAT = "yyyy-MM-dd hh:mm:ss"
+    }
+
+    private val dateFormat = SimpleDateFormat(LONG_FORMAT, Locale.ENGLISH).apply {
        timeZone = TimeZone.getTimeZone("Asia/Jakarta")
     }
 
@@ -14,9 +21,15 @@ class MoshiDateAdapter : JsonAdapter<Date>() {
         return try {
             val dateAsString = reader.nextString()
             synchronized(dateFormat) {
-                dateFormat.parse(dateAsString)
+                try {
+                    dateFormat.parse(dateAsString)
+                } catch (e: ParseException) {
+                    dateFormat.applyPattern(SHORT_FORMAT)
+                    dateFormat.parse(dateAsString)
+                }
             }
         } catch (e: Exception) {
+            Log.e("ele", e.toString(), e)
             null
         }
     }
