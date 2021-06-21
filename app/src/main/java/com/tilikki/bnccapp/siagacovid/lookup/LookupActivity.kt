@@ -8,17 +8,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.databinding.ActivityLookupBinding
 import com.tilikki.bnccapp.siagacovid.PVContract
+import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionData
+import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionSummaryData
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import java.util.*
 
-class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryData> {
+class LookupActivity : AppCompatActivity(), PVContract.ObjectView<RegionSummaryData> {
     private val presenter = LookupPresenter(LookupModel(), this)
 
     private lateinit var binding: ActivityLookupBinding
 
-    private var mockLookupList: MutableList<LookupData> = mutableListOf(
-        LookupData("Loading...", 0, 0, 0)
+    private var mockLookupList: MutableList<RegionData> = mutableListOf(
+        RegionData("Loading...")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,9 +32,9 @@ class LookupActivity : AppCompatActivity(), PVContract.ObjectView<LookupSummaryD
         setupSearch(lookupAdapter)
     }
 
-    override fun updateData(objectData: LookupSummaryData) {
+    override fun updateData(objectData: RegionSummaryData) {
         this@LookupActivity.runOnUiThread {
-            lookupAdapter.updateData(objectData.lookupData)
+            lookupAdapter.updateData(objectData.regionData)
             binding.apply {
                 tvLastUpdated.text = getString(R.string.last_updated)
                     .replace("???", outputDate(objectData.lastUpdated))

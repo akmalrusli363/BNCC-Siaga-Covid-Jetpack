@@ -14,11 +14,12 @@ import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.about.AboutAppDialog
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
+import com.tilikki.bnccapp.siagacovid.model.CaseOverview
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import kotlin.math.absoluteValue
 
-class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData> {
+class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<CaseOverview> {
     private val presenter = OverviewPresenter(OverviewModel(), this)
 
     private lateinit var binding: ActivityCoronaOverviewBinding
@@ -47,7 +48,7 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         }
     }
 
-    override fun updateData(objectData: OverviewData) {
+    override fun updateData(objectData: CaseOverview) {
         runOnUiThread {
             updateCaseCountData(objectData)
         }
@@ -91,7 +92,7 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         AboutAppDialog().show(supportFragmentManager, "aboutAppDialog")
     }
 
-    private fun updateCaseCountData(objectData: OverviewData) {
+    private fun updateCaseCountData(objectData: CaseOverview) {
         binding.apply {
             tvTotalCaseCount.text = "${objectData.totalConfirmedCase}"
             tvDailyTotalCaseCount.text = displayDailyCaseCount(objectData.dailyConfirmedCase)

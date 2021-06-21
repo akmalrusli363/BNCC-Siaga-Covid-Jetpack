@@ -6,11 +6,12 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.tilikki.bnccapp.databinding.ItemLookupBinding
+import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionData
 
-class LookupAdapter(private val lookupList: MutableList<LookupData>) :
+class LookupAdapter(private val regionData: MutableList<RegionData>) :
     RecyclerView.Adapter<LookupViewHolder>(), Filterable {
 
-    var filteredLookupList: MutableList<LookupData> = sortData(lookupList)
+    var filteredRegionData: MutableList<RegionData> = sortData(regionData)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LookupViewHolder {
         return LookupViewHolder(
@@ -19,27 +20,27 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
     }
 
     override fun onBindViewHolder(holder: LookupViewHolder, position: Int) {
-        holder.bind(filteredLookupList[position])
+        holder.bind(filteredRegionData[position])
     }
 
     override fun getItemCount(): Int {
-        return filteredLookupList.size
+        return filteredRegionData.size
     }
 
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(keyword: CharSequence?): FilterResults {
                 val query = keyword.toString()
-                filteredLookupList = if (query.isEmpty()) {
-                    lookupList
+                filteredRegionData = if (query.isEmpty()) {
+                    regionData
                 } else {
-                    lookupList.filter {
-                        it.provinceName.contains(query, true)
-                    } as MutableList<LookupData>
+                    regionData.filter {
+                        it.province.contains(query, true)
+                    } as MutableList<RegionData>
                 }
                 return FilterResults().also {
-                    filteredLookupList = sortData(filteredLookupList)
-                    it.values = filteredLookupList
+                    filteredRegionData = sortData(filteredRegionData)
+                    it.values = filteredRegionData
                 }
             }
 
@@ -49,21 +50,21 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
         }
     }
 
-    fun updateData(newList: List<LookupData>) {
-        lookupList.clear()
-        lookupList.addAll(newList)
+    fun updateData(newList: List<RegionData>) {
+        regionData.clear()
+        regionData.addAll(newList)
         notifyDataSetChanged()
-        filteredLookupList = lookupList
+        filteredRegionData = regionData
     }
 
-    private fun sortData(list: MutableList<LookupData>): MutableList<LookupData> {
+    private fun sortData(list: MutableList<RegionData>): MutableList<RegionData> {
         return sortByPositivityRate(list)
     }
 
-    private fun sortByPositivityRate(list: MutableList<LookupData>): MutableList<LookupData> {
-        return list.sortedByDescending { lookupData: LookupData ->
-            lookupData.numOfPositiveCase
-        } as MutableList<LookupData>
+    private fun sortByPositivityRate(list: MutableList<RegionData>): MutableList<RegionData> {
+        return list.sortedByDescending {
+            it.totalConfirmedCase
+        } as MutableList<RegionData>
     }
 
 }

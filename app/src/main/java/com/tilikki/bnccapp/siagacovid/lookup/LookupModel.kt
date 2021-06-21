@@ -1,11 +1,20 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
 import com.tilikki.bnccapp.siagacovid.ApiCallModel
+import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionSummaryData
+import com.tilikki.bnccapp.siagacovid.repository.CovidGovernmentRepository
+import com.tilikki.bnccapp.siagacovid.repository.CovidGovernmentRepositoryImpl
+import retrofit2.HttpException
 
-class LookupModel : ApiCallModel {
-    override val apiURL: String = lookupDataApiURL
+class LookupModel : ApiCallModel<RegionSummaryData> {
+    private val repository: CovidGovernmentRepository = CovidGovernmentRepositoryImpl()
 
-    companion object {
-        const val lookupDataApiURL = "https://data.covid19.go.id/public/api/prov.json"
+    override fun fetchData(): RegionSummaryData {
+        val response = repository.getRegionCaseOverview()
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw HttpException(response)
+        }
     }
 }

@@ -1,11 +1,19 @@
 package com.tilikki.bnccapp.siagacovid.hotline
 
 import com.tilikki.bnccapp.siagacovid.ApiCallModel
+import com.tilikki.bnccapp.siagacovid.repository.CovidHotlineRepository
+import com.tilikki.bnccapp.siagacovid.repository.CovidHotlineRepositoryImpl
+import retrofit2.HttpException
 
-class HotlineModel : ApiCallModel {
-    override val apiURL: String = hotlineApiURL
+class HotlineModel : ApiCallModel<List<HotlineData>> {
+    private val repository: CovidHotlineRepository = CovidHotlineRepositoryImpl()
 
-    companion object {
-        const val hotlineApiURL = "https://bncc-corona-versus.firebaseio.com/v1/hotlines.json"
+    override fun fetchData(): List<HotlineData> {
+        val response = repository.getHotline()
+        if (response.isSuccessful) {
+            return response.body()!!
+        } else {
+            throw HttpException(response)
+        }
     }
 }
