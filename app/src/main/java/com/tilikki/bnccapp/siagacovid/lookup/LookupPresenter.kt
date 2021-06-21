@@ -28,7 +28,7 @@ class LookupPresenter(
 
             override fun onResponse(call: Call, response: Response) {
                 try {
-                    val jsonString = response.body!!.string()
+                    val jsonString = response.body()!!.string()
                     val jsonArray = JSONObject(jsonString).getJSONArray("list_data")
                     val lookupDataFromNetwork = mutableListOf<LookupData>()
 

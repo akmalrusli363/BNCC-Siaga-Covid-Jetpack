@@ -26,7 +26,7 @@ class OverviewPresenter(
 
             override fun onResponse(call: Call, response: Response) {
                 try {
-                    val jsonString = response.body!!.string()
+                    val jsonString = response.body()!!.string()
                     val jsonObject = JSONObject(jsonString).getJSONObject("update")
                     val dailyUpdate = jsonObject.getJSONObject("penambahan")
                     val cumulativeUpdate = jsonObject.getJSONObject("total")

@@ -25,7 +25,7 @@ class HotlinePresenter(
 
             override fun onResponse(call: Call, response: Response) {
                 try {
-                    val jsonString = response.body?.string()
+                    val jsonString = response.body()?.string()
                     val jsonArray = JSONArray(jsonString)
                     val hotlineListFromNetwork = mutableListOf<HotlineData>()
 
