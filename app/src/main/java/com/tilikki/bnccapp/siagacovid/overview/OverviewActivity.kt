@@ -6,23 +6,22 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.databinding.ActivityCoronaOverviewBinding
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.about.AboutAppDialog
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
-import kotlinx.android.synthetic.main.activity_corona_overview.*
-import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
 import kotlin.math.absoluteValue
 
 class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData> {
-
     private val presenter = OverviewPresenter(OverviewModel(), this)
+
+    private lateinit var binding: ActivityCoronaOverviewBinding
 
     companion object {
         const val callLookupActivity = "GOTO_LOOKUP_ACTIVITY"
@@ -30,36 +29,36 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_corona_overview)
+        binding = ActivityCoronaOverviewBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         setupBottomSheet()
         setupUiButtons()
         fetchData()
     }
 
     override fun onBackPressed() {
-        if (BottomSheetBehavior.from(bottomSheetSummaryView).state == BottomSheetBehavior.STATE_EXPANDED) {
-            BottomSheetBehavior.from(bottomSheetSummaryView).state =
-                BottomSheetBehavior.STATE_COLLAPSED
-        } else {
-            super.onBackPressed()
+        binding.bottomSheetSummaryView.apply {
+            if (BottomSheetBehavior.from(this.root).state == BottomSheetBehavior.STATE_EXPANDED) {
+                BottomSheetBehavior.from(this.root).state =
+                    BottomSheetBehavior.STATE_COLLAPSED
+            } else {
+                super.onBackPressed()
+            }
+        }
+    }
+
+    override fun updateData(objectData: OverviewData) {
+        runOnUiThread {
+            updateCaseCountData(objectData)
         }
     }
 
     private fun setupUiButtons() {
-        clLookupButton.setOnClickListener {
-            gotoLookupActivity()
-        }
-
-        clHotlineButton.setOnClickListener {
-            gotoHotlineActivity()
-        }
-
-        ibInfoIcon.setOnClickListener {
-            openAboutDialog()
-        }
-
-        ibReloadIcon.setOnClickListener {
-            fetchData()
+        binding.apply {
+            ibInfoIcon.setOnClickListener { openAboutDialog() }
+            ibReloadIcon.setOnClickListener { fetchData() }
+            bottomSheetSummaryView.clLookupButton.setOnClickListener { gotoLookupActivity() }
+            bottomSheetSummaryView.clHotlineButton.setOnClickListener { gotoHotlineActivity() }
         }
     }
 
@@ -68,15 +67,8 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         toggleFetchState(true)
     }
 
-    private fun toggleFetchState(isFetching: Boolean) {
-        toggleFetchState(isFetching, tvDailyTotalCaseCount, tvTotalCaseCount, pbTotalCase)
-        toggleFetchState(isFetching, tvDailyPositiveCount, tvPositiveCount, pbPositive)
-        toggleFetchState(isFetching, tvDailyRecoveredCount, tvRecoveredCount, pbRecovered)
-        toggleFetchState(isFetching, tvDailyDeathCount, tvDeathCount, pbDeath)
-    }
-
     private fun setupBottomSheet() {
-        BottomSheetBehavior.from(bottomSheetSummaryView).apply {
+        BottomSheetBehavior.from(binding.bottomSheetSummaryView.root).apply {
             isHideable = false
             val dpi = Resources.getSystem().displayMetrics.density
             val peekHeightDPI = (250 * dpi).toInt()
@@ -99,21 +91,22 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         AboutAppDialog().show(supportFragmentManager, "aboutAppDialog")
     }
 
-    override fun updateData(objectData: OverviewData) {
-        runOnUiThread {
+    private fun updateCaseCountData(objectData: OverviewData) {
+        binding.apply {
             tvTotalCaseCount.text = "${objectData.totalConfirmedCase}"
-            tvPositiveCount.text = "${objectData.totalActiveCase}"
-            tvRecoveredCount.text = "${objectData.totalRecoveredCase}"
-            tvDeathCount.text = "${objectData.totalDeathCase}"
-
             tvDailyTotalCaseCount.text = displayDailyCaseCount(objectData.dailyConfirmedCase)
-            tvDailyPositiveCount.text = displayDailyCaseCount(objectData.dailyActiveCase)
-            tvDailyRecoveredCount.text = displayDailyCaseCount(objectData.dailyRecoveredCase)
-            tvDailyDeathCount.text = displayDailyCaseCount(objectData.dailyDeathCase)
+            binding.bottomSheetSummaryView.apply {
+                tvPositiveCount.text = "${objectData.totalActiveCase}"
+                tvRecoveredCount.text = "${objectData.totalRecoveredCase}"
+                tvDeathCount.text = "${objectData.totalDeathCase}"
 
-            tvLastUpdated.text = getString(R.string.last_updated)
-                .replace("???", StringParser.formatDate(objectData.lastUpdated))
+                tvDailyPositiveCount.text = displayDailyCaseCount(objectData.dailyActiveCase)
+                tvDailyRecoveredCount.text = displayDailyCaseCount(objectData.dailyRecoveredCase)
+                tvDailyDeathCount.text = displayDailyCaseCount(objectData.dailyDeathCase)
 
+                tvLastUpdated.text = getString(R.string.last_updated)
+                    .replace("???", StringParser.formatDate(objectData.lastUpdated))
+            }
             toggleFetchState(false)
         }
     }
@@ -121,6 +114,17 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
     override fun showError(tag: String, e: Exception) {
         runOnUiThread {
             AppEventLogging.logExceptionOnToast(tag, this@OverviewActivity, e)
+        }
+    }
+
+    private fun toggleFetchState(isFetching: Boolean) {
+        binding.apply {
+            toggleFetchState(isFetching, tvDailyTotalCaseCount, tvTotalCaseCount, pbTotalCase)
+            bottomSheetSummaryView.apply {
+                toggleFetchState(isFetching, tvDailyPositiveCount, tvPositiveCount, pbPositive)
+                toggleFetchState(isFetching, tvDailyRecoveredCount, tvRecoveredCount, pbRecovered)
+                toggleFetchState(isFetching, tvDailyDeathCount, tvDeathCount, pbDeath)
+            }
         }
     }
 

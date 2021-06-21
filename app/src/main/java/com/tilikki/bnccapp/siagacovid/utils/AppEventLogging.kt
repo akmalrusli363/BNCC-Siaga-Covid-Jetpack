@@ -5,7 +5,7 @@ import android.util.Log
 import android.widget.Toast
 
 object AppEventLogging {
-    const val FETCH_FAILURE = "OkHttpApiDataFetch"
+    const val FETCH_FAILURE = "RetrofitApiDataFetch"
 
     fun logExceptionOnToast(tag: String, activity: Activity, e: Exception) {
         activity.runOnUiThread {

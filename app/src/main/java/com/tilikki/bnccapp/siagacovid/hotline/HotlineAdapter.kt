@@ -3,14 +3,14 @@ package com.tilikki.bnccapp.siagacovid.hotline
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.databinding.ItemHotlineBinding
 
 class HotlineAdapter(private val hotlineList: MutableList<HotlineData>) :
     RecyclerView.Adapter<HotlineViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotlineViewHolder {
         return HotlineViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_hotline, parent, false)
+            ItemHotlineBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 

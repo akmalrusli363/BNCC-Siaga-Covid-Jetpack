@@ -7,19 +7,21 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import com.tilikki.bnccapp.R
-import kotlinx.android.synthetic.main.dialog_about_app.view.*
+import com.tilikki.bnccapp.databinding.DialogAboutAppBinding
 
 class AboutAppDialog : DialogFragment() {
+    private lateinit var binding: DialogAboutAppBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val rootView: View = inflater.inflate(R.layout.dialog_about_app, container, false)
-        rootView.ivCloseDialog.setOnClickListener {
+    ): View {
+        binding = DialogAboutAppBinding.inflate(inflater)
+        binding.ivCloseDialog.setOnClickListener {
             dismiss()
         }
-        return rootView
+        return binding.root
     }
 
     private fun setupDialogSize() {

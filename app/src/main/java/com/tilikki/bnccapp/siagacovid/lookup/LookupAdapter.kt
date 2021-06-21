@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.databinding.ItemLookupBinding
 
 class LookupAdapter(private val lookupList: MutableList<LookupData>) :
     RecyclerView.Adapter<LookupViewHolder>(), Filterable {
@@ -14,7 +14,7 @@ class LookupAdapter(private val lookupList: MutableList<LookupData>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LookupViewHolder {
         return LookupViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_lookup, parent, false)
+            ItemLookupBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 

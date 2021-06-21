@@ -2,20 +2,22 @@ package com.tilikki.bnccapp.siagacovid.hotline
 
 import android.content.Intent
 import android.net.Uri
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_hotline.view.*
+import com.tilikki.bnccapp.databinding.ItemHotlineBinding
 
-class HotlineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class HotlineViewHolder(private val itemHotlineBinding: ItemHotlineBinding) :
+    RecyclerView.ViewHolder(itemHotlineBinding.root) {
+
     fun bind(data: HotlineData) {
-        itemView.llHotline.setOnClickListener {
-            val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${data.phone}"))
-            it.context.startActivity(intent)
+        itemHotlineBinding.run {
+            tvHotlineContactName.text = data.name
+            tvHotlinePhone.text = data.phone
+            llHotline.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:${data.phone}"))
+                it.context.startActivity(intent)
+            }
+            Picasso.get().load(data.imgIcon).into(ivHotlineIcon)
         }
-
-        itemView.tvHotlineContactName.text = data.name
-        itemView.tvHotlinePhone.text = data.phone
-        Picasso.get().load(data.imgIcon).into(itemView.ivHotlineIcon)
     }
 }

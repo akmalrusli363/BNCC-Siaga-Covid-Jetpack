@@ -23,7 +23,7 @@
             android:contentDescription="@string/close_hotline_dialog"
             android:scaleType="fitXY"
             android:src="@drawable/ic_close"
-            android:tint="@color/colorAccentLight" />
+            app:tint="@color/colorAccentLight" />
 
         <LinearLayout
             android:id="@+id/llHotlineDescription"
