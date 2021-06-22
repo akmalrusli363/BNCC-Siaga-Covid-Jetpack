@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.databinding.BottomDialogFragmentHotlineBinding
-import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 
-class HotlineBottomDialogFragment : BottomSheetDialogFragment(), PVContract.View<HotlineData> {
-    private val presenter = HotlinePresenter(HotlineModel(), this)
+class HotlineBottomDialogFragment : BottomSheetDialogFragment() {
+    private val viewModel = HotlineViewModel()
     private lateinit var binding: BottomDialogFragmentHotlineBinding
 
     private val mockHotlineList = mutableListOf(
@@ -42,6 +41,7 @@ class HotlineBottomDialogFragment : BottomSheetDialogFragment(), PVContract.View
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerAdapter()
+        startObserve()
 
         binding.ivReturnIcon.setOnClickListener {
             dismiss()
@@ -53,20 +53,26 @@ class HotlineBottomDialogFragment : BottomSheetDialogFragment(), PVContract.View
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = hotlineAdapter
         }
-        presenter.fetchData()
+        viewModel.fetchData()
     }
 
-    override fun updateData(listData: List<HotlineData>) {
-        this@HotlineBottomDialogFragment.activity?.runOnUiThread {
-            hotlineAdapter.updateData(listData)
-            binding.apply {
-                pbFetchHotline.visibility = View.GONE
-                rvHotline.visibility = View.VISIBLE
+    private fun startObserve() {
+        viewModel.hotlineList.observe(this) {
+            hotlineAdapter.updateData(it)
+        }
+        viewModel.successResponse.observe(this) {
+            if (!it.success && it.error != null) {
+                showError(AppEventLogging.FETCH_FAILURE, it.error as Exception)
+            } else {
+                binding.apply {
+                    pbFetchHotline.visibility = View.GONE
+                    rvHotline.visibility = View.VISIBLE
+                }
             }
         }
     }
 
-    override fun showError(tag: String, e: Exception) {
+    private fun showError(tag: String, e: Exception) {
         this@HotlineBottomDialogFragment.activity?.runOnUiThread {
             activity?.let { AppEventLogging.logExceptionOnToast(tag, it, e) }
         }

@@ -5,6 +5,7 @@ import com.tilikki.bnccapp.siagacovid.hotline.HotlineData
 import com.tilikki.bnccapp.siagacovid.network.CovidHotlineApiInterface
 import com.tilikki.bnccapp.siagacovid.network.NetworkConstants
 import com.tilikki.bnccapp.siagacovid.utils.jsonadapter.MoshiDateAdapter
+import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -19,7 +20,7 @@ class CovidHotlineRepositoryImpl : CovidHotlineRepository {
         .build()
     private val apiInterface = retrofit.create(CovidHotlineApiInterface::class.java)
 
-    override fun getHotline(): Response<List<HotlineData>> {
-        return apiInterface.getHotline().execute()
+    override fun getHotline(): Observable<Response<List<HotlineData>>> {
+        return apiInterface.getHotline()
     }
 }
