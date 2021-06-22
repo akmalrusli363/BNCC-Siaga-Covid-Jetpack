@@ -4,14 +4,33 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import com.tilikki.bnccapp.databinding.ItemLookupBinding
 import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
 
-class LookupAdapter(private val regionData: MutableList<RegionLookupData>) :
-    RecyclerView.Adapter<LookupViewHolder>(), Filterable {
+class LookupAdapter :
+    ListAdapter<RegionLookupData, LookupViewHolder>(LookupDiffCallback), Filterable {
 
-    var filteredRegionData: MutableList<RegionLookupData> = sortData(regionData)
+    private var unfilteredData: List<RegionLookupData> = listOf()
+    private var lookupListComparator: Comparator<RegionLookupData> =
+        LookupComparator.compareByPositivityRate
+
+    object LookupDiffCallback : DiffUtil.ItemCallback<RegionLookupData>() {
+        override fun areItemsTheSame(
+            oldItem: RegionLookupData,
+            newItem: RegionLookupData
+        ): Boolean {
+            return oldItem.province == newItem.province
+        }
+
+        override fun areContentsTheSame(
+            oldItem: RegionLookupData,
+            newItem: RegionLookupData
+        ): Boolean {
+            return oldItem == newItem
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LookupViewHolder {
         return LookupViewHolder(
@@ -20,51 +39,50 @@ class LookupAdapter(private val regionData: MutableList<RegionLookupData>) :
     }
 
     override fun onBindViewHolder(holder: LookupViewHolder, position: Int) {
-        holder.bind(filteredRegionData[position])
-    }
-
-    override fun getItemCount(): Int {
-        return filteredRegionData.size
+        holder.bind(getItem(position))
     }
 
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(keyword: CharSequence?): FilterResults {
                 val query = keyword.toString()
-                filteredRegionData = if (query.isEmpty()) {
-                    regionData
-                } else {
-                    regionData.filter {
-                        it.province.contains(query, true)
-                    } as MutableList<RegionLookupData>
-                }
-                return FilterResults().also {
-                    filteredRegionData = sortData(filteredRegionData)
-                    it.values = filteredRegionData
+                return FilterResults().apply {
+                    values = sortData(filterRegion(query), lookupListComparator)
                 }
             }
 
             override fun publishResults(keyword: CharSequence?, result: FilterResults?) {
+                submitList(result?.values as MutableList<RegionLookupData>)
                 notifyDataSetChanged()
+            }
+
+            private fun filterRegion(query: String): List<RegionLookupData> {
+                return if (query.isBlank()) {
+                    unfilteredData.toMutableList()
+                } else {
+                    unfilteredData.filter {
+                        it.province.contains(query, true)
+                    }
+                }
             }
         }
     }
 
-    fun updateData(newList: List<RegionLookupData>) {
-        regionData.clear()
-        regionData.addAll(newList)
-        notifyDataSetChanged()
-        filteredRegionData = regionData
+    fun updateData(list: MutableList<RegionLookupData>) {
+        unfilteredData = list
+        submitList(list)
     }
 
-    private fun sortData(list: MutableList<RegionLookupData>): MutableList<RegionLookupData> {
-        return sortByPositivityRate(list)
+    fun sortDataWith(lookupComparator: LookupComparator) {
+        lookupListComparator = lookupComparator.comparator
+        submitList(sortData(currentList, lookupListComparator))
     }
 
-    private fun sortByPositivityRate(list: MutableList<RegionLookupData>): MutableList<RegionLookupData> {
-        return list.sortedByDescending {
-            it.confirmedCase.total
-        } as MutableList<RegionLookupData>
+    private fun sortData(
+        list: List<RegionLookupData>,
+        comparator: Comparator<RegionLookupData>
+    ): MutableList<RegionLookupData> {
+        return list.sortedWith(comparator).toMutableList()
     }
 
 }

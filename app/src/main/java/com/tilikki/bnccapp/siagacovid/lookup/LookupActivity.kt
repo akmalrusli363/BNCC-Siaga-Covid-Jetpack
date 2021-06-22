@@ -2,6 +2,8 @@ package com.tilikki.bnccapp.siagacovid.lookup
 
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,10 +32,11 @@ class LookupActivity : AppCompatActivity() {
         setupReturnButton()
         setupSearch(lookupAdapter)
         viewModel.fetchData()
+        setupSearchSorting()
         startObserve()
     }
 
-    private val lookupAdapter = LookupAdapter(mockLookupList)
+    private val lookupAdapter = LookupAdapter()
 
     private fun setupRecyclerAdapter() {
         binding.rvLookupData.let {
@@ -49,17 +52,18 @@ class LookupActivity : AppCompatActivity() {
     }
 
     private fun setupSearch(lookupAdapter: LookupAdapter) {
-        binding.svRegionLookupSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                lookupAdapter.filter.filter(query)
-                return false
-            }
+        binding.svRegionLookupSearch
+            .setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    lookupAdapter.filter.filter(query)
+                    return false
+                }
 
-            override fun onQueryTextChange(query: String?): Boolean {
-                lookupAdapter.filter.filter(query)
-                return false
-            }
-        })
+                override fun onQueryTextChange(query: String?): Boolean {
+                    lookupAdapter.filter.filter(query)
+                    return false
+                }
+            })
 
         binding.srlLookupData.setOnRefreshListener {
             viewModel.fetchData()
@@ -68,7 +72,7 @@ class LookupActivity : AppCompatActivity() {
 
     private fun startObserve() {
         viewModel.regionData.observe(this) {
-            lookupAdapter.updateData(it)
+            lookupAdapter.updateData(it.toMutableList())
         }
         viewModel.lastUpdated.observe(this) {
             binding.tvLastUpdated.text = getString(R.string.last_updated)
@@ -90,6 +94,37 @@ class LookupActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupSearchSorting() {
+        val sortTypes: Array<LookupComparator> = arrayOf(
+            LookupComparator("Positive Cases", LookupComparator.compareByPositivityRate),
+            LookupComparator("Recovered Cases", LookupComparator.compareByRecoveryRate),
+            LookupComparator("Death Cases", LookupComparator.compareByDeathRate),
+            LookupComparator("Daily Positive Cases", LookupComparator.compareByDailyPositivityRate),
+            LookupComparator("Daily Recovered Cases", LookupComparator.compareByDailyRecoveryRate),
+            LookupComparator("Daily Death Cases", LookupComparator.compareByDailyDeathRate),
+        )
+        val adapter: ArrayAdapter<LookupComparator> =
+            ArrayAdapter(this, R.layout.custom_spinner_dropdown_item, sortTypes)
+
+        binding.spRegionLookupSort.apply {
+            this.adapter = adapter
+            this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    adapterView: AdapterView<*>?,
+                    view: View?,
+                    i: Int,
+                    l: Long
+                ) {
+                    val selectedItem = adapter.getItem(i)
+                    lookupAdapter.sortDataWith(selectedItem!!)
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+            }
+        }
+    }
+
     private fun showError(tag: String, e: Exception) {
         runOnUiThread {
             AppEventLogging.logExceptionOnToast(tag, this@LookupActivity, e)
@@ -97,7 +132,7 @@ class LookupActivity : AppCompatActivity() {
         }
     }
 
-    private fun outputDate(date: Date?) :String {
+    private fun outputDate(date: Date?): String {
         return if (date != null) {
             StringParser.formatShortDate(date)
         } else {
