@@ -20,7 +20,8 @@
             app:titleEnabled="false"
             android:hapticFeedbackEnabled="true">
 
-            <include layout="@layout/widget_world_case_summary" />
+            <include layout="@layout/widget_world_case_summary"
+                android:id="@+id/widgetWorldCaseSummary"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -65,7 +66,8 @@
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <include layout="@layout/bottom_sheet_country_lookup" />
+        <include layout="@layout/bottom_sheet_country_lookup"
+            android:id="@+id/bottomSheetCountryLookup"/>
 
     </LinearLayout>
 

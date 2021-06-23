@@ -11,24 +11,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.databinding.ActivityWorldStatisticsBinding
 import com.tilikki.bnccapp.siagacovid.PVContract
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
-import kotlinx.android.synthetic.main.activity_world_statistics.*
-import kotlinx.android.synthetic.main.bottom_sheet_country_lookup.*
-import kotlinx.android.synthetic.main.widget_world_case_summary.*
 
-class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLookupData>, PVContract.ObjectView<WorldStatSummaryData> {
+class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLookupData>,
+    PVContract.ObjectView<WorldStatSummaryData> {
     private val presenter = WorldStatPresenter(WorldStatModel(), this, this)
+    private lateinit var binding: ActivityWorldStatisticsBinding
 
     private var mockWorldLookupList: MutableList<WorldStatLookupData> = mutableListOf(
-        WorldStatLookupData("??", "Loading...",
+        WorldStatLookupData(
+            "??", "Loading...",
             0, 0, 0,
-            0, 0, 0)
+            0, 0, 0
+        )
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_world_statistics)
+        binding = ActivityWorldStatisticsBinding.inflate(layoutInflater)
         toggleFetchState(true)
         setupToolbar()
         setupRecyclerAdapter()
@@ -50,7 +53,7 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menuItemRefresh -> {
-                pbFetchLookup.visibility = View.VISIBLE
+                binding.bottomSheetCountryLookup.pbFetchLookup.visibility = View.VISIBLE
                 toggleFetchState(true)
                 fetchData()
             }
@@ -94,30 +97,34 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
     private val worldStatAdapter = WorldStatLookupAdapter(mockWorldLookupList)
 
     private fun setupRecyclerAdapter() {
-        rvCountryLookupData.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        rvCountryLookupData.adapter = worldStatAdapter
+        binding.bottomSheetCountryLookup.let {
+            it.rvCountryLookupData.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            it.rvCountryLookupData.adapter = worldStatAdapter
+        }
         fetchData()
     }
 
     private fun setupReturnButton() {
-        ivReturnIcon.setOnClickListener {
+        binding.ivReturnIcon.setOnClickListener {
             finish()
         }
     }
 
     private fun setupSearch(worldStatLookupAdapter: WorldStatLookupAdapter) {
-        svCountryLookupSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                worldStatLookupAdapter.filter.filter(query)
-                return false
-            }
+        binding.bottomSheetCountryLookup.svCountryLookupSearch.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    worldStatLookupAdapter.filter.filter(query)
+                    return false
+                }
 
-            override fun onQueryTextChange(query: String?): Boolean {
-                worldStatLookupAdapter.filter.filter(query)
-                return false
+                override fun onQueryTextChange(query: String?): Boolean {
+                    worldStatLookupAdapter.filter.filter(query)
+                    return false
+                }
             }
-        })
+        )
     }
 
     private fun fetchData() {
@@ -125,7 +132,7 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
     }
 
     override fun updateData(listData: List<WorldStatLookupData>) {
-        runOnUiThread {
+        binding.bottomSheetCountryLookup.run {
             worldStatAdapter.updateData(listData)
             rvCountryLookupData.visibility = View.VISIBLE
             pbFetchLookup.visibility = View.GONE
@@ -134,7 +141,7 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
     }
 
     override fun updateData(objectData: WorldStatSummaryData) {
-        runOnUiThread {
+        binding.widgetWorldCaseSummary.run {
             tvTotalCaseCount.text = "${objectData.numOfConfirmedCase}"
             tvRecoveredCount.text = "${objectData.numOfRecoveredCase}"
             tvDeathCount.text = "${objectData.numOfDeathCase}"
@@ -150,13 +157,19 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
     }
 
     private fun toggleFetchState(isFetching: Boolean) {
-        toggleFetchState(isFetching, tvTotalCaseCount, pbTotalCase)
-        toggleFetchState(isFetching, tvPositiveCaseCount, pbPositive)
-        toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
-        toggleFetchState(isFetching, tvDeathCount, pbDeath)
+        binding.widgetWorldCaseSummary.run {
+            toggleFetchState(isFetching, tvTotalCaseCount, pbTotalCase)
+            toggleFetchState(isFetching, tvPositiveCaseCount, pbPositive)
+            toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
+            toggleFetchState(isFetching, tvDeathCount, pbDeath)
+        }
     }
 
-    private fun toggleFetchState(isFetching: Boolean, textView: TextView, progressBar: ProgressBar) {
+    private fun toggleFetchState(
+        isFetching: Boolean,
+        textView: TextView,
+        progressBar: ProgressBar
+    ) {
         if (isFetching) {
             textView.visibility = View.GONE
             progressBar.visibility = View.VISIBLE

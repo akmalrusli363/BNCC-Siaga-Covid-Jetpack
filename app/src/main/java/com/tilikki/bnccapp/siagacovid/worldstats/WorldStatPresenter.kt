@@ -19,7 +19,7 @@ class WorldStatPresenter(
         model.fetchData(getData())
     }
 
-    override fun getData(): Callback {
+    private fun getData(): Callback {
         return object : Callback {
             override fun onFailure(call: Call, e: IOException) {
                 view.showError(AppEventLogging.FETCH_FAILURE, e)
@@ -27,7 +27,7 @@ class WorldStatPresenter(
 
             override fun onResponse(call: Call, response: Response) {
                 try {
-                    val jsonString = response.body!!.string()
+                    val jsonString = response.body()!!.string()
                     val jsonSummary = JSONObject(jsonString).getJSONObject("Global")
                     val jsonCountries = JSONObject(jsonString).getJSONArray("Countries")
 
