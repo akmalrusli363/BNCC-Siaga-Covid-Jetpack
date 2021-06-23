@@ -1,5 +1,6 @@
 package com.tilikki.bnccapp.siagacovid.utils
 
+import android.view.View
 import android.widget.TextView
 import com.tilikki.bnccapp.siagacovid.model.CountStatistics
 import kotlin.math.absoluteValue
@@ -14,11 +15,18 @@ object ViewUtility {
         tvDaily.text = displayDailyCaseCount(countStatistics.added)
     }
 
-    fun displayDailyCaseCount(dailyCaseCount: Int): String {
+    private fun displayDailyCaseCount(dailyCaseCount: Int): String {
+        if (dailyCaseCount == Int.MIN_VALUE) {
+            return ""
+        }
         val sign = when {
             dailyCaseCount < 0 -> '-'
             else -> '+'
         }
         return "(${sign}${dailyCaseCount.absoluteValue})"
+    }
+
+    fun setVisibility(view: View, visible: Boolean) {
+        view.visibility = if (visible) View.VISIBLE else View.GONE
     }
 }

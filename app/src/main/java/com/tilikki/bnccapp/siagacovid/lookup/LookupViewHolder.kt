@@ -23,7 +23,4 @@ class LookupViewHolder(val binding: ItemLookupBinding) :
             ViewUtility.setStatisticPairs(data.deathCase, tvLookupDeathCase, tvLookupDailyDeathCase)
         }
     }
-
-    private fun displayDailyCaseCount(dailyCaseCount: Int): String =
-        if (dailyCaseCount < 0) "" else "(+${dailyCaseCount})"
 }

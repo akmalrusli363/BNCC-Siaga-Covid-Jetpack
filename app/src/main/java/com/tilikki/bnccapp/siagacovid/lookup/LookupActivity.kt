@@ -11,44 +11,44 @@ import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.databinding.ActivityLookupBinding
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
+import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 import java.util.*
 
 class LookupActivity : AppCompatActivity() {
     private lateinit var viewModel: LookupViewModel
     private lateinit var binding: ActivityLookupBinding
+    private lateinit var lookupAdapter: LookupAdapter
+
+    private val governmentFirst = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLookupBinding.inflate(layoutInflater)
-        viewModel = LookupViewModel()
+        binding = ActivityLookupBinding.inflate(layoutInflater).also {
+            it.tbDataProviderSwitch.isChecked = !governmentFirst
+            viewModel = LookupViewModel(governmentFirst)
+            lookupAdapter = LookupAdapter(governmentFirst)
+        }
         setContentView(binding.root)
         setupComponents()
         setupRecyclerAdapter()
         setupSearch(lookupAdapter)
-        viewModel.fetchData()
         setupSearchSorting()
         startObserve()
     }
 
-    private lateinit var lookupAdapter: LookupAdapter
-
     private fun setupRecyclerAdapter() {
         binding.rvLookupData.let {
             it.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-            it.adapter = LookupAdapter(providedFromGovernment())
+            it.adapter = lookupAdapter
         }
-    }
-
-    private fun providedFromGovernment(): Boolean {
-        return !binding.tbDataProviderSwitch.isSelected
     }
 
     private fun setupComponents() {
         binding.ivReturnIcon.setOnClickListener {
             finish()
         }
-        binding.tbDataProviderSwitch.setOnClickListener {
-            viewModel.toggleDataSource(providedFromGovernment())
+        binding.tbDataProviderSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
+            viewModel.toggleDataSource(!isChecked)
         }
     }
 
@@ -76,8 +76,7 @@ class LookupActivity : AppCompatActivity() {
             lookupAdapter.updateData(it.toMutableList())
         }
         viewModel.lastUpdated.observe(this) {
-            binding.tvLastUpdated.text = getString(R.string.last_updated)
-                .replace("???", outputDate(it))
+            binding.tvLastUpdated.text = getDataSourceInformation()
         }
         viewModel.successResponse.observe(this) {
             if (!it.success && it.error != null) {
@@ -85,8 +84,7 @@ class LookupActivity : AppCompatActivity() {
             } else {
                 binding.apply {
                     srlLookupData.isRefreshing = false
-                    pbFetchLookup.visibility = View.GONE
-                    rvLookupData.visibility = View.VISIBLE
+                    toggleLoadingState(false)
                     svRegionLookupSearch.apply {
                         setQuery(query, true)
                     }
@@ -97,6 +95,7 @@ class LookupActivity : AppCompatActivity() {
             lookupAdapter.toggleDailyCaseVisibility(it)
             setSearchSort(it)
             viewModel.fetchData()
+            toggleLoadingState(true)
         }
     }
 
@@ -158,6 +157,11 @@ class LookupActivity : AppCompatActivity() {
         } else {
             "Not Available"
         }
+    }
+
+    private fun toggleLoadingState(loading: Boolean) {
+        ViewUtility.setVisibility(binding.pbFetchLookup, loading)
+        ViewUtility.setVisibility(binding.rvLookupData, !loading)
     }
 
     private object CaseDataSorter {

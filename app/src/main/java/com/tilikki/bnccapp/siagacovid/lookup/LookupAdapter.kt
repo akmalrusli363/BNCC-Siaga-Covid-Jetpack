@@ -1,7 +1,6 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
@@ -9,6 +8,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.tilikki.bnccapp.databinding.ItemLookupBinding
 import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
+import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 
 class LookupAdapter(private var dailyCaseVisibility: Boolean) :
     ListAdapter<RegionLookupData, LookupViewHolder>(LookupDiffCallback), Filterable {
@@ -40,14 +40,10 @@ class LookupAdapter(private var dailyCaseVisibility: Boolean) :
     }
 
     override fun onBindViewHolder(holder: LookupViewHolder, position: Int) {
-        if (dailyCaseVisibility) {
-            holder.binding.tvLookupDailyConfirmedCase.visibility = View.VISIBLE
-            holder.binding.tvLookupDailyRecoveredCase.visibility = View.VISIBLE
-            holder.binding.tvLookupDailyDeathCase.visibility = View.VISIBLE
-        } else {
-            holder.binding.tvLookupDailyConfirmedCase.visibility = View.GONE
-            holder.binding.tvLookupDailyRecoveredCase.visibility = View.GONE
-            holder.binding.tvLookupDailyDeathCase.visibility = View.GONE
+        holder.binding.run {
+            ViewUtility.setVisibility(tvLookupDailyConfirmedCase, dailyCaseVisibility)
+            ViewUtility.setVisibility(tvLookupDailyRecoveredCase, dailyCaseVisibility)
+            ViewUtility.setVisibility(tvLookupDailyDeathCase, dailyCaseVisibility)
         }
         holder.bind(getItem(position))
     }

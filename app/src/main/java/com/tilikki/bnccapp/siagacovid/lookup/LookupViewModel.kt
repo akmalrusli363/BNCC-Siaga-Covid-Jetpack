@@ -12,7 +12,7 @@ import retrofit2.HttpException
 import retrofit2.Response
 import java.util.*
 
-class LookupViewModel : BaseViewModel() {
+class LookupViewModel(provideFromGovernment: Boolean) : BaseViewModel() {
     private var _regionData: MutableLiveData<List<RegionLookupData>> = MutableLiveData()
     val regionData: LiveData<List<RegionLookupData>>
         get() = _regionData
@@ -21,7 +21,7 @@ class LookupViewModel : BaseViewModel() {
     val lastUpdated: LiveData<Date?>
         get() = _lastUpdated
 
-    private var _fromGovernment: MutableLiveData<Boolean> = MutableLiveData()
+    private var _fromGovernment: MutableLiveData<Boolean> = MutableLiveData(provideFromGovernment)
     val fromGovernment: LiveData<Boolean>
         get() = _fromGovernment
 
@@ -45,6 +45,7 @@ class LookupViewModel : BaseViewModel() {
     }
 
     private fun fetchGovernmentSource() {
+        _dataSource.postValue(covidGovernmentRepo.getDataProviderName())
         fetchData(covidGovernmentRepo.getRegionCaseOverview(), {
             mapReactiveResponseData(it) { data ->
                 _regionData.postValue(data.regionData.map { regionData ->
@@ -53,10 +54,10 @@ class LookupViewModel : BaseViewModel() {
                 _lastUpdated.postValue(data.lastUpdated)
             }
         })
-        _dataSource.postValue(covidGovernmentRepo.getDataProviderName())
     }
 
     private fun fetchAlternativeSource() {
+        _dataSource.postValue(bnpbCovidRepo.getDataProviderName())
         fetchData(bnpbCovidRepo.getRegionalCaseOverview(), {
             mapReactiveResponseData(it) { data ->
                 _regionData.postValue(data.map { regionData ->
@@ -65,7 +66,6 @@ class LookupViewModel : BaseViewModel() {
                 _lastUpdated.postValue(null)
             }
         })
-        _dataSource.postValue(bnpbCovidRepo.getDataProviderName())
     }
 
     private inline fun <T> mapReactiveResponseData(
