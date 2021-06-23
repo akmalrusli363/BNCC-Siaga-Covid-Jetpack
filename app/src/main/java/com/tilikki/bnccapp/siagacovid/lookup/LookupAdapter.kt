@@ -1,6 +1,7 @@
 package com.tilikki.bnccapp.siagacovid.lookup
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
@@ -9,7 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.tilikki.bnccapp.databinding.ItemLookupBinding
 import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
 
-class LookupAdapter :
+class LookupAdapter(private var dailyCaseVisibility: Boolean) :
     ListAdapter<RegionLookupData, LookupViewHolder>(LookupDiffCallback), Filterable {
 
     private var unfilteredData: List<RegionLookupData> = listOf()
@@ -39,6 +40,15 @@ class LookupAdapter :
     }
 
     override fun onBindViewHolder(holder: LookupViewHolder, position: Int) {
+        if (dailyCaseVisibility) {
+            holder.binding.tvLookupDailyConfirmedCase.visibility = View.VISIBLE
+            holder.binding.tvLookupDailyRecoveredCase.visibility = View.VISIBLE
+            holder.binding.tvLookupDailyDeathCase.visibility = View.VISIBLE
+        } else {
+            holder.binding.tvLookupDailyConfirmedCase.visibility = View.GONE
+            holder.binding.tvLookupDailyRecoveredCase.visibility = View.GONE
+            holder.binding.tvLookupDailyDeathCase.visibility = View.GONE
+        }
         holder.bind(getItem(position))
     }
 
@@ -66,6 +76,11 @@ class LookupAdapter :
                 }
             }
         }
+    }
+
+    fun toggleDailyCaseVisibility(dailyCaseVisibility: Boolean) {
+        this.dailyCaseVisibility = dailyCaseVisibility
+        notifyDataSetChanged()
     }
 
     fun updateData(list: MutableList<RegionLookupData>) {

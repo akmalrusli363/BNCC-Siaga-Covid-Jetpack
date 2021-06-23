@@ -1,6 +1,11 @@
-package com.tilikki.bnccapp.siagacovid.lookup;
+package com.tilikki.bnccapp.siagacovid.lookup
 
-class LookupComparator(private val orderLabel: String, val comparator: Comparator<LookupData>) {
+import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
+
+class LookupComparator(
+    private val orderLabel: String,
+    val comparator: Comparator<RegionLookupData>
+) {
     override fun equals(other: Any?): Boolean {
         return comparator.hashCode() == other.hashCode()
     }
@@ -14,25 +19,22 @@ class LookupComparator(private val orderLabel: String, val comparator: Comparato
     }
 
     companion object {
-        val compareByPositivityRate: Comparator<LookupData> =
-            Comparator<LookupData> { a, b -> b.numOfPositiveCase - a.numOfPositiveCase }
+        val compareByPositivityRate: Comparator<RegionLookupData> =
+            Comparator { a, b -> b.confirmedCase.total - a.confirmedCase.total }
 
-        val compareBySterilityRate: Comparator<LookupData> =
-            Comparator<LookupData> { a, b -> a.numOfPositiveCase - b.numOfPositiveCase }
+        val compareByDailyPositivityRate: Comparator<RegionLookupData> =
+            Comparator { a, b -> b.confirmedCase.added - a.confirmedCase.added }
 
-        val compareByDailyPositivityRate: Comparator<LookupData> =
-            Comparator<LookupData> { a, b -> b.numOfDailyPositiveCase - a.numOfDailyPositiveCase }
+        val compareByRecoveryRate: Comparator<RegionLookupData> =
+            Comparator { a, b -> b.recoveredCase.total - a.recoveredCase.total }
 
-        val compareByRecoveryRate: Comparator<LookupData> =
-            Comparator<LookupData> { a, b -> b.numOfRecoveredCase - a.numOfRecoveredCase }
+        val compareByDailyRecoveryRate: Comparator<RegionLookupData> =
+            Comparator { a, b -> b.recoveredCase.added - a.recoveredCase.added }
 
-        val compareByDailyRecoveryRate: Comparator<LookupData> =
-            Comparator<LookupData> { a, b -> b.numOfDailyRecoveredCase - a.numOfDailyRecoveredCase }
+        val compareByDeathRate: Comparator<RegionLookupData> =
+            Comparator { a, b -> b.deathCase.total - a.deathCase.total }
 
-        val compareByDeathRate: Comparator<LookupData> =
-            Comparator<LookupData> { a, b -> b.numOfDeathCase - a.numOfDeathCase }
-
-        val compareByDailyDeathRate: Comparator<LookupData> =
-            Comparator<LookupData> { a, b -> b.numOfDailyDeathCase - a.numOfDailyDeathCase }
+        val compareByDailyDeathRate: Comparator<RegionLookupData> =
+            Comparator { a, b -> b.deathCase.added - a.deathCase.added }
     }
 }
