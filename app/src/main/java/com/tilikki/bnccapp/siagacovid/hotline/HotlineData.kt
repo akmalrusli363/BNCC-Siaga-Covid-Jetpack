@@ -1,7 +1,11 @@
 package com.tilikki.bnccapp.siagacovid.hotline
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class HotlineData(
-    val imgIcon: String,
-    val name: String,
-    val phone: String
+    @Json(name = "img_icon") val imgIcon: String,
+    @Json(name = "name") val name: String,
+    @Json(name = "phone") val phone: String
 )

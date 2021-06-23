@@ -34,10 +34,10 @@
             android:layout_height="wrap_content"
             android:text="@string/data_source_info"
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/tvLookupCountry"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLookupCountry" />
 
         <ImageButton
             android:id="@+id/ivReturnIcon"
@@ -99,8 +99,7 @@
             android:paddingHorizontal="40dp"
             android:textAlignment="textStart"
             android:theme="@style/AppSpinner.Sort"
-            android:visibility="visible"/>
-
+            android:visibility="visible" />
     </LinearLayout>
 
     <ProgressBar

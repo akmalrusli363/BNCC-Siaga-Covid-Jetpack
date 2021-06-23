@@ -1,11 +1,8 @@
 package com.tilikki.bnccapp.siagacovid
 
-import okhttp3.Callback
-
 interface PVContract {
     interface Presenter {
         fun fetchData()
-        fun getData(): Callback
     }
 
     interface View<E> {

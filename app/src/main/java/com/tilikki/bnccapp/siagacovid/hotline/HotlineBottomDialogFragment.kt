@@ -8,12 +8,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tilikki.bnccapp.R
-import com.tilikki.bnccapp.siagacovid.PVContract
+import com.tilikki.bnccapp.databinding.BottomDialogFragmentHotlineBinding
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
-import kotlinx.android.synthetic.main.bottom_dialog_fragment_hotline.*
 
-class HotlineBottomDialogFragment : BottomSheetDialogFragment(), PVContract.View<HotlineData> {
-    private val presenter = HotlinePresenter(HotlineModel(), this)
+class HotlineBottomDialogFragment : BottomSheetDialogFragment() {
+    private val viewModel = HotlineViewModel()
+    private lateinit var binding: BottomDialogFragmentHotlineBinding
 
     private val mockHotlineList = mutableListOf(
         HotlineData("@drawable/ic_wait", "Loading...", "???")
@@ -33,35 +33,46 @@ class HotlineBottomDialogFragment : BottomSheetDialogFragment(), PVContract.View
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.bottom_dialog_fragment_hotline, container, false)
+    ): View {
+        binding = BottomDialogFragmentHotlineBinding.inflate(inflater)
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupRecyclerAdapter()
+        startObserve()
 
-        ivReturnIcon.setOnClickListener {
+        binding.ivReturnIcon.setOnClickListener {
             dismiss()
         }
     }
 
     private fun setupRecyclerAdapter() {
-        rvHotline.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        rvHotline.adapter = hotlineAdapter
-        presenter.fetchData()
+        binding.rvHotline.apply {
+            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            adapter = hotlineAdapter
+        }
+        viewModel.fetchData()
     }
 
-    override fun updateData(listData: List<HotlineData>) {
-        this@HotlineBottomDialogFragment.activity?.runOnUiThread {
-            hotlineAdapter.updateData(listData)
-            pbFetchHotline.visibility = View.GONE
-            rvHotline.visibility = View.VISIBLE
+    private fun startObserve() {
+        viewModel.hotlineList.observe(this) {
+            hotlineAdapter.updateData(it)
+        }
+        viewModel.successResponse.observe(this) {
+            if (!it.success && it.error != null) {
+                showError(AppEventLogging.FETCH_FAILURE, it.error as Exception)
+            } else {
+                binding.apply {
+                    pbFetchHotline.visibility = View.GONE
+                    rvHotline.visibility = View.VISIBLE
+                }
+            }
         }
     }
 
-    override fun showError(tag: String, e: Exception) {
+    private fun showError(tag: String, e: Exception) {
         this@HotlineBottomDialogFragment.activity?.runOnUiThread {
             activity?.let { AppEventLogging.logExceptionOnToast(tag, it, e) }
         }

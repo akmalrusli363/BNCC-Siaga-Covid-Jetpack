@@ -22,25 +22,25 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_margin="8dp"
+            android:contentDescription="@string/hotline_contact_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_wait"
-            android:contentDescription="@string/hotline_contact_logo" />
+            tools:src="@drawable/ic_wait" />
 
         <TextView
             android:id="@+id/tvHotlinePhone"
             style="@style/h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
             android:text="@string/unknown"
             android:textAlignment="center"
             android:textColor="@color/colorAccentLight"
-            app:layout_constraintHorizontal_bias="0"
-            android:layout_marginHorizontal="8dp"
             app:layout_constraintBottom_toTopOf="@id/tvHotlineContactName"
-            app:layout_constraintStart_toEndOf="@id/ivHotlineIcon"
             app:layout_constraintEnd_toStartOf="@id/ivHotlineCall"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/ivHotlineIcon"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="021-1234-5678" />
 
@@ -58,18 +58,18 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/ivHotlineIcon"
             app:layout_constraintTop_toBottomOf="@id/tvHotlinePhone"
-            tools:text="@string/province_dki_jakarta" />
+            tools:text="DKI Jakarta" />
 
         <ImageView
             android:id="@+id/ivHotlineCall"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="8dp"
+            android:contentDescription="@string/call_to_hotline"
+            android:src="@drawable/ic_phone_call"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_phone_call"
-            android:contentDescription="@string/call_to_hotline" />
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

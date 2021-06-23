@@ -3,8 +3,8 @@
     <item>
         <layer-list>
             <item android:drawable="@drawable/shape_gray_round_box" />
-            <item android:drawable="@drawable/ic_arrow_drop_down" android:gravity="center_vertical|end" android:right="16dp" />
-            <item android:drawable="@drawable/ic_sort" android:gravity="center_vertical|start" android:left="16dp" />
+            <item android:drawable="@drawable/ic_arrow_drop_down_24" android:gravity="center_vertical|end" android:right="16dp" />
+            <item android:drawable="@drawable/ic_sort_24" android:gravity="center_vertical|start" android:left="16dp" />
         </layer-list>
     </item>
 </selector>

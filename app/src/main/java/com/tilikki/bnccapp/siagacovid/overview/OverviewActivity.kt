@@ -9,20 +9,22 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
-import com.tilikki.bnccapp.siagacovid.PVContract
+import com.tilikki.bnccapp.databinding.ActivityCoronaOverviewBinding
 import com.tilikki.bnccapp.siagacovid.about.AboutAppDialog
 import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
 import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
+import com.tilikki.bnccapp.siagacovid.model.CaseOverview
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import com.tilikki.bnccapp.siagacovid.worldstats.WorldStatisticsActivity
 import kotlinx.android.synthetic.main.activity_corona_overview.*
 import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
 import kotlin.math.absoluteValue
+import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 
-class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData> {
-
-    private val presenter = OverviewPresenter(OverviewModel(), this)
+class OverviewActivity : AppCompatActivity() {
+    private lateinit var viewModel: OverviewViewModel
+    private lateinit var binding: ActivityCoronaOverviewBinding
 
     companion object {
         const val callLookupActivity = "GOTO_LOOKUP_ACTIVITY"
@@ -31,10 +33,13 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_corona_overview)
+        binding = ActivityCoronaOverviewBinding.inflate(layoutInflater)
+        viewModel = OverviewViewModel()
+        setContentView(binding.root)
         setupBottomSheet()
         setupUiButtons()
         fetchData()
+        startObserve()
     }
 
     override fun onBackPressed() {
@@ -68,20 +73,8 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         }
     }
 
-    private fun fetchData() {
-        presenter.fetchData()
-        toggleFetchState(true)
-    }
-
-    private fun toggleFetchState(isFetching: Boolean) {
-        toggleFetchState(isFetching, tvDailyTotalCaseCount, tvTotalCaseCount, pbTotalCase)
-        toggleFetchState(isFetching, tvDailyPositiveCount, tvPositiveCount, pbPositive)
-        toggleFetchState(isFetching, tvDailyRecoveredCount, tvRecoveredCount, pbRecovered)
-        toggleFetchState(isFetching, tvDailyDeathCount, tvDeathCount, pbDeath)
-    }
-
     private fun setupBottomSheet() {
-        BottomSheetBehavior.from(bottomSheetSummaryView).apply {
+        BottomSheetBehavior.from(binding.bottomSheetSummaryView.root).apply {
             isHideable = false
             val dpi = Resources.getSystem().displayMetrics.density
             val peekHeightDPI = (250 * dpi).toInt()
@@ -111,28 +104,48 @@ class OverviewActivity : AppCompatActivity(), PVContract.ObjectView<OverviewData
         AboutAppDialog().show(supportFragmentManager, "aboutAppDialog")
     }
 
-    override fun updateData(objectData: OverviewData) {
-        runOnUiThread {
-            tvTotalCaseCount.text = "${objectData.totalConfirmedCase}"
-            tvPositiveCount.text = "${objectData.totalActiveCase}"
-            tvRecoveredCount.text = "${objectData.totalRecoveredCase}"
-            tvDeathCount.text = "${objectData.totalDeathCase}"
+    private fun fetchData() {
+        toggleFetchState(true)
+        viewModel.fetchData()
+    }
 
-            tvDailyTotalCaseCount.text = displayDailyCaseCount(objectData.dailyConfirmedCase)
-            tvDailyPositiveCount.text = displayDailyCaseCount(objectData.dailyActiveCase)
-            tvDailyRecoveredCount.text = displayDailyCaseCount(objectData.dailyRecoveredCase)
-            tvDailyDeathCount.text = displayDailyCaseCount(objectData.dailyDeathCase)
+    private fun startObserve() {
+        viewModel.overviewData.observe(this) {
+            updateCaseCountData(it)
+        }
+        viewModel.successResponse.observe(this) {
+            if (!it.success && it.error != null) {
+                showError(AppEventLogging.FETCH_FAILURE, it.error as Exception)
+            }
+        }
+    }
 
-            tvLastUpdated.text = getString(R.string.last_updated)
-                .replace("???", StringParser.formatDate(objectData.lastUpdated))
-
+    private fun updateCaseCountData(data: CaseOverview) {
+        binding.apply {
+            ViewUtility.setStatisticPairs(data.confirmedCase, tvTotalCaseCount, tvDailyTotalCaseCount)
+            binding.bottomSheetSummaryView.apply {
+                ViewUtility.setStatisticPairs(data.activeCase, tvPositiveCount, tvDailyPositiveCount)
+                ViewUtility.setStatisticPairs(data.recoveredCase, tvRecoveredCount, tvDailyRecoveredCount)
+                ViewUtility.setStatisticPairs(data.deathCase, tvDeathCount, tvDailyDeathCount)
+                tvLastUpdated.text = getString(R.string.last_updated)
+                    .replace("???", StringParser.formatDate(data.lastUpdated))
+            }
             toggleFetchState(false)
         }
     }
 
-    override fun showError(tag: String, e: Exception) {
-        runOnUiThread {
-            AppEventLogging.logExceptionOnToast(tag, this@OverviewActivity, e)
+    private fun showError(tag: String, e: Exception) {
+        AppEventLogging.logExceptionOnToast(tag, this@OverviewActivity, e)
+    }
+
+    private fun toggleFetchState(isFetching: Boolean) {
+        binding.apply {
+            toggleFetchState(isFetching, tvDailyTotalCaseCount, tvTotalCaseCount, pbTotalCase)
+            bottomSheetSummaryView.apply {
+                toggleFetchState(isFetching, tvDailyPositiveCount, tvPositiveCount, pbPositive)
+                toggleFetchState(isFetching, tvDailyRecoveredCount, tvRecoveredCount, pbRecovered)
+                toggleFetchState(isFetching, tvDailyDeathCount, tvDeathCount, pbDeath)
+            }
         }
     }
 
