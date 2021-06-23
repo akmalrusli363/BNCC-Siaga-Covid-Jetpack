@@ -16,11 +16,8 @@ import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.model.CaseOverview
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
-import com.tilikki.bnccapp.siagacovid.worldstats.WorldStatisticsActivity
-import kotlinx.android.synthetic.main.activity_corona_overview.*
-import kotlinx.android.synthetic.main.bottom_sheet_summary_menu.*
-import kotlin.math.absoluteValue
 import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
+import com.tilikki.bnccapp.siagacovid.worldstats.WorldStatisticsActivity
 
 class OverviewActivity : AppCompatActivity() {
     private lateinit var viewModel: OverviewViewModel
@@ -43,33 +40,25 @@ class OverviewActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        if (BottomSheetBehavior.from(bottomSheetSummaryView).state == BottomSheetBehavior.STATE_EXPANDED) {
-            BottomSheetBehavior.from(bottomSheetSummaryView).state =
-                BottomSheetBehavior.STATE_COLLAPSED
-        } else {
-            super.onBackPressed()
+        binding.bottomSheetSummaryView.apply {
+            if (BottomSheetBehavior.from(this.root).state == BottomSheetBehavior.STATE_EXPANDED) {
+                BottomSheetBehavior.from(this.root).state =
+                    BottomSheetBehavior.STATE_COLLAPSED
+            } else {
+                super.onBackPressed()
+            }
         }
     }
 
     private fun setupUiButtons() {
-        clLookupButton.setOnClickListener {
-            gotoLookupActivity()
-        }
-
-        clHotlineButton.setOnClickListener {
-            gotoHotlineActivity()
-        }
-
-        clWorldStatsButton.setOnClickListener {
-            gotoWorldStatActivity()
-        }
-
-        ibInfoIcon.setOnClickListener {
-            openAboutDialog()
-        }
-
-        ibReloadIcon.setOnClickListener {
-            fetchData()
+        binding.apply {
+            bottomSheetSummaryView.apply {
+                clLookupButton.setOnClickListener { gotoLookupActivity() }
+                clHotlineButton.setOnClickListener { gotoHotlineActivity() }
+                clWorldStatsButton.setOnClickListener { gotoWorldStatActivity() }
+            }
+            ibInfoIcon.setOnClickListener { openAboutDialog() }
+            ibReloadIcon.setOnClickListener { fetchData() }
         }
     }
 
@@ -164,13 +153,5 @@ class OverviewActivity : AppCompatActivity() {
             tvCumulative.visibility = View.VISIBLE
             progressBar.visibility = View.GONE
         }
-    }
-
-    private fun displayDailyCaseCount(dailyCaseCount: Int): String {
-        val sign = when {
-            dailyCaseCount < 0 -> '-'
-            else -> '+'
-        }
-        return "(${sign}${dailyCaseCount.absoluteValue})"
     }
 }
