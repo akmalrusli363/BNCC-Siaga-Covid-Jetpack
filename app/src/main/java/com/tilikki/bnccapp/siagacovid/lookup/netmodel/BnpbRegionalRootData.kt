@@ -1,15 +1,12 @@
 package com.tilikki.bnccapp.siagacovid.lookup.netmodel
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 import com.tilikki.bnccapp.siagacovid.model.CountStatistics
 import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
 
-@JsonClass(generateAdapter = true)
 data class BnpbRegionalRootData(
     @Json(name = "attributes") val data: BnpbRegionalData
 ) {
-    @JsonClass(generateAdapter = true)
     data class BnpbRegionalData(
         @Json(name = "Provinsi") val province: String,
         @Json(name = "Kode_Provi") val provinceCode: Int,
