@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.SearchView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
@@ -12,6 +11,7 @@ import com.tilikki.bnccapp.databinding.ActivityLookupBinding
 import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionData
 import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.utils.SearchQueryTextListener
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import java.util.*
 
@@ -52,18 +52,9 @@ class LookupActivity : AppCompatActivity() {
     }
 
     private fun setupSearch(lookupAdapter: LookupAdapter) {
-        binding.svRegionLookupSearch
-            .setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    lookupAdapter.filter.filter(query)
-                    return false
-                }
-
-                override fun onQueryTextChange(query: String?): Boolean {
-                    lookupAdapter.filter.filter(query)
-                    return false
-                }
-            })
+        binding.svRegionLookupSearch.setOnQueryTextListener(
+            SearchQueryTextListener(lookupAdapter)
+        )
 
         binding.srlLookupData.setOnRefreshListener {
             viewModel.fetchData()
