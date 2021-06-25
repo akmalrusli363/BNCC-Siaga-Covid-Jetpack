@@ -1,44 +1,53 @@
 package com.tilikki.bnccapp.siagacovid.worldstats
 
-import android.view.View
 import androidx.recyclerview.widget.RecyclerView
+import com.tilikki.bnccapp.databinding.ItemCountryLookupBinding
+import com.tilikki.bnccapp.siagacovid.model.CountryLookupData
 import com.tilikki.bnccapp.siagacovid.utils.FlagUtils
-import kotlinx.android.synthetic.main.item_country_lookup.view.*
+import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 
-class WorldStatLookupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    fun bind(lookupData: WorldStatLookupData){
-        itemView.tvLookupCountry.text = lookupData.countryName
-        itemView.tvLookupCountryFlag.text = getCountryFlag(lookupData.countryCode)
+class WorldStatLookupViewHolder(private val binding: ItemCountryLookupBinding) :
+    RecyclerView.ViewHolder(binding.root) {
 
-        itemView.tvLookupConfirmedCase.text = lookupData.numOfConfirmedCase.toString()
-        itemView.tvLookupRecoveredCase.text = lookupData.numOfRecoveredCase.toString()
-        itemView.tvLookupDeathCase.text = lookupData.numOfDeathCase.toString()
+    private val caseLabel = "cases"
+    private val activeLabel = "active"
 
-        itemView.tvLookupDailyConfirmedCase.text = getDailyCases(lookupData.numOfDailyConfirmedCase)
-        itemView.tvLookupDailyRecoveredCase.text = getDailyCases(lookupData.numOfDailyRecoveredCase)
-        itemView.tvLookupDailyDeathCase.text = getDailyCases(lookupData.numOfDailyDeathCase)
+    fun bind(lookupData: CountryLookupData) {
+        binding.run {
+            tvLookupCountry.text = lookupData.countryName
+            tvLookupCountryFlag.text = getCountryFlag(lookupData.countryCode)
 
-        itemView.tvLookupConfirmedCaseDesc.text = getActiveCaseData(lookupData)
-        itemView.tvLookupRecoveredCaseDesc.text = getPercentageData((lookupData.numOfRecoveredCase/lookupData.numOfConfirmedCase.toDouble()))
-        itemView.tvLookupDeathCaseDesc.text = getPercentageData((lookupData.numOfDeathCase/lookupData.numOfConfirmedCase.toDouble()))
+            ViewUtility.setStatisticPairs(
+                lookupData.confirmedCase,
+                tvLookupConfirmedCase,
+                tvLookupDailyConfirmedCase
+            )
+            ViewUtility.setStatisticPairs(
+                lookupData.recoveredCase,
+                tvLookupRecoveredCase,
+                tvLookupDailyRecoveredCase
+            )
+            ViewUtility.setStatisticPairs(
+                lookupData.deathCase,
+                tvLookupDeathCase,
+                tvLookupDailyDeathCase
+            )
+            tvLookupConfirmedCaseDesc.text =
+                getPercentageData(lookupData.positivityRate(), activeLabel)
+            tvLookupRecoveredCaseDesc.text =
+                getPercentageData(lookupData.recoveryRate(), caseLabel)
+            tvLookupDeathCaseDesc.text =
+                getPercentageData(lookupData.deathRate(), caseLabel)
+        }
     }
 
     private fun getCountryFlag(countryCode: String): String {
         return FlagUtils.printFlagEmoji(countryCode)
     }
 
-    private fun getActiveCaseData(lookupData: WorldStatLookupData): String {
-        val active = lookupData.numOfConfirmedCase - (lookupData.numOfRecoveredCase + lookupData.numOfDeathCase)
-        val activePercentage = active / lookupData.numOfConfirmedCase.toDouble()
-        return "(${formatPercentage(activePercentage)}% active)"
-    }
-
-    private fun getPercentageData(percentage: Double): String {
-        return "(${formatPercentage(percentage)}% cases)"
-    }
-
-    private fun getDailyCases(caseCounts: Int): String {
-        return "(+${caseCounts})"
+    private fun getPercentageData(percentage: Double, label: String?): String {
+        return if (!label.isNullOrBlank()) "(${formatPercentage(percentage)}% $label)"
+        else "(${formatPercentage(percentage)}%)"
     }
 
     private fun formatPercentage(percentage: Double) = "%.${2}f".format((percentage * 100))

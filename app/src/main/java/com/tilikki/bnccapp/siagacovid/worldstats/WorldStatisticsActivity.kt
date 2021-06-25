@@ -5,38 +5,39 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.SearchView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.databinding.ActivityWorldStatisticsBinding
-import com.tilikki.bnccapp.siagacovid.PVContract
+import com.tilikki.bnccapp.siagacovid.model.CountryLookupData
+import com.tilikki.bnccapp.siagacovid.model.WorldCaseOverview
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
+import com.tilikki.bnccapp.siagacovid.utils.SearchQueryTextListener
+import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 
-class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLookupData>,
-    PVContract.ObjectView<WorldStatSummaryData> {
-    private val presenter = WorldStatPresenter(WorldStatModel(), this, this)
+class WorldStatisticsActivity : AppCompatActivity() {
+    private val viewModel = WorldStatViewModel()
     private lateinit var binding: ActivityWorldStatisticsBinding
 
-    private var mockWorldLookupList: MutableList<WorldStatLookupData> = mutableListOf(
-        WorldStatLookupData(
-            "??", "Loading...",
-            0, 0, 0,
-            0, 0, 0
-        )
-    )
+    private val worldStatAdapter = WorldStatLookupAdapter(mutableListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_world_statistics)
         binding = ActivityWorldStatisticsBinding.inflate(layoutInflater)
-        toggleFetchState(true)
-        setupToolbar()
+        setContentView(binding.root)
+        setupComponents()
         setupRecyclerAdapter()
-        setupReturnButton()
         setupSearch(worldStatAdapter)
+        startObserve()
+    }
+
+    private fun setupComponents() {
+        binding.ivReturnIcon.setOnClickListener {
+            finish()
+        }
+        setupToolbar()
+        toggleFetchState(true)
     }
 
     private fun setupToolbar() {
@@ -90,11 +91,8 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
                 worldStatAdapter.setDataComparator(WorldStatDataComparator.COMPARE_BY_DAILY_DEATH_RATE)
             }
         }
-
         return super.onOptionsItemSelected(item)
     }
-
-    private val worldStatAdapter = WorldStatLookupAdapter(mockWorldLookupList)
 
     private fun setupRecyclerAdapter() {
         binding.bottomSheetCountryLookup.let {
@@ -105,77 +103,74 @@ class WorldStatisticsActivity : AppCompatActivity(), PVContract.View<WorldStatLo
         fetchData()
     }
 
-    private fun setupReturnButton() {
-        binding.ivReturnIcon.setOnClickListener {
-            finish()
-        }
-    }
-
     private fun setupSearch(worldStatLookupAdapter: WorldStatLookupAdapter) {
         binding.bottomSheetCountryLookup.svCountryLookupSearch.setOnQueryTextListener(
-            object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    worldStatLookupAdapter.filter.filter(query)
-                    return false
-                }
-
-                override fun onQueryTextChange(query: String?): Boolean {
-                    worldStatLookupAdapter.filter.filter(query)
-                    return false
-                }
-            }
+            SearchQueryTextListener(worldStatLookupAdapter)
         )
     }
 
     private fun fetchData() {
-        presenter.fetchData()
+        viewModel.fetchData()
     }
 
-    override fun updateData(listData: List<WorldStatLookupData>) {
+    private fun startObserve() {
+        viewModel.worldCaseOverview.observe(this) {
+            updateGlobalData(it)
+        }
+        viewModel.countryLookupData.observe(this) {
+            updateCountryData(it)
+        }
+        viewModel.successResponse.observe(this) {
+            if (!it.success && it.error != null) {
+                showError(AppEventLogging.FETCH_FAILURE, it.error as Exception)
+            } else {
+                toggleFetchState(false)
+            }
+        }
+    }
+
+    private fun updateCountryData(listData: List<CountryLookupData>) {
         binding.bottomSheetCountryLookup.run {
             worldStatAdapter.updateData(listData)
-            rvCountryLookupData.visibility = View.VISIBLE
-            pbFetchLookup.visibility = View.GONE
             svCountryLookupSearch.setQuery(svCountryLookupSearch.query, true)
         }
     }
 
-    override fun updateData(objectData: WorldStatSummaryData) {
+    private fun updateGlobalData(objectData: WorldCaseOverview) {
         binding.widgetWorldCaseSummary.run {
-            tvTotalCaseCount.text = "${objectData.numOfConfirmedCase}"
-            tvRecoveredCount.text = "${objectData.numOfRecoveredCase}"
-            tvDeathCount.text = "${objectData.numOfDeathCase}"
-            tvPositiveCaseCount.text = "${objectData.numOfActiveCases()}"
-            toggleFetchState(false)
+            tvTotalCaseCount.text = "${objectData.confirmedCase}"
+            tvRecoveredCount.text = "${objectData.recoveredCase}"
+            tvDeathCount.text = "${objectData.deathCase}"
+            tvPositiveCaseCount.text = "${objectData.activeCases()}"
         }
     }
 
-    override fun showError(tag: String, e: Exception) {
+    private fun showError(tag: String, e: Exception) {
         runOnUiThread {
             AppEventLogging.logExceptionOnToast(tag, this, e)
         }
     }
 
     private fun toggleFetchState(isFetching: Boolean) {
-        binding.widgetWorldCaseSummary.run {
-            toggleFetchState(isFetching, tvTotalCaseCount, pbTotalCase)
-            toggleFetchState(isFetching, tvPositiveCaseCount, pbPositive)
-            toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
-            toggleFetchState(isFetching, tvDeathCount, pbDeath)
+        binding.run {
+            widgetWorldCaseSummary.run {
+                toggleFetchState(isFetching, tvTotalCaseCount, pbTotalCase)
+                toggleFetchState(isFetching, tvPositiveCaseCount, pbPositive)
+                toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
+                toggleFetchState(isFetching, tvDeathCount, pbDeath)
+            }
+            binding.bottomSheetCountryLookup.run {
+                toggleFetchState(isFetching, rvCountryLookupData, pbFetchLookup)
+            }
         }
     }
 
     private fun toggleFetchState(
         isFetching: Boolean,
-        textView: TextView,
+        view: View,
         progressBar: ProgressBar
     ) {
-        if (isFetching) {
-            textView.visibility = View.GONE
-            progressBar.visibility = View.VISIBLE
-        } else {
-            textView.visibility = View.VISIBLE
-            progressBar.visibility = View.GONE
-        }
+        ViewUtility.setVisibility(view, !isFetching)
+        ViewUtility.setVisibility(progressBar, isFetching)
     }
 }

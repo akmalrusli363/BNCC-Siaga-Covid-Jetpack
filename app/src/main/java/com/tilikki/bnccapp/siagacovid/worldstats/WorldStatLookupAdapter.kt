@@ -5,42 +5,44 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.tilikki.bnccapp.R
+import com.tilikki.bnccapp.databinding.ItemCountryLookupBinding
+import com.tilikki.bnccapp.siagacovid.model.CountryLookupData
 
-class WorldStatLookupAdapter(private val worldStatLookupData: MutableList<WorldStatLookupData>) :
+class WorldStatLookupAdapter(private val countryLookupData: MutableList<CountryLookupData>) :
     RecyclerView.Adapter<WorldStatLookupViewHolder>(), Filterable {
 
-    var filteredWorldStatLookupData: MutableList<WorldStatLookupData> = worldStatLookupData
-    private var lookupDataComparator: Comparator<WorldStatLookupData> = WorldStatDataComparator.COMPARE_BY_POSITIVITY_RATE
+    var filteredCountryLookupData: MutableList<CountryLookupData> = countryLookupData
+    private var lookupDataComparator: Comparator<CountryLookupData> =
+        WorldStatDataComparator.COMPARE_BY_POSITIVITY_RATE
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WorldStatLookupViewHolder {
         return WorldStatLookupViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_country_lookup, parent, false)
+            ItemCountryLookupBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         )
     }
 
     override fun onBindViewHolder(holderLookup: WorldStatLookupViewHolder, position: Int) {
-        holderLookup.bind(filteredWorldStatLookupData[position])
+        holderLookup.bind(filteredCountryLookupData[position])
     }
 
     override fun getItemCount(): Int {
-        return filteredWorldStatLookupData.size
+        return filteredCountryLookupData.size
     }
 
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(keyword: CharSequence?): FilterResults {
                 val query = keyword.toString()
-                filteredWorldStatLookupData = if (query.isEmpty()) {
-                    worldStatLookupData
+                filteredCountryLookupData = if (query.isEmpty()) {
+                    countryLookupData
                 } else {
-                    worldStatLookupData.filter {
+                    countryLookupData.filter {
                         it.countryName.contains(query, true)
-                    } as MutableList<WorldStatLookupData>
+                    } as MutableList<CountryLookupData>
                 }
                 return FilterResults().also {
-                    filteredWorldStatLookupData = sortData(filteredWorldStatLookupData)
-                    it.values = filteredWorldStatLookupData
+                    filteredCountryLookupData = sortData(filteredCountryLookupData)
+                    it.values = filteredCountryLookupData
                 }
             }
 
@@ -50,25 +52,28 @@ class WorldStatLookupAdapter(private val worldStatLookupData: MutableList<WorldS
         }
     }
 
-    fun setDataComparator(lookupDataComparator: Comparator<WorldStatLookupData>) {
+    fun setDataComparator(lookupDataComparator: Comparator<CountryLookupData>) {
         this.lookupDataComparator = lookupDataComparator
-        filteredWorldStatLookupData = sortData(filteredWorldStatLookupData, lookupDataComparator)
+        filteredCountryLookupData = sortData(filteredCountryLookupData, lookupDataComparator)
         notifyDataSetChanged()
     }
 
-    fun updateData(newList: List<WorldStatLookupData>) {
-        worldStatLookupData.clear()
-        worldStatLookupData.addAll(newList)
+    fun updateData(newList: List<CountryLookupData>) {
+        countryLookupData.clear()
+        countryLookupData.addAll(newList)
         notifyDataSetChanged()
-        filteredWorldStatLookupData = sortData(worldStatLookupData)
+        filteredCountryLookupData = sortData(countryLookupData)
     }
 
-    private fun sortData(list: MutableList<WorldStatLookupData>): MutableList<WorldStatLookupData> {
+    private fun sortData(list: MutableList<CountryLookupData>): MutableList<CountryLookupData> {
         return sortData(list, lookupDataComparator)
     }
 
-    private fun sortData(list: MutableList<WorldStatLookupData>?, comparator: Comparator<WorldStatLookupData>): MutableList<WorldStatLookupData> {
-        return list?.sortedWith(comparator) as MutableList<WorldStatLookupData>
+    private fun sortData(
+        list: MutableList<CountryLookupData>?,
+        comparator: Comparator<CountryLookupData>
+    ): MutableList<CountryLookupData> {
+        return list?.sortedWith(comparator) as MutableList<CountryLookupData>
     }
 
 }
