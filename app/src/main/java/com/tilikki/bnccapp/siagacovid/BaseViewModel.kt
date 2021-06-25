@@ -8,6 +8,8 @@ import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
+import retrofit2.Response
 
 abstract class BaseViewModel : ViewModel() {
     data class FetchResponse(
@@ -20,6 +22,18 @@ abstract class BaseViewModel : ViewModel() {
         get() = _successResponse
 
     abstract fun fetchData()
+
+    protected inline fun <T> mapReactiveResponseData(
+        response: Response<T>,
+        onSuccessAction: (T) -> Unit
+    ) {
+        if (response.isSuccessful && response.body() != null) {
+            val data = response.body()!!
+            onSuccessAction(data)
+        } else {
+            throw HttpException(response)
+        }
+    }
 
     protected fun <T> fetchData(
         observable: Observable<T>,

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.tilikki.bnccapp.siagacovid.BaseViewModel
 import com.tilikki.bnccapp.siagacovid.model.RegionLookupData
 import com.tilikki.bnccapp.siagacovid.repository.CovidGovernmentRepositoryImpl
-import retrofit2.HttpException
 import java.util.*
 
 class LookupViewModel : BaseViewModel() {
@@ -19,14 +18,11 @@ class LookupViewModel : BaseViewModel() {
 
     override fun fetchData() {
         fetchData(CovidGovernmentRepositoryImpl().getRegionCaseOverview(), {
-            if (it.isSuccessful && it.body() != null) {
-                val data = it.body()!!
+            mapReactiveResponseData(it) { data ->
                 _regionData.postValue(data.regionData.map { regionData ->
                     regionData.toRegionLookupData()
                 })
                 _lastUpdated.postValue(data.lastUpdated)
-            } else {
-                throw HttpException(it)
             }
         })
     }
