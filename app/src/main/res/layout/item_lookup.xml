@@ -41,16 +41,14 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvLookupProvince">
 
+
             <LinearLayout
                 android:id="@+id/llLookupConfirmedCase"
-                android:layout_width="@dimen/circle_width_size"
-                android:layout_height="@dimen/circle_size"
-                android:background="@drawable/shape_ring_highlight"
+                style="@style/DataFieldBox.Ring"
                 android:backgroundTint="@color/teal"
-                android:gravity="center"
-                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/llLookupRecoveredCase"
+                app:layout_constraintHorizontal_chainStyle="spread"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -75,15 +73,10 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:id="@+id/llLookupRecoveredCase"
-                android:layout_width="@dimen/circle_width_size"
-                android:layout_height="@dimen/circle_size"
-                android:background="@drawable/shape_ring_highlight"
+                style="@style/DataFieldBox.Ring"
                 android:backgroundTint="@color/green"
-                android:gravity="center"
-                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/llLookupDeathCase"
                 app:layout_constraintStart_toEndOf="@id/llLookupConfirmedCase"
@@ -111,12 +104,8 @@
 
             <LinearLayout
                 android:id="@+id/llLookupDeathCase"
-                android:layout_width="@dimen/circle_width_size"
-                android:layout_height="@dimen/circle_size"
-                android:background="@drawable/shape_ring_highlight"
+                style="@style/DataFieldBox.Ring"
                 android:backgroundTint="@color/red"
-                android:gravity="center"
-                android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/llLookupRecoveredCase"

@@ -40,7 +40,7 @@
     </style>
 
     <!-- Search Toolbar -->
-    <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
         <!-- Query Text Color -->
         <item name="android:textColorPrimary">@color/colorAccentLight</item>
         <!-- Icon Color -->
@@ -49,7 +49,7 @@
     </style>
 
     <!-- Spinner Toolbar -->
-    <style name="AppSpinner.Sort" parent="AppTheme" >
+    <style name="AppSpinner.Sort" parent="AppTheme">
         <item name="android:textColorPrimary">@color/colorAccentLight</item>
         <item name="android:textColorSecondary">@color/colorAccentLight</item>
         <item name="android:textAlignment">center</item>
@@ -136,13 +136,46 @@
         <item name="android:orientation">vertical</item>
     </style>
 
-    <style name="data_count_ring">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:layout_height">80dp</item>
+    <style name="DataFieldBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">80dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:layout_marginStart">4dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:background">@drawable/shape_rounder_highlight</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="DataFieldBox.Ring" parent="DataFieldBox">
         <item name="android:background">@drawable/shape_ring_highlight</item>
+    </style>
+
+    <style name="SummaryFieldBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:background">@drawable/shape_round_highlight_box</item>
         <item name="android:elevation">4dp</item>
         <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="SummaryFieldBox.Heading" parent="SummaryFieldBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/shape_gray_round_box</item>
+    </style>
+
+    <style name="SummaryFieldBox.Square" parent="SummaryFieldBox">
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:layout_height">108dp</item>
     </style>
 
     <style name="corona_access_menu">
@@ -151,6 +184,16 @@
         <item name="android:background">@drawable/btn_corona_access</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <style name="BottomSheetGrapple">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:background">@drawable/shape_grapple</item>
+        <item name="android:contentDescription">@string/bottom_sheet_grapple</item>
     </style>
 
 </resources>

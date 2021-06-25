@@ -13,12 +13,7 @@
 
     <View
         android:id="@+id/grapple"
-        android:layout_width="40dp"
-        android:layout_height="4dp"
-        android:layout_gravity="center"
-        android:layout_marginVertical="8dp"
-        android:background="@drawable/shape_grapple"
-        android:contentDescription="@string/bottom_sheet_grapple" />
+        style="@style/BottomSheetGrapple" />
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/llSummaryMenu"
@@ -43,17 +38,10 @@
 
                 <LinearLayout
                     android:id="@+id/llActiveCaseCountBox"
-                    android:layout_width="0dp"
-                    android:layout_height="110dp"
-                    android:layout_marginEnd="8dp"
-                    android:background="@drawable/shape_round_highlight_box"
+                    style="@style/SummaryFieldBox.Square"
                     android:backgroundTint="@color/confirmedColor"
-                    android:elevation="4dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/llRecoveredCountBox"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -74,7 +62,7 @@
                         android:text="@string/loading"
                         android:textAlignment="center"
                         android:textColor="@color/colorAccentDark"
-                        tools:text="36977" />
+                        tools:text="136977" />
 
                     <TextView
                         android:id="@+id/tvDailyPositiveCount"
@@ -85,7 +73,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorAccentDark"
                         android:textStyle="italic|bold"
-                        tools:text="(+2977)" />
+                        tools:text="(+6077)" />
 
                     <TextView
                         android:id="@+id/tvPositiveCountLabel"
@@ -99,17 +87,10 @@
 
                 <LinearLayout
                     android:id="@+id/llRecoveredCountBox"
-                    android:layout_width="0dp"
-                    android:layout_height="110dp"
-                    android:layout_marginHorizontal="4dp"
-                    android:background="@drawable/shape_round_highlight_box"
+                    style="@style/SummaryFieldBox.Square"
                     android:backgroundTint="@color/recoveredColor"
-                    android:elevation="4dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/llDeathCountBox"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/llActiveCaseCountBox"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -129,7 +110,7 @@
                         android:text="@string/loading"
                         android:textAlignment="center"
                         android:textColor="@color/colorAccentDark"
-                        tools:text="45101" />
+                        tools:text="1245101" />
 
                     <TextView
                         android:id="@+id/tvDailyRecoveredCount"
@@ -140,7 +121,7 @@
                         android:textAlignment="center"
                         android:textColor="@color/colorAccentDark"
                         android:textStyle="italic|bold"
-                        tools:text="(+2977)" />
+                        tools:text="(+12977)" />
 
                     <TextView
                         android:id="@+id/tvRecoveredCountLabel"
@@ -154,17 +135,10 @@
 
                 <LinearLayout
                     android:id="@+id/llDeathCountBox"
-                    android:layout_width="0dp"
-                    android:layout_height="110dp"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/shape_round_highlight_box"
+                    style="@style/SummaryFieldBox.Square"
                     android:backgroundTint="@color/deathColor"
-                    android:elevation="4dp"
-                    android:gravity="center"
-                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/llRecoveredCountBox"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -184,7 +158,7 @@
                         android:text="@string/loading"
                         android:textAlignment="center"
                         android:textColor="@color/colorAccentDark"
-                        tools:text="4143" />
+                        tools:text="14143" />
 
                     <TextView
                         android:id="@+id/tvDailyDeathCount"
