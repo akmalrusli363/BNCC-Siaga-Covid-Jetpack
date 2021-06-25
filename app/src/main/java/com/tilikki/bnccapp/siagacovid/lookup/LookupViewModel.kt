@@ -8,8 +8,6 @@ import com.tilikki.bnccapp.siagacovid.repository.BnpbCovidRepository
 import com.tilikki.bnccapp.siagacovid.repository.BnpbCovidRepositoryImpl
 import com.tilikki.bnccapp.siagacovid.repository.CovidGovernmentRepository
 import com.tilikki.bnccapp.siagacovid.repository.CovidGovernmentRepositoryImpl
-import retrofit2.HttpException
-import retrofit2.Response
 import java.util.*
 
 class LookupViewModel(provideFromGovernment: Boolean) : BaseViewModel() {
@@ -66,17 +64,5 @@ class LookupViewModel(provideFromGovernment: Boolean) : BaseViewModel() {
                 _lastUpdated.postValue(null)
             }
         })
-    }
-
-    private inline fun <T> mapReactiveResponseData(
-        response: Response<T>,
-        onSuccessAction: (T) -> Unit
-    ) {
-        if (response.isSuccessful && response.body() != null) {
-            val data = response.body()!!
-            onSuccessAction(data)
-        } else {
-            throw HttpException(response)
-        }
     }
 }

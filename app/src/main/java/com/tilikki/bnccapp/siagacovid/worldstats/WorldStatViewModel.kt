@@ -6,7 +6,6 @@ import com.tilikki.bnccapp.siagacovid.BaseViewModel
 import com.tilikki.bnccapp.siagacovid.model.CountryLookupData
 import com.tilikki.bnccapp.siagacovid.model.WorldCaseOverview
 import com.tilikki.bnccapp.siagacovid.repository.GlobalCovidRepositoryImpl
-import retrofit2.HttpException
 
 class WorldStatViewModel : BaseViewModel() {
     private val worldStatRepository = GlobalCovidRepositoryImpl()
@@ -21,14 +20,11 @@ class WorldStatViewModel : BaseViewModel() {
 
     override fun fetchData() {
         fetchData(worldStatRepository.getGlobalCovidSummary(), {
-            if (it.isSuccessful && it.body() != null) {
-                val body = it.body()!!
-                _worldCaseOverview.postValue(body.global.toWorldCaseOverview())
-                _countryLookupData.postValue(body.countries.map { countryData ->
+            mapReactiveResponseData(it) { data ->
+                _worldCaseOverview.postValue(data.global.toWorldCaseOverview())
+                _countryLookupData.postValue(data.countries.map { countryData ->
                     countryData.toCountryLookupData()
                 })
-            } else {
-                throw HttpException(it)
             }
         })
     }
