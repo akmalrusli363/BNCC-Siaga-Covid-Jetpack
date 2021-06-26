@@ -18,22 +18,20 @@
         tools:targetApi="n">
 
         <activity
-            android:name=".siagacovid.overview.OverviewActivity">
+            android:name=".siagacovid.view.overview.OverviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".siagacovid.lookup.LookupActivity"
+            android:name=".siagacovid.view.lookup.LookupActivity"
             android:theme="@style/AppTheme.Light" />
-
         <activity
-            android:name=".siagacovid.worldstats.WorldStatisticsActivity"
+            android:name=".siagacovid.view.worldstats.WorldStatisticsActivity"
             android:theme="@style/AppTheme.Light" />
-
     </application>
 
 </manifest>
