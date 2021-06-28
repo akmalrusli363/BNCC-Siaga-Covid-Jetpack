@@ -201,7 +201,7 @@
                 android:paddingVertical="16dp">
 
                 <ImageView
-                    android:id="@+id/ivMetaIcon1"
+                    android:id="@+id/ivMetaIconLookup"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="8dp"
@@ -214,7 +214,7 @@
                     tools:layout_marginHorizontal="12dp" />
 
                 <TextView
-                    android:id="@+id/tvMetaTitle1"
+                    android:id="@+id/tvMetaTitleLookup"
                     style="@style/h5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -222,14 +222,14 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/lookup"
                     android:textColor="@color/indigo2"
-                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescription1"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
+                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescriptionLookup"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowLookup"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconLookup"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvMetaDescription1"
+                    android:id="@+id/tvMetaDescriptionLookup"
                     style="@style/b3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -237,13 +237,13 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/lookup_description"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow1"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowLookup"
                     app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
-                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitle1" />
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconLookup"
+                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitleLookup" />
 
                 <ImageView
-                    android:id="@+id/ivGotoArrow1"
+                    android:id="@+id/ivGotoArrowLookup"
                     android:layout_width="32dp"
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
@@ -252,7 +252,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon1"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconLookup"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/indigo2" />
 
@@ -266,7 +266,7 @@
                 android:paddingVertical="16dp">
 
                 <ImageView
-                    android:id="@+id/ivMetaIcon2"
+                    android:id="@+id/ivMetaIconHotline"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="8dp"
@@ -279,7 +279,7 @@
                     tools:layout_marginHorizontal="12dp" />
 
                 <TextView
-                    android:id="@+id/tvMetaTitle2"
+                    android:id="@+id/tvMetaTitleHotline"
                     style="@style/h5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -287,14 +287,14 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/hotline"
                     android:textColor="@color/indigo2"
-                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescription2"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
+                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescriptionHotline"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowHotline"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconHotline"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvMetaDescription2"
+                    android:id="@+id/tvMetaDescriptionHotline"
                     style="@style/b3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -302,14 +302,14 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/hotline_description"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow2"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowHotline"
                     app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
-                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitle2" />
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconHotline"
+                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitleHotline" />
 
 
                 <ImageView
-                    android:id="@+id/ivGotoArrow2"
+                    android:id="@+id/ivGotoArrowHotline"
                     android:layout_width="32dp"
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
@@ -318,7 +318,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon2"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconHotline"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/indigo2" />
 
@@ -342,7 +342,7 @@
                 android:paddingVertical="16dp">
 
                 <ImageView
-                    android:id="@+id/ivMetaIcon3"
+                    android:id="@+id/ivMetaIconWorldStat"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="8dp"
@@ -351,11 +351,11 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_siren"
+                    app:srcCompat="@drawable/ic_global"
                     tools:layout_marginHorizontal="12dp" />
 
                 <TextView
-                    android:id="@+id/tvMetaTitle3"
+                    android:id="@+id/tvMetaTitleWorldStat"
                     style="@style/h5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -363,14 +363,14 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/world_stats"
                     android:textColor="@color/indigo2"
-                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescription3"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow3"
+                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescriptionWorldStat"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowWorldStat"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon3"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconWorldStat"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvMetaDescription3"
+                    android:id="@+id/tvMetaDescriptionWorldStat"
                     style="@style/b3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -378,14 +378,14 @@
                     android:layout_marginEnd="8dp"
                     android:text="@string/world_stats_description"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrow3"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowWorldStat"
                     app:layout_constraintHorizontal_bias="0"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon3"
-                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitle3" />
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconWorldStat"
+                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitleWorldStat" />
 
 
                 <ImageView
-                    android:id="@+id/ivGotoArrow3"
+                    android:id="@+id/ivGotoArrowWorldStat"
                     android:layout_width="32dp"
                     android:layout_height="64dp"
                     android:layout_marginStart="8dp"
@@ -394,7 +394,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1"
-                    app:layout_constraintStart_toEndOf="@id/ivMetaIcon3"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconWorldStat"
                     app:layout_constraintTop_toTopOf="parent"
                     app:tint="@color/indigo2" />
 
