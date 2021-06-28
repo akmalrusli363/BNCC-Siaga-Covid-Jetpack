@@ -71,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator">
 
         <ProgressBar
-            android:id="@+id/pbPositive"
+            android:id="@+id/pbActiveCase"
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/tvPositiveCaseCount"
+            android:id="@+id/tvActiveCaseCount"
             style="@style/h5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             tools:text="3697700" />
 
         <TextView
-            android:id="@+id/tvPositiveCountLabel"
+            android:id="@+id/tvActiveCaseCountLabel"
             style="@style/b2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,7 +1,7 @@
 package com.tilikki.bnccapp.siagacovid.network
 
-import com.tilikki.bnccapp.siagacovid.lookup.netmodel.RegionSummaryData
-import com.tilikki.bnccapp.siagacovid.overview.netmodel.OverviewRootData
+import com.tilikki.bnccapp.siagacovid.view.lookup.netmodel.RegionSummaryData
+import com.tilikki.bnccapp.siagacovid.view.overview.netmodel.OverviewRootData
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,11 +1,11 @@
 package com.tilikki.bnccapp.siagacovid.repository
 
-import com.tilikki.bnccapp.siagacovid.lookup.netmodel.BnpbRegionalRootData
 import com.tilikki.bnccapp.siagacovid.network.BnpbCovidApiInterface
+import com.tilikki.bnccapp.siagacovid.view.lookup.netmodel.BnpbRegionalRootData
 import io.reactivex.Observable
 import retrofit2.Response
 
-class BnpbCovidRepositoryImpl: BnpbCovidRepository, BaseRepository() {
+class BnpbCovidRepositoryImpl : BnpbCovidRepository, BaseRepository() {
     private val apiInterface = retrofit.create(BnpbCovidApiInterface::class.java)
 
     override fun getDataProviderName(): String {

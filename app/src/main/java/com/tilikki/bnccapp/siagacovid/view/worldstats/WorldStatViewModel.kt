@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.tilikki.bnccapp.siagacovid.model.CountryLookupData
 import com.tilikki.bnccapp.siagacovid.model.WorldCaseOverview
 import com.tilikki.bnccapp.siagacovid.repository.GlobalCovidRepositoryImpl
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import com.tilikki.bnccapp.siagacovid.view.BaseViewModel
 
 class WorldStatViewModel : BaseViewModel() {

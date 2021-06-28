@@ -10,13 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.bnccapp.R
 import com.tilikki.bnccapp.databinding.ActivityCoronaOverviewBinding
-import com.tilikki.bnccapp.siagacovid.hotline.HotlineBottomDialogFragment
-import com.tilikki.bnccapp.siagacovid.lookup.LookupActivity
 import com.tilikki.bnccapp.siagacovid.model.CaseOverview
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
-import com.tilikki.bnccapp.siagacovid.worldstats.WorldStatisticsActivity
+import com.tilikki.bnccapp.siagacovid.view.hotline.HotlineBottomDialogFragment
+import com.tilikki.bnccapp.siagacovid.view.lookup.LookupActivity
+import com.tilikki.bnccapp.siagacovid.view.worldstats.WorldStatisticsActivity
 
 class OverviewActivity : AppCompatActivity() {
     private lateinit var viewModel: OverviewViewModel

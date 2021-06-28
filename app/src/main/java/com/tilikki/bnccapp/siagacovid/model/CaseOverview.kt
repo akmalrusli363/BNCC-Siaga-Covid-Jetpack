@@ -1,6 +1,6 @@
 package com.tilikki.bnccapp.siagacovid.model
 
-import com.tilikki.bnccapp.siagacovid.overview.netmodel.OverviewData
+import com.tilikki.bnccapp.siagacovid.view.overview.netmodel.OverviewData
 import java.util.*
 
 data class CaseOverview(

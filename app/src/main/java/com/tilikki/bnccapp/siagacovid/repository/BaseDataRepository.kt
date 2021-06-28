@@ -1,5 +1,5 @@
 package com.tilikki.bnccapp.siagacovid.repository
 
-interface CaseDataRepository {
+interface BaseDataRepository {
     fun getDataProviderName(): String
 }

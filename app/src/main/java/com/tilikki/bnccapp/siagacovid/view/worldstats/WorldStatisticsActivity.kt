@@ -56,7 +56,7 @@ class WorldStatisticsActivity : AppCompatActivity() {
             R.id.menuItemRefresh -> {
                 binding.bottomSheetCountryLookup.pbFetchLookup.visibility = View.VISIBLE
                 toggleFetchState(true)
-                fetchData()
+                viewModel.fetchData()
             }
             R.id.submenuSortByCountryName -> {
                 item.isChecked = !item.isChecked
@@ -100,17 +100,13 @@ class WorldStatisticsActivity : AppCompatActivity() {
                 LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             it.rvCountryLookupData.adapter = worldStatAdapter
         }
-        fetchData()
+        viewModel.fetchData()
     }
 
     private fun setupSearch(worldStatLookupAdapter: WorldStatLookupAdapter) {
         binding.bottomSheetCountryLookup.svCountryLookupSearch.setOnQueryTextListener(
             SearchQueryTextListener(worldStatLookupAdapter)
         )
-    }
-
-    private fun fetchData() {
-        viewModel.fetchData()
     }
 
     private fun startObserve() {
@@ -141,7 +137,7 @@ class WorldStatisticsActivity : AppCompatActivity() {
             tvTotalCaseCount.text = "${objectData.confirmedCase}"
             tvRecoveredCount.text = "${objectData.recoveredCase}"
             tvDeathCount.text = "${objectData.deathCase}"
-            tvPositiveCaseCount.text = "${objectData.activeCases()}"
+            tvActiveCaseCount.text = "${objectData.activeCases()}"
         }
     }
 
@@ -155,7 +151,7 @@ class WorldStatisticsActivity : AppCompatActivity() {
         binding.run {
             widgetWorldCaseSummary.run {
                 toggleFetchState(isFetching, tvTotalCaseCount, pbTotalCase)
-                toggleFetchState(isFetching, tvPositiveCaseCount, pbPositive)
+                toggleFetchState(isFetching, tvActiveCaseCount, pbActiveCase)
                 toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
                 toggleFetchState(isFetching, tvDeathCount, pbDeath)
             }
