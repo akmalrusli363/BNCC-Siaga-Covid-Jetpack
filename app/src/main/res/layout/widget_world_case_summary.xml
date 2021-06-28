@@ -64,7 +64,6 @@
         android:id="@+id/llActiveCaseCountBox"
         style="@style/SummaryFieldBox"
         android:backgroundTint="@color/confirmedColor"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/llRecoveredCountBox"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +102,6 @@
         android:id="@+id/llRecoveredCountBox"
         style="@style/SummaryFieldBox"
         android:backgroundTint="@color/recoveredColor"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/llDeathCountBox"
         app:layout_constraintStart_toEndOf="@+id/llActiveCaseCountBox"
         app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator">
@@ -141,7 +139,6 @@
         android:id="@+id/llDeathCountBox"
         style="@style/SummaryFieldBox"
         android:backgroundTint="@color/deathColor"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/llRecoveredCountBox"
         app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator">
@@ -174,5 +171,38 @@
             android:textAlignment="center"
             android:textColor="@color/colorAccentDark" />
     </LinearLayout>
+
+    <View
+        android:id="@+id/vStatisticSeparator2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llActiveCaseCountBox" />
+
+    <TextView
+        android:id="@+id/tvProvidedData"
+        style="@style/b2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/data_source_info"
+        android:textColor="@color/colorAccentDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator2" />
+
+    <TextView
+        android:id="@+id/tvLastUpdated"
+        style="@style/b3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/last_updated"
+        android:textColor="@color/colorAccentDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvProvidedData" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

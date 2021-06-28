@@ -19,7 +19,12 @@ class WorldStatViewModel : BaseViewModel() {
     val countryLookupData: LiveData<List<CountryLookupData>>
         get() = _countryLookupData
 
+    private var _dataSource: MutableLiveData<String> = MutableLiveData()
+    val dataSource: LiveData<String>
+        get() = _dataSource
+
     override fun fetchData() {
+        _dataSource.postValue(getDataSource())
         fetchData(worldStatRepository.getGlobalCovidSummary(), {
             mapReactiveResponseData(it) { data ->
                 _worldCaseOverview.postValue(data.global.toWorldCaseOverview())
@@ -28,5 +33,11 @@ class WorldStatViewModel : BaseViewModel() {
                 })
             }
         })
+    }
+
+    private fun getDataSource(): String {
+        val baseUrl = StringParser.parseDomain(worldStatRepository.getBaseUrl())
+        val baseProviderName = worldStatRepository.getDataProviderName()
+        return "Data source: $baseUrl ($baseProviderName)"
     }
 }

@@ -14,6 +14,7 @@ import com.tilikki.bnccapp.siagacovid.model.CountryLookupData
 import com.tilikki.bnccapp.siagacovid.model.WorldCaseOverview
 import com.tilikki.bnccapp.siagacovid.utils.AppEventLogging
 import com.tilikki.bnccapp.siagacovid.utils.SearchQueryTextListener
+import com.tilikki.bnccapp.siagacovid.utils.StringParser
 import com.tilikki.bnccapp.siagacovid.utils.ViewUtility
 
 class WorldStatisticsActivity : AppCompatActivity() {
@@ -116,6 +117,11 @@ class WorldStatisticsActivity : AppCompatActivity() {
         viewModel.countryLookupData.observe(this) {
             updateCountryData(it)
         }
+        viewModel.dataSource.observe(this) {
+            binding.widgetWorldCaseSummary.run {
+                tvProvidedData.text = it
+            }
+        }
         viewModel.successResponse.observe(this) {
             if (!it.success && it.error != null) {
                 showError(AppEventLogging.FETCH_FAILURE, it.error as Exception)
@@ -138,6 +144,8 @@ class WorldStatisticsActivity : AppCompatActivity() {
             tvRecoveredCount.text = "${objectData.recoveredCase}"
             tvDeathCount.text = "${objectData.deathCase}"
             tvActiveCaseCount.text = "${objectData.activeCases()}"
+            tvLastUpdated.text = getString(R.string.last_updated)
+                .replace("???", StringParser.formatDate(objectData.lastUpdated))
         }
     }
 
@@ -154,6 +162,8 @@ class WorldStatisticsActivity : AppCompatActivity() {
                 toggleFetchState(isFetching, tvActiveCaseCount, pbActiveCase)
                 toggleFetchState(isFetching, tvRecoveredCount, pbRecovered)
                 toggleFetchState(isFetching, tvDeathCount, pbDeath)
+                ViewUtility.setVisibility(tvProvidedData, !isFetching)
+                ViewUtility.setVisibility(tvLastUpdated, !isFetching)
             }
             binding.bottomSheetCountryLookup.run {
                 toggleFetchState(isFetching, rvCountryLookupData, pbFetchLookup)

@@ -23,6 +23,11 @@ object StringParser {
         return dateFormat.parse(str)!!
     }
 
+    fun parseDomain(url: String): String {
+        val regex = "^(\\w+://)?([\\w.:@]+)[/|?](.*)$"
+        return url.replace(Regex(regex), "$2")
+    }
+
     fun formatDate(date: Date): String {
         val dateFormat: DateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, Locale.UK)
         return dateFormat.format(date)
