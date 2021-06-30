@@ -22,7 +22,7 @@ class GlobalCovidRepositoryImpl : BaseRepository(), GlobalCovidRepository {
     }
 
     override fun getDataProviderName(): String {
-        return "Johns Hopkins CSSE"
+        return "Johns Hopkins University CSSE"
     }
 
     override fun getGlobalCovidSummary(): Observable<Response<GlobalCovidSummary>> {

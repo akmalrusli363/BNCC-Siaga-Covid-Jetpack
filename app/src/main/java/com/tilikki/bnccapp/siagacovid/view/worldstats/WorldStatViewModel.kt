@@ -38,6 +38,6 @@ class WorldStatViewModel : BaseViewModel() {
     private fun getDataSource(): String {
         val baseUrl = StringParser.parseDomain(worldStatRepository.getBaseUrl())
         val baseProviderName = worldStatRepository.getDataProviderName()
-        return "Data source: $baseUrl ($baseProviderName)"
+        return "Data source: $baseProviderName ($baseUrl)"
     }
 }
