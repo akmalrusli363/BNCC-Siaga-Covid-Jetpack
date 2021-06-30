@@ -71,6 +71,27 @@
     <string name="tips_3m_wear_mask">Mengenakan Masker</string>
     <string name="covid19_prevention_suggestions">Ayo #dirumahAja selagi anda tidak bepergian untuk kepentingan sangat mendesak</string>
 
+    <!-- Vaccination -->
+    <string name="vaccination">Vaccination</string>
+    <string name="vaccination_description">Learn more about COVID-19 vaccination in Indonesia</string>
+    <string name="national_vaccination_data">National Vaccination Data</string>
+    <string name="vaccination_group">Vaccination Group</string>
+    <string name="vaccination_target">Vaccination Target</string>
+    <string name="vaccination_target_total">Number of Participants</string>
+
+    <string name="first_dose">First dose</string>
+    <string name="second_dose">Second dose</string>
+
+    <string name="medical">Tenaga Medis</string>
+    <string name="public_service">Petugas Publik</string>
+    <string name="elders">Lansia</string>
+    <string name="general_public">Masyarakat Umum</string>
+
+    <string name="vaccination_data_provider_info">Vaccination data are provided from <a href="https://vaksin.kemkes.go.id/">vaksin.kemkes.go.id</a>
+        through supported vaccination API (cekdiri.id).
+        \n\nData updates/changes may occur at any time.
+    </string>
+
     <string-array name="sortLookup">
         <item>Positive Cases</item>
         <item>Recovered Cases</item>

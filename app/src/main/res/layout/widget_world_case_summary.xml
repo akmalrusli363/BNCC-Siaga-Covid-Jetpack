@@ -62,7 +62,7 @@
 
     <LinearLayout
         android:id="@+id/llActiveCaseCountBox"
-        style="@style/SummaryFieldBox"
+        style="@style/SummaryFieldBox.Grid"
         android:backgroundTint="@color/confirmedColor"
         app:layout_constraintEnd_toStartOf="@+id/llRecoveredCountBox"
         app:layout_constraintHorizontal_chainStyle="spread"
@@ -101,7 +101,7 @@
 
     <LinearLayout
         android:id="@+id/llRecoveredCountBox"
-        style="@style/SummaryFieldBox"
+        style="@style/SummaryFieldBox.Grid"
         android:backgroundTint="@color/recoveredColor"
         app:layout_constraintEnd_toStartOf="@+id/llDeathCountBox"
         app:layout_constraintStart_toEndOf="@+id/llActiveCaseCountBox"
@@ -139,7 +139,7 @@
 
     <LinearLayout
         android:id="@+id/llDeathCountBox"
-        style="@style/SummaryFieldBox"
+        style="@style/SummaryFieldBox.Grid"
         android:backgroundTint="@color/deathColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/llRecoveredCountBox"

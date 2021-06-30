@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginVertical="16dp"
+    app:cardBackgroundColor="@color/offWhite"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tvVaccinationGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="8dp"
+            android:text="@string/vaccination_group"
+            android:textAlignment="center"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorAccent" />
+
+        <ProgressBar
+            android:id="@+id/pbVaccinationProgress"
+            style="@style/MultiProgressBar"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginBottom="4dp"
+            tools:max="100"
+            tools:progress="40"
+            tools:secondaryProgress="70" />
+
+        <LinearLayout
+            android:id="@+id/llVaccinationTarget"
+            style="@style/SummaryFieldBox"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/red"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvGroupTarget"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textAppearance="@style/h1"
+                android:textColor="@color/colorAccentDark"
+                tools:text="456789012" />
+
+            <TextView
+                android:id="@+id/tvGroupTargetLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/vaccination_target_total"
+                android:textAlignment="center"
+                android:textAppearance="@style/b1"
+                android:textColor="@color/colorAccentDark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llTotalVaccinationDoses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/llFirstDose"
+                style="@style/SummaryFieldBox.Grid"
+                android:backgroundTint="@color/red"
+                android:alpha="0.8"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvFirstDose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/h3"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="306789072" />
+
+                <TextView
+                    android:id="@+id/tvFirstDosePercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/h6"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="(55.6%)" />
+
+                <TextView
+                    android:id="@+id/tvFirstDoseLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/first_dose"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/b1"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llSecondDose"
+                style="@style/SummaryFieldBox.Grid"
+                android:backgroundTint="@color/red"
+                android:alpha="0.8"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvSecondDose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/h3"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="256789023" />
+
+                <TextView
+                    android:id="@+id/tvSecondDosePercentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/h6"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="(25.6%)" />
+
+                <TextView
+                    android:id="@+id/tvSecondDoseLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/second_dose"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/b1"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

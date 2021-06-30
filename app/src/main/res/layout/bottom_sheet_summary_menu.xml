@@ -259,6 +259,72 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clVaccinationButton"
+                style="@style/corona_access_menu"
+                android:layout_marginVertical="8dp"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="16dp">
+
+                <ImageView
+                    android:id="@+id/ivMetaIconVaccine"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/world_stats_icon"
+                    android:src="@drawable/ic_vaccine"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_vaccine"
+                    tools:layout_marginHorizontal="12dp" />
+
+                <TextView
+                    android:id="@+id/tvMetaTitleVaccine"
+                    style="@style/h5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/vaccination"
+                    android:textColor="@color/indigo2"
+                    app:layout_constraintBottom_toTopOf="@id/tvMetaDescriptionVaccine"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowVaccine"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconVaccine"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvMetaDescriptionVaccine"
+                    style="@style/b3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/vaccination_description"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/ivGotoArrowVaccine"
+                    app:layout_constraintHorizontal_bias="0"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconVaccine"
+                    app:layout_constraintTop_toBottomOf="@id/tvMetaTitleVaccine" />
+
+
+                <ImageView
+                    android:id="@+id/ivGotoArrowVaccine"
+                    android:layout_width="32dp"
+                    android:layout_height="64dp"
+                    android:layout_marginStart="8dp"
+                    android:contentDescription="@string/goto_world_stats"
+                    android:src="@drawable/ic_right_arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1"
+                    app:layout_constraintStart_toEndOf="@id/ivMetaIconVaccine"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="@color/indigo2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clHotlineButton"
                 style="@style/corona_access_menu"
                 android:layout_marginVertical="8dp"
