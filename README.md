@@ -6,6 +6,8 @@
 
 A repository for an app made during BNCC x Gojek Academy demonstrated using Kotlin, which shows data about COVID-19 statistics in Indonesia.
 
+> **NOTE:** The `jetpack` branch is a group of branches where the app developed under Android Jetpack in help to follow best practices, reduces boilerplate, clean and better maintainability of codes. This includes applied MVVM Architecture and usage of Retrofit, Moshi, and ReactiveX instead of plain OkHttp call and manual JSON parsing in parsing API network calls.
+
 > **INFO:** This branch contains **beyond statistical data** provided for COVID-19 statistics, especially for world data and additional COVID-19 statistics in Indonesia which contains more detailed data (rates in percentage, specimens, and historical data) which divided into parts of experimental branches and may added or removed in that branch before applied into advanced version of BNCC Siaga COVID19 App.
 
 ## Parts & Features
