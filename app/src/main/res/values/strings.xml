@@ -53,7 +53,7 @@
     <string name="author">Created by @akmalrusli363 as part of COVID-19 mitigation in Indonesia.</string>
     <string name="part_of">Powered by BNCC x GoAcademy</string>
     <string name="bncc_x_goacademy">BNCC x GoAcademy</string>
-    <string name="version">Version %s (public-api)</string>
+    <string name="version">Version %s (public-api + kawalcorona)</string>
     <string name="jetpack_version">Jetpack Version</string>
 
     <!-- Misc -->
