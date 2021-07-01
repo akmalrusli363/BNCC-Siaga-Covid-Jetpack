@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".siagacovid.view.lookup.LookupActivity">
+    tools:context="com.tilikki.siagacovid.view.lookup.LookupActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/llRegionBar"

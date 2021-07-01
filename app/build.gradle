@@ -7,11 +7,11 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.tilikki.bnccapp"
+        applicationId "com.tilikki.siagacovid"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 15
-        versionName "1.1.5"
+        versionCode 111
+        versionName "1.3.1"
         resValue "string", "app_name", "@string/app_name_main"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -19,6 +19,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 
     flavorDimensions "default"
@@ -28,8 +29,6 @@ android {
         }
         develop {
             dimension "default"
-            versionCode 110
-            versionName "1.3.0"
             applicationIdSuffix ".dev"
             resValue "string", "app_name", "@string/app_name_alt"
         }
