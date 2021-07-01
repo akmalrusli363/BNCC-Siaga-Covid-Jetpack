@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tilikki.bnccapp">
+    package="com.tilikki.siagacovid">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".siagacovid.overview.OverviewActivity">
+            android:name=".overview.OverviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,14 +24,8 @@
         </activity>
 
         <activity
-            android:name="com.tilikki.bnccapp.siagacovid.lookup.LookupActivity"
+            android:name=".lookup.LookupActivity"
             android:theme="@style/AppTheme.Light" />
-
-        <activity
-            android:name=".demo.DemoAppActivity"
-            android:theme="@style/AppTheme.WithActionBar"
-            android:label="BNCC App Demo">
-        </activity>
     </application>
 
 </manifest>

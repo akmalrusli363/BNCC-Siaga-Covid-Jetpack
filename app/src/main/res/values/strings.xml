@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">BNCC Siaga COVID-19</string>
-    <string name="app_name_alt">Siaga COVID-19</string>
+    <string name="app_name">Siaga COVID-19</string>
 
     <!--
     This string is used for square devices and overridden by hello_world in
@@ -40,11 +39,12 @@
     <string name="close_hotline_dialog">Close hotline dialog</string>
 
     <!-- About App -->
-    <string name="copyright">Copyright © 2020</string>
+    <string name="copyright">Copyright © 2020–2021</string>
     <string name="author">Created by @akmalrusli363 as part of COVID-19 mitigation in Indonesia.</string>
     <string name="part_of">Powered by BNCC x GoAcademy</string>
     <string name="bncc_x_goacademy">BNCC x GoAcademy</string>
-    <string name="version">Version 1.1.4 (public-api)</string>
+    <string name="version">Version %s (public-api)</string>
+    <string name="jetpack_version">Jetpack Version</string>
 
     <!-- Misc -->
     <string name="bottom_sheet_grapple">Bottom sheet swipe to expand</string>
