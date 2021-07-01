@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.lookup
+package com.tilikki.siagacovid.view.lookup
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

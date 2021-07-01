@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid
+package com.tilikki.siagacovid.view
 
 import android.util.Log
 import androidx.lifecycle.LiveData

@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.overview
+package com.tilikki.siagacovid.view.overview
 
 import android.content.Intent
 import android.content.res.Resources
@@ -9,14 +9,14 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.tilikki.siagacovid.R
-import com.tilikki.siagacovid.about.AboutAppDialog
 import com.tilikki.siagacovid.databinding.ActivityCoronaOverviewBinding
-import com.tilikki.siagacovid.hotline.HotlineBottomDialogFragment
-import com.tilikki.siagacovid.lookup.LookupActivity
 import com.tilikki.siagacovid.model.CaseOverview
 import com.tilikki.siagacovid.utils.AppEventLogging
 import com.tilikki.siagacovid.utils.StringParser
 import com.tilikki.siagacovid.utils.ViewUtility
+import com.tilikki.siagacovid.view.about.AboutAppDialog
+import com.tilikki.siagacovid.view.hotline.HotlineBottomDialogFragment
+import com.tilikki.siagacovid.view.lookup.LookupActivity
 
 class OverviewActivity : AppCompatActivity() {
     private lateinit var viewModel: OverviewViewModel

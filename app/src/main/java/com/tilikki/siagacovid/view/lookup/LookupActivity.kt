@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.lookup
+package com.tilikki.siagacovid.view.lookup
 
 import android.os.Bundle
 import android.view.View
@@ -8,11 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.tilikki.siagacovid.R
 import com.tilikki.siagacovid.databinding.ActivityLookupBinding
-import com.tilikki.siagacovid.lookup.netmodel.RegionData
 import com.tilikki.siagacovid.model.RegionLookupData
 import com.tilikki.siagacovid.utils.AppEventLogging
 import com.tilikki.siagacovid.utils.SearchQueryTextListener
 import com.tilikki.siagacovid.utils.StringParser
+import com.tilikki.siagacovid.view.lookup.netmodel.RegionData
 import java.util.*
 
 class LookupActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.lookup.netmodel
+package com.tilikki.siagacovid.view.lookup.netmodel
 
 import com.squareup.moshi.Json
 import java.util.*

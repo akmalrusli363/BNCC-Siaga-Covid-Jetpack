@@ -1,9 +1,9 @@
-package com.tilikki.siagacovid.hotline
+package com.tilikki.siagacovid.view.hotline
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tilikki.siagacovid.BaseViewModel
 import com.tilikki.siagacovid.repository.CovidHotlineRepositoryImpl
+import com.tilikki.siagacovid.view.BaseViewModel
 
 class HotlineViewModel : BaseViewModel() {
     private var _hotlineList: MutableLiveData<List<HotlineData>> = MutableLiveData()

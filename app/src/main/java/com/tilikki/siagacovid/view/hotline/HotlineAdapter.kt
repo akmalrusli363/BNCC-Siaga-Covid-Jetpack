@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.hotline
+package com.tilikki.siagacovid.view.hotline
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

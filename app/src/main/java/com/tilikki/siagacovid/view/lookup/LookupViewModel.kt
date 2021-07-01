@@ -1,10 +1,10 @@
-package com.tilikki.siagacovid.lookup
+package com.tilikki.siagacovid.view.lookup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tilikki.siagacovid.BaseViewModel
 import com.tilikki.siagacovid.model.RegionLookupData
 import com.tilikki.siagacovid.repository.CovidGovernmentRepositoryImpl
+import com.tilikki.siagacovid.view.BaseViewModel
 import java.util.*
 
 class LookupViewModel : BaseViewModel() {

@@ -1,8 +1,8 @@
 package com.tilikki.siagacovid.repository
 
-import com.tilikki.siagacovid.hotline.HotlineData
 import com.tilikki.siagacovid.network.CovidHotlineApiInterface
 import com.tilikki.siagacovid.network.NetworkConstants
+import com.tilikki.siagacovid.view.hotline.HotlineData
 import io.reactivex.Observable
 import retrofit2.Response
 

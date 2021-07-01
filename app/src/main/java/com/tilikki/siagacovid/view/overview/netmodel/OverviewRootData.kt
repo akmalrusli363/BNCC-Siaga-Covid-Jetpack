@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.overview.netmodel
+package com.tilikki.siagacovid.view.overview.netmodel
 
 import com.squareup.moshi.Json
 

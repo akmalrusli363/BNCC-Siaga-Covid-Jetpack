@@ -1,10 +1,10 @@
-package com.tilikki.siagacovid.overview
+package com.tilikki.siagacovid.view.overview
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.tilikki.siagacovid.BaseViewModel
 import com.tilikki.siagacovid.model.CaseOverview
 import com.tilikki.siagacovid.repository.CovidGovernmentRepositoryImpl
+import com.tilikki.siagacovid.view.BaseViewModel
 
 class OverviewViewModel : BaseViewModel() {
     private var _overviewData: MutableLiveData<CaseOverview> = MutableLiveData()

@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".overview.OverviewActivity">
+            android:name=".view.overview.OverviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name=".lookup.LookupActivity"
+            android:name=".view.lookup.LookupActivity"
             android:theme="@style/AppTheme.Light" />
     </application>
 

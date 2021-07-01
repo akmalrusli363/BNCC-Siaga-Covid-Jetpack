@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.about
+package com.tilikki.siagacovid.view.about
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.lookup
+package com.tilikki.siagacovid.view.lookup
 
 import androidx.recyclerview.widget.RecyclerView
 import com.tilikki.siagacovid.databinding.ItemLookupBinding

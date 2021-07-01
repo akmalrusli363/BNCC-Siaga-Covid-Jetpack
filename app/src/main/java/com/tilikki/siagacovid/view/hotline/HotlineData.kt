@@ -1,4 +1,4 @@
-package com.tilikki.siagacovid.hotline
+package com.tilikki.siagacovid.view.hotline
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
