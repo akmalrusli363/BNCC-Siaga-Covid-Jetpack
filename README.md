@@ -1,12 +1,15 @@
-# BNCC-Academy-Kotlin-Demo
+# BNCC Siaga COVID-19 (Jetpack Edition)
 
-> Alias **BNCC Siaga COVID-19** or simplified as **Siaga COVID-19**
+> For original project of **BNCC Siaga COVID-19**, see [akmalrusli363/BNCC-Academy-Kotlin-Demo](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo) for original project development, pure OkHttp and MVP architecture.
 
 ![BNCC Siaga Project Banner](project-banner.png)
 
 A repository for an app made during BNCC x Gojek Academy demonstrated using Kotlin, which shows data about COVID-19 statistics in Indonesia.
 
-> **INFO:** This branch is **different** from `master` branch because this branch serves data from [data.covid19.go.id](https://data.covid19.go.id) in which serves daily cases for national and regional cases, and served officially from government supported (Satgas COVID-19) committee.
+This repository is a **forked & Android Jetpack version** of [BNCC x Gojek Academy App: Siaga COVID19](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo) where the app was rebuilt under Android Jetpack in help to follow best practices, reduces boilerplate, clean and better maintainability of codes. This includes applied MVVM Architecture and usage of Retrofit, Moshi, and ReactiveX instead of plain OkHttp call and manual JSON parsing in parsing API network calls.
+
+In forked/spin-off version of **BNCC Siaga COVID-19**, main API source are provided from `data.covid19.go.id` by default. Also, additional features from the app are published in this repository for advanced development of **Siaga COVID-19** app, especially for vaccination, testing, statistics, and more. 
+
 
 ## Parts & Features
 
@@ -35,7 +38,7 @@ This feature will show a list of phone number that you can reach out if you are 
 
 This feature will show the number of coronavirus cases around Indonesia. You can search for your region for total cases, recovered cases, and death cases in your region (for example: DKI Jakarta, South Sulawesi, West Java, Bali, etc).
 
-In [`dev/public_api-sorting`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api-sorting), you can sort for total cases, recovered cases, death cases, and their daily cases too. 
+In [`dev/public_api-sorting`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api-sorting), you can sort for total cases, recovered cases, death cases, and their daily cases too.
 
 
 ## The COVID-19 API URL
@@ -43,13 +46,12 @@ This application uses COVID-19 data API supplied from [data.covid19.go.id](https
 
 Summarily, the list of API we've provided for this app:
 
-| Feature | Data APIs URL | Branch |
-| --- | --- | :---: |
-| National Data Overview | https://api.kawalcorona.com/indonesia/ | `master` |
-|  | https://data.covid19.go.id/public/api/update.json | `dev/public_api` |
-| Regional Data Overview | https://api.kawalcorona.com/indonesia/provinsi | `master` |
-|  | https://data.covid19.go.id/public/api/prov.json | `dev/public_api` |
-| Hotline | https://bncc-corona-versus.firebaseio.com/v1/hotlines.json | any |
+| Feature | Data APIs URL | Data Provider | Branch |
+| --- | --- | :---: | :---: |
+| National Data Overview | https://data.covid19.go.id/public/api/update.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | any |
+| Regional Data Overview | https://data.covid19.go.id/public/api/prov.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | any |
+|  | https://api.kawalcorona.com/indonesia/provinsi | [BNPB Indonesia](https://bnpb-inacovid19.hub.arcgis.com/) | `develop` |
+| Hotline | https://bncc-corona-versus.firebaseio.com/v1/hotlines.json | ? | any |
 
 
 ## Image/Asset Credits
