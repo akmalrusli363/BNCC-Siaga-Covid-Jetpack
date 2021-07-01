@@ -16,7 +16,7 @@
         android:id="@+id/llTotalCaseCount"
         style="@style/SummaryFieldBox.Heading"
         android:backgroundTint="@color/indigo"
-        app:layout_constraintBottom_toTopOf="@id/vStatisticSeparator"
+        app:layout_constraintBottom_toTopOf="@id/spacer1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -51,11 +51,11 @@
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/vStatisticSeparator"
+    <Space
+        android:id="@+id/spacer1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_height="4dp"
+        app:layout_constraintBottom_toTopOf="@id/llRecoveredCountBox"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llTotalCaseCount" />
@@ -67,7 +67,8 @@
         app:layout_constraintEnd_toStartOf="@+id/llRecoveredCountBox"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator">
+        app:layout_constraintBottom_toTopOf="@id/spacer2"
+        app:layout_constraintTop_toBottomOf="@id/spacer1">
 
         <ProgressBar
             android:id="@+id/pbActiveCase"
@@ -104,7 +105,8 @@
         android:backgroundTint="@color/recoveredColor"
         app:layout_constraintEnd_toStartOf="@+id/llDeathCountBox"
         app:layout_constraintStart_toEndOf="@+id/llActiveCaseCountBox"
-        app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator">
+        app:layout_constraintBottom_toTopOf="@id/spacer2"
+        app:layout_constraintTop_toBottomOf="@id/spacer1">
 
         <ProgressBar
             android:id="@+id/pbRecovered"
@@ -141,7 +143,8 @@
         android:backgroundTint="@color/deathColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/llRecoveredCountBox"
-        app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator">
+        app:layout_constraintBottom_toTopOf="@id/spacer2"
+        app:layout_constraintTop_toBottomOf="@id/spacer1">
 
         <ProgressBar
             android:id="@+id/pbDeath"
@@ -172,14 +175,13 @@
             android:textColor="@color/colorAccentDark" />
     </LinearLayout>
 
-    <View
-        android:id="@+id/vStatisticSeparator2"
+    <Space
+        android:id="@+id/spacer2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
+        android:layout_height="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llActiveCaseCountBox" />
+        app:layout_constraintBottom_toTopOf="@id/tvProvidedData"/>
 
     <TextView
         android:id="@+id/tvProvidedData"
@@ -191,7 +193,7 @@
         android:textColor="@color/colorAccentDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vStatisticSeparator2" />
+        app:layout_constraintTop_toBottomOf="@id/spacer2" />
 
     <TextView
         android:id="@+id/tvLastUpdated"
