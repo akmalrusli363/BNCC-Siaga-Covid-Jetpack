@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/colorPrimaryDark"
-    tools:context="com.tilikki.siagacovid.view.overview.OverviewActivity">
+    tools:context=".view.overview.OverviewActivity">
 
     <LinearLayout
         android:id="@+id/llCaseSummary"
