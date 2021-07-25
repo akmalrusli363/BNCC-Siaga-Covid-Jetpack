@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".view.summarydetails.fragments.TestingTracingFragment">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/heading_testing_and_tracing"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:id="@+id/llSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llTestSample"
+                style="@style/SummaryFieldBox"
+                android:backgroundTint="@color/indigo2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbTestSample"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvTestSample"
+                    style="@style/h3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="20600600" />
+
+                <TextView
+                    android:id="@+id/tvDailyTestSample"
+                    style="@style/h6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvTestSampleLabel"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/test_samples"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPeopleTested"
+                style="@style/SummaryFieldBox"
+                android:backgroundTint="@color/indigo2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbPeopleTested"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvPeopleTested"
+                    style="@style/h3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="20600600" />
+
+                <TextView
+                    android:id="@+id/tvDailyPeopleTested"
+                    style="@style/h6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvPeopleTestedLabel"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/people_tested"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/people_tested"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:id="@+id/llTracing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llPeoplePCRTested"
+                style="@style/SummaryFieldBox.Compact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbPeoplePCRTested"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvPeoplePCRTested"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="16400430" />
+
+                <TextView
+                    android:id="@+id/tvDailyPeoplePCRTested"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvPeoplePCRTestedLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pcr_tcm_testing"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPeopleAntigenTested"
+                style="@style/SummaryFieldBox.Compact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbPeopleAntigenTested"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvPeopleAntigenTested"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="3600170" />
+
+                <TextView
+                    android:id="@+id/tvDailyPeopleAntigenTested"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvPeopleAntigenTestedLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/antigen_test"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/test_samples"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:id="@+id/llTesting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llPCRSample"
+                style="@style/SummaryFieldBox.Compact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbPCRSample"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvPCRSample"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="16400430" />
+
+                <TextView
+                    android:id="@+id/tvDailyPCRSample"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvPCRSampleLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pcr_tcm_testing"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llAntigenSample"
+                style="@style/SummaryFieldBox.Compact"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbAntigenSample"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvAntigenSample"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="3600170" />
+
+                <TextView
+                    android:id="@+id/tvDailyAntigenSample"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvAntigenSampleLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/antigen_test"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

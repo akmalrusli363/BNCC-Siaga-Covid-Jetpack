@@ -183,6 +183,14 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <Button
+                android:id="@+id/btnSeeDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                style="@style/AppTheme.Widget.Button"
+                android:text="@string/see_details" />
+
             <TextView
                 android:id="@+id/tvKnowMore"
                 style="@style/h4"

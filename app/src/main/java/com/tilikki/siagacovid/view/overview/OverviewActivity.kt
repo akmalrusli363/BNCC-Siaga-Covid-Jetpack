@@ -17,6 +17,7 @@ import com.tilikki.siagacovid.utils.ViewUtility
 import com.tilikki.siagacovid.view.about.AboutAppDialog
 import com.tilikki.siagacovid.view.hotline.HotlineBottomDialogFragment
 import com.tilikki.siagacovid.view.lookup.LookupActivity
+import com.tilikki.siagacovid.view.summarydetails.CaseSummaryDetailActivity
 import com.tilikki.siagacovid.view.worldstats.WorldStatisticsActivity
 
 class OverviewActivity : AppCompatActivity() {
@@ -56,6 +57,10 @@ class OverviewActivity : AppCompatActivity() {
                 clLookupButton.setOnClickListener { gotoLookupActivity() }
                 clHotlineButton.setOnClickListener { gotoHotlineActivity() }
                 clWorldStatsButton.setOnClickListener { gotoWorldStatActivity() }
+                btnSeeDetails.setOnClickListener {
+                    val intent = Intent(this@OverviewActivity, CaseSummaryDetailActivity::class.java)
+                    startActivity(intent)
+                }
             }
             ibInfoIcon.setOnClickListener { openAboutDialog() }
             ibReloadIcon.setOnClickListener { fetchData() }

@@ -16,9 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-
         <activity
-            android:name=".view.overview.OverviewActivity">
+            android:name=".view.summarydetails.CaseSummaryDetailActivity"
+            android:theme="@style/AppTheme.Light" />
+        <activity android:name=".view.overview.OverviewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

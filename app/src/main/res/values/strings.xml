@@ -79,4 +79,27 @@
         <item>Daily Recovered Cases</item>
         <item>Daily Death Cases</item>
     </string-array>
+
+    <string name="title_home">Home</string>
+    <string name="title_covid_case">COVID-19 Cases</string>
+    <string name="bottom_title_covid_case">COVID-19 Cases</string>
+    <string name="title_vaccination_and_test">Vaccine &amp; Test</string>
+    <string name="bottom_title_vaccination">Vaccine</string>
+    <string name="title_covid_testing">COVID-19 Testing</string>
+    <string name="bottom_title_covid_testing">Testing</string>
+    <string name="title_covid_detail_overview">COVID-19 Overview</string>
+
+    <string name="see_details">See details</string>
+
+    <string name="pcr_tcm_testing">PCR + TCM</string>
+    <string name="antigen_test">Antigen</string>
+    <string name="people_tested">People Tested</string>
+    <string name="test_samples">Samples</string>
+    <string name="first_dose">First Dose</string>
+    <string name="second_dose">Full Vaccinated</string>
+
+    <string name="heading_total_case">Total Cases</string>
+    <string name="heading_vaccination">Vaccination</string>
+    <string name="heading_testing_and_tracing">Testing &amp; Tracing</string>
+    <string name="heading_tracing_overview">Testing &amp; Tracing Overview</string>
 </resources>

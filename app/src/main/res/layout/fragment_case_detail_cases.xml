@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".view.summarydetails.fragments.CaseDataFragment">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/heading_total_case"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clCaseCountBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="8dp">
+
+            <LinearLayout
+                android:id="@+id/llTotalCaseCount"
+                style="@style/SummaryFieldBox.Heading"
+                app:layout_constraintBottom_toTopOf="@id/spacer1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ProgressBar
+                    android:id="@+id/pbTotalCase"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/colorAccentDark"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvTotalCaseCount"
+                    style="@style/h1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="15000000" />
+
+                <TextView
+                    android:id="@+id/tvDailyConfirmedCaseCount"
+                    style="@style/b1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+15000)" />
+
+                <TextView
+                    android:id="@+id/tvTotalCaseCountLabel"
+                    style="@style/b1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/total_cases"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <Space
+                android:id="@+id/spacer1"
+                android:layout_width="wrap_content"
+                android:layout_height="4dp"
+                app:layout_constraintBottom_toTopOf="@id/llRecoveredCount"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llTotalCaseCount" />
+
+            <LinearLayout
+                android:id="@+id/llActiveCaseCount"
+                style="@style/SummaryFieldBox.Square"
+                android:backgroundTint="@color/confirmedColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/llRecoveredCount"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/spacer1">
+
+                <ProgressBar
+                    android:id="@+id/pbPositive"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvPositiveCount"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="136977" />
+
+                <TextView
+                    android:id="@+id/tvDailyPositiveCount"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+6077)" />
+
+                <TextView
+                    android:id="@+id/tvPositiveCountLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/positive"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRecoveredCount"
+                style="@style/SummaryFieldBox.Square"
+                android:backgroundTint="@color/recoveredColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/llDeathCountBox"
+                app:layout_constraintStart_toEndOf="@+id/llActiveCaseCount"
+                app:layout_constraintTop_toBottomOf="@id/spacer1">
+
+                <ProgressBar
+                    android:id="@+id/pbRecovered"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvRecoveredCount"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="1245101" />
+
+                <TextView
+                    android:id="@+id/tvDailyRecoveredCount"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+12977)" />
+
+                <TextView
+                    android:id="@+id/tvRecoveredCountLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recovered"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDeathCountBox"
+                style="@style/SummaryFieldBox.Square"
+                android:backgroundTint="@color/deathColor"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/llRecoveredCount"
+                app:layout_constraintTop_toBottomOf="@id/spacer1">
+
+                <ProgressBar
+                    android:id="@+id/pbDeath"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvDeathCount"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="14143" />
+
+                <TextView
+                    android:id="@+id/tvDailyDeathCount"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvDeathCountLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/death"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/case_summary_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.tilikki.siagacovid.view.summarydetails.fragments.CaseOverviewFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_case_detail_home" >
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_case_details"
+        android:name="com.tilikki.siagacovid.view.summarydetails.fragments.CaseDataFragment"
+        android:label="@string/title_covid_case"
+        tools:layout="@layout/fragment_case_detail_cases" />
+
+    <fragment
+        android:id="@+id/navigation_testing_and_tracing"
+        android:name="com.tilikki.siagacovid.view.summarydetails.fragments.TestingTracingFragment"
+        android:label="@string/title_covid_testing"
+        tools:layout="@layout/fragment_case_detail_testing_tracing" />
+
+    <fragment
+        android:id="@+id/navigation_vaccination"
+        android:name="com.tilikki.siagacovid.view.summarydetails.fragments.VaccineFragment"
+        android:label="@string/title_vaccination_and_test"
+        tools:layout="@layout/fragment_case_detail_vaccine" />
+</navigation>

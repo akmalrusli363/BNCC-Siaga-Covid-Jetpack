@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:hapticFeedbackEnabled="true"
-                android:theme="@style/AppToolBar"
+                android:theme="@style/AppToolBar.Pure"
                 app:contentInsetEnd="16dp"
                 app:contentInsetEndWithActions="16dp"
                 app:contentInsetStart="16dp"

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".view.summarydetails.fragments.VaccineFragment">
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/heading_vaccination"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <LinearLayout
+            android:id="@+id/llVaccination"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/llFirstDose"
+                style="@style/SummaryFieldBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/teal"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbFirstDose"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvFirstDose"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="20600600" />
+
+                <TextView
+                    android:id="@+id/tvDailyFirstDose"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvFirstDoseLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/first_dose"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llSecondDose"
+                style="@style/SummaryFieldBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/green"
+                android:orientation="vertical">
+
+                <ProgressBar
+                    android:id="@+id/pbSecondDose"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/white"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvSecondDose"
+                    style="@style/h4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="16400430" />
+
+                <TextView
+                    android:id="@+id/tvDailySecondDose"
+                    style="@style/b1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/loading"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark"
+                    android:textStyle="italic|bold"
+                    tools:text="(+107)" />
+
+                <TextView
+                    android:id="@+id/tvSecondDoseLabel"
+                    style="@style/b2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/second_dose"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

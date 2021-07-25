@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_24dp"
+        android:title="@string/title_home" />
+
+    <item
+        android:id="@+id/navigation_case_details"
+        android:icon="@drawable/ic_coronavirus_24"
+        android:title="@string/bottom_title_covid_case" />
+
+    <item
+        android:id="@+id/navigation_testing_and_tracing"
+        android:icon="@drawable/ic_covid_tracing_24"
+        android:title="@string/bottom_title_covid_testing" />
+
+    <item
+        android:id="@+id/navigation_vaccination"
+        android:icon="@drawable/ic_vaccines_24"
+        android:title="@string/bottom_title_vaccination" />
+
+</menu>
