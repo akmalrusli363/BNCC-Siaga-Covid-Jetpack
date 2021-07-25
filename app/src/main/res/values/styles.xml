@@ -168,6 +168,7 @@
     <style name="SummaryFieldBox.Heading" parent="SummaryFieldBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/shape_gray_round_box</item>
+        <item name="android:backgroundTint">@color/indigo</item>
     </style>
 
     <style name="SummaryFieldBox.Square" parent="SummaryFieldBox">
