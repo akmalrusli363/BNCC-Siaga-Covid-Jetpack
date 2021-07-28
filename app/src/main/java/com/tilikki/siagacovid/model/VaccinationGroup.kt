@@ -8,5 +8,6 @@ enum class VaccinationGroup(@StringRes val groupName: Int, @ColorRes val color: 
     MEDICAL(R.string.medical, R.color.red),
     PUBLIC_SERVICE(R.string.public_service, R.color.green),
     ELDERS(R.string.elders, R.color.yellow),
-    GENERAL_PERSON(R.string.general_public, R.color.teal)
+    GENERAL_GROUP(R.string.general_public, R.color.teal),
+    TEENAGERS(R.string.general_teenagers, R.color.pink)
 }

@@ -86,6 +86,7 @@
     <string name="public_service">Petugas Publik</string>
     <string name="elders">Lansia</string>
     <string name="general_public">Masyarakat Umum</string>
+    <string name="general_teenagers">Kelompok 12–17 Tahun</string>
 
     <string name="vaccination_data_provider_info">Vaccination data are provided from <a href="https://vaksin.kemkes.go.id/">vaksin.kemkes.go.id</a>
         through supported vaccination API (cekdiri.id).

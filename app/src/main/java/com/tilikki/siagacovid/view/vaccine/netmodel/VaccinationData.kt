@@ -12,6 +12,8 @@ data class VaccinationData(
     @Json(name = "sasaran_vaksinasi_sdmk") val medicalGroupTarget: Int,
     @Json(name = "sasaran_vaksinasi_petugas_publik") val publicServiceGroupTarget: Int,
     @Json(name = "sasaran_vaksinasi_lansia") val elderGroupTarget: Int,
+    @Json(name = "sasaran_vaksinasi_masyarakat_umum") val generalGroupTarget: Int?,
+    @Json(name = "sasaran_vaksinasi_kelompok_1217") val teenagerGroupTarget: Int?,
     @Json(name = "vaksinasi1") val firstDose: Int,
     @Json(name = "vaksinasi2") val secondDose: Int,
     @Json(name = "tahapan_vaksinasi") val vaccinationStage: VaccinationStage,
@@ -21,6 +23,8 @@ data class VaccinationData(
         @Json(name= "sdm_kesehatan") val medical: VaccinationStageDetail,
         @Json(name= "petugas_publik") val publicService: VaccinationStageDetail,
         @Json(name= "lansia") val elders: VaccinationStageDetail,
+        @Json(name= "masyarakat_umum") val generalGroup: VaccinationStageDetail?,
+        @Json(name= "kelompok_usia_12_17") val teenagers: VaccinationStageDetail?,
     )
 
     data class VaccinationStageDetail(
@@ -37,10 +41,14 @@ data class VaccinationData(
         @Json(name = "petugas_publik_vaksinasi2") val publicServiceSecondDose: String,
         @Json(name = "lansia_vaksinasi1") val eldersFirstDose: String,
         @Json(name = "lansia_vaksinasi2") val eldersSecondDose: String,
+        @Json(name = "masyarakat_umum_vaksinasi1") val generalGroupFirstDose: String?,
+        @Json(name = "masyarakat_umum_vaksinasi2") val generalGroupSecondDose: String?,
+        @Json(name = "kelompok_usia_12_17_vaksinasi1") val teenagersFirstDose: String?,
+        @Json(name = "kelompok_usia_12_17_vaksinasi2") val teenagersSecondDose: String?,
     )
 
     fun toVaccinationOverview(): VaccinationOverview {
-        val vaccinationStages: Map<VaccinationGroup, VaccinationDetail> = mapOf(
+        val vaccinationStages: MutableMap<VaccinationGroup, VaccinationDetail> = mutableMapOf(
             Pair(VaccinationGroup.MEDICAL, VaccinationDetail(
                 group = VaccinationGroup.MEDICAL,
                 target = medicalGroupTarget,
@@ -65,7 +73,28 @@ data class VaccinationData(
                 firstDosePercentage = coverage.eldersFirstDose,
                 secondDosePercentage = coverage.eldersSecondDose,
             )),
-        )
+        ).apply {
+            vaccinationStage.generalGroup?.let {
+                put(VaccinationGroup.GENERAL_GROUP, VaccinationDetail(
+                    group = VaccinationGroup.GENERAL_GROUP,
+                    target = generalGroupTarget!!,
+                    firstDose = vaccinationStage.generalGroup.firstDose,
+                    secondDose = vaccinationStage.generalGroup.secondDose,
+                    firstDosePercentage = coverage.generalGroupFirstDose!!,
+                    secondDosePercentage = coverage.generalGroupSecondDose!!,
+                ))
+            }
+            vaccinationStage.teenagers?.let {
+                put(VaccinationGroup.TEENAGERS, VaccinationDetail(
+                    group = VaccinationGroup.TEENAGERS,
+                    target = teenagerGroupTarget!!,
+                    firstDose = vaccinationStage.teenagers.firstDose,
+                    secondDose = vaccinationStage.teenagers.secondDose,
+                    firstDosePercentage = coverage.teenagersFirstDose!!,
+                    secondDosePercentage = coverage.teenagersSecondDose!!,
+                ))
+            }
+        }
         return VaccinationOverview(
             date = date,
             targetVaccination = targetVaccination,
