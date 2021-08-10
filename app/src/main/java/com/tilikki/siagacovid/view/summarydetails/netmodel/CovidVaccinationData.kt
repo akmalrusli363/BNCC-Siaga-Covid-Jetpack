@@ -3,10 +3,12 @@ package com.tilikki.siagacovid.view.summarydetails.netmodel
 import com.squareup.moshi.Json
 import com.tilikki.siagacovid.model.CountStatistics
 import com.tilikki.siagacovid.model.VaccinationOverviewData
+import com.tilikki.siagacovid.view.summarydetails.netmodel.chronology.ChronologicalVaccination
 import java.util.*
 
 data class CovidVaccinationData(
     @Json(name = "penambahan") val daily: DailyVaccination,
+    @Json(name = "harian") val history: List<ChronologicalVaccination>,
     @Json(name = "total") val total: OverallVaccination
 
 ) {
