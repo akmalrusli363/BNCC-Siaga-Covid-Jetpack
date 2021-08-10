@@ -34,7 +34,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/teal"
+                android:backgroundTint="@color/firstDose"
                 android:orientation="vertical">
 
                 <ProgressBar
@@ -82,7 +82,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/green"
+                android:backgroundTint="@color/secondDose"
                 android:orientation="vertical">
 
                 <ProgressBar
@@ -125,6 +125,37 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvOverviewChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/chart_vaccination_overview"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartVaccination"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"/>
+
+        <TextView
+            android:id="@+id/tvDailyChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/chart_daily_vaccination"
+            android:textAppearance="@style/h4"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartDailyVaccination"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"/>
+
     </LinearLayout>
 
 </ScrollView>

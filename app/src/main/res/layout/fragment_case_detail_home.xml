@@ -338,7 +338,7 @@
                     style="@style/b2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/pcr_tcm_testing"
+                    android:text="@string/pcr_tcm_test"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark" />
             </LinearLayout>
@@ -489,7 +489,7 @@
                     style="@style/b2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/pcr_tcm_testing"
+                    android:text="@string/pcr_tcm_test"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark" />
             </LinearLayout>

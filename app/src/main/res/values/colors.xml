@@ -25,4 +25,10 @@
     <color name="confirmedColor">@color/teal</color>
     <color name="recoveredColor">@color/green</color>
     <color name="deathColor">@color/red</color>
+
+    <color name="firstDose">@color/teal</color>
+    <color name="secondDose">@color/green</color>
+
+    <color name="antigen">@color/teal</color>
+    <color name="pcr">@color/indigo</color>
 </resources>

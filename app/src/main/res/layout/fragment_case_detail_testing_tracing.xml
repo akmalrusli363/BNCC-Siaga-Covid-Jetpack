@@ -182,7 +182,7 @@
                     style="@style/b2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/pcr_tcm_testing"
+                    android:text="@string/pcr_tcm_test"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark" />
             </LinearLayout>
@@ -235,6 +235,12 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <com.github.mikephil.charting.charts.CombinedChart
+            android:id="@+id/lineChartPeopleTests"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="8dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -294,7 +300,7 @@
                     style="@style/b2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/pcr_tcm_testing"
+                    android:text="@string/pcr_tcm_test"
                     android:textAlignment="center"
                     android:textColor="@color/colorAccentDark" />
             </LinearLayout>
@@ -347,6 +353,12 @@
             </LinearLayout>
 
         </LinearLayout>
+
+        <com.github.mikephil.charting.charts.CombinedChart
+            android:id="@+id/lineChartTestSamples"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="8dp"/>
 
     </LinearLayout>
 

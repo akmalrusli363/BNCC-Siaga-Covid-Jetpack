@@ -32,6 +32,7 @@
     <string name="positive">Positive</string>
     <string name="recovered">Recovered</string>
     <string name="death">Death</string>
+    <string name="total">Total</string>
 
     <!-- Lookup -->
     <string name="search_icon_description">Search</string>
@@ -91,7 +92,7 @@
 
     <string name="see_details">See details</string>
 
-    <string name="pcr_tcm_testing">PCR + TCM</string>
+    <string name="pcr_tcm_test">PCR + TCM</string>
     <string name="antigen_test">Antigen</string>
     <string name="people_tested">People Tested</string>
     <string name="test_samples">Samples</string>
@@ -102,4 +103,7 @@
     <string name="heading_vaccination">Vaccination</string>
     <string name="heading_testing_and_tracing">Testing &amp; Tracing</string>
     <string name="heading_tracing_overview">Testing &amp; Tracing Overview</string>
+
+    <string name="chart_vaccination_overview">Vaccination Overview</string>
+    <string name="chart_daily_vaccination">Daily Vaccination</string>
 </resources>
