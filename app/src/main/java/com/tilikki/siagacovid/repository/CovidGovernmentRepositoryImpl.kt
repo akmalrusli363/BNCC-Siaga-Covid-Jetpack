@@ -5,6 +5,7 @@ import com.tilikki.siagacovid.network.NetworkConstants
 import com.tilikki.siagacovid.view.lookup.netmodel.RegionSummaryData
 import com.tilikki.siagacovid.view.overview.netmodel.OverviewRootData
 import com.tilikki.siagacovid.view.summarydetails.netmodel.TestingVaccinationRootData
+import com.tilikki.siagacovid.view.summarydetails.netmodel.casehistory.CaseHistoryRootData
 import io.reactivex.Observable
 import retrofit2.Response
 
@@ -29,5 +30,9 @@ class CovidGovernmentRepositoryImpl : CovidGovernmentRepository, BaseRepository(
 
     override fun getTestingVaccinationOverview(): Observable<Response<TestingVaccinationRootData>> {
         return apiInterface.getTestingVaccinationOverview()
+    }
+
+    override fun getCaseHistory(): Observable<Response<CaseHistoryRootData>> {
+        return apiInterface.getCaseHistory()
     }
 }
