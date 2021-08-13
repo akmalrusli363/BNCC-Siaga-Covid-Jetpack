@@ -186,7 +186,6 @@ class TestingTracingFragment : BaseCaseDetailFragment() {
         return LineDataSet(dataEntry, label).apply {
             mode = LineDataSet.Mode.CUBIC_BEZIER
             color = resources.getColor(colorRes, null)
-            setDrawFilled(true)
             setDrawCircles(false)
         }
     }
@@ -211,7 +210,7 @@ class TestingTracingFragment : BaseCaseDetailFragment() {
             isScaleXEnabled = true
             isDragEnabled = true
             data = combinedData
-            setMaxVisibleValueCount(10)
+            setMaxVisibleValueCount(20)
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
                 valueFormatter = dateFormatter
@@ -221,6 +220,7 @@ class TestingTracingFragment : BaseCaseDetailFragment() {
                 granularity = 1f
                 labelCount = 4
             }
+            setDrawValueAboveBar(false)
             axisLeft.valueFormatter = LargeValueFormatter()
             axisRight.valueFormatter = LargeValueFormatter()
             legend.apply {

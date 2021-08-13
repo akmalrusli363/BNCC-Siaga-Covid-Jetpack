@@ -230,5 +230,85 @@
                     android:textColor="@color/colorAccentDark" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvDailyConfirmedCaseChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/daily_confirmed_case"
+            android:textAppearance="@style/h5"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartDailyConfirmedCase"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="8dp" />
+
+        <TextView
+            android:id="@+id/tvActiveCaseChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/active_case"
+            android:textAppearance="@style/h5"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartActiveCase"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="8dp" />
+
+        <TextView
+            android:id="@+id/tvDailyActiveCaseChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/daily_active_case"
+            android:textAppearance="@style/h5"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartDailyActiveCase"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="8dp" />
+
+        <TextView
+            android:id="@+id/tvDailyRecoveredCaseChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/daily_recovered_case"
+            android:textAppearance="@style/h5"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartDailyRecoveredCase"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="8dp" />
+
+        <TextView
+            android:id="@+id/tvDailyDeathCaseChart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            android:gravity="center"
+            android:text="@string/daily_death_case"
+            android:textAppearance="@style/h5"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/lineChartDailyDeathCase"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_marginVertical="8dp" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

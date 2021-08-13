@@ -29,10 +29,18 @@
 
     <!-- Data labels -->
     <string name="total_cases">Total cases</string>
+    <string name="confirmed">Confirmed</string>
     <string name="positive">Positive</string>
+    <string name="active">Active</string>
     <string name="recovered">Recovered</string>
     <string name="death">Death</string>
     <string name="total">Total</string>
+
+    <string name="active_case">Active Cases</string>
+    <string name="daily_confirmed_case">Daily Confirmed Case</string>
+    <string name="daily_active_case">Daily Active Case</string>
+    <string name="daily_recovered_case">Daily Recovered Case</string>
+    <string name="daily_death_case">Daily Death Case</string>
 
     <!-- Lookup -->
     <string name="search_icon_description">Search</string>

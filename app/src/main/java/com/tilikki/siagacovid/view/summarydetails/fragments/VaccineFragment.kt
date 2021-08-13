@@ -115,6 +115,7 @@ class VaccineFragment : BaseCaseDetailFragment() {
         return LineDataSet(dataEntry, label).apply {
             mode = LineDataSet.Mode.CUBIC_BEZIER
             color = resources.getColor(colorRes, null)
+            fillColor = resources.getColor(colorRes, null)
             setDrawFilled(true)
             setDrawCircles(false)
         }
@@ -128,7 +129,7 @@ class VaccineFragment : BaseCaseDetailFragment() {
             isScaleXEnabled = true
             isDragEnabled = true
             data = lineData
-            setMaxVisibleValueCount(10)
+            setMaxVisibleValueCount(15)
             xAxis.apply {
                 position = XAxis.XAxisPosition.BOTTOM
                 valueFormatter = dateFormatter
@@ -136,7 +137,7 @@ class VaccineFragment : BaseCaseDetailFragment() {
                 setDrawGridLines(true)
                 description.text = "Date"
                 granularity = 1f
-                setLabelCount(5, true)
+                labelCount = 4
             }
             axisLeft.valueFormatter = LargeValueFormatter()
             axisRight.valueFormatter = LargeValueFormatter()
