@@ -47,11 +47,7 @@ class CaseDataFragment : BaseCaseDetailFragment() {
             .get(CaseHistoryViewModel::class.java)
 
         binding = FragmentCaseDetailCasesBinding.inflate(inflater, container, false)
-        activeCaseString = getString(R.string.active_case)
-        dailyConfirmedCaseString = getString(R.string.daily_confirmed_case)
-        dailyActiveCaseString = getString(R.string.daily_active_case)
-        dailyRecoveredCaseString = getString(R.string.daily_recovered_case)
-        dailyDeathCaseString = getString(R.string.daily_death_case)
+        mapStringResources()
         if (!historyViewModel.isFetched) {
             historyViewModel.fetchData()
         }
@@ -202,6 +198,14 @@ class CaseDataFragment : BaseCaseDetailFragment() {
                 lineChart.marker = null
             }
         }
+    }
+
+    private fun mapStringResources() {
+        activeCaseString = getString(R.string.active_case)
+        dailyConfirmedCaseString = getString(R.string.daily_confirmed_case)
+        dailyActiveCaseString = getString(R.string.daily_active_case)
+        dailyRecoveredCaseString = getString(R.string.daily_recovered_case)
+        dailyDeathCaseString = getString(R.string.daily_death_case)
     }
 
     companion object {

@@ -44,8 +44,7 @@ class VaccineFragment : BaseCaseDetailFragment() {
             ViewModelProvider(this).get(VaccineTestingViewModel::class.java)
 
         binding = FragmentCaseDetailVaccineBinding.inflate(inflater, container, false)
-        firstDoseString = getString(R.string.first_dose)
-        secondDoseString = getString(R.string.second_dose)
+        mapStringResources()
         if (!vaccineTestingViewModel.isFetched) {
             vaccineTestingViewModel.fetchData()
         }
@@ -166,6 +165,11 @@ class VaccineFragment : BaseCaseDetailFragment() {
                 lineChart.marker = null
             }
         }
+    }
+
+    private fun mapStringResources() {
+        firstDoseString = getString(R.string.first_dose)
+        secondDoseString = getString(R.string.second_dose)
     }
 
     companion object {

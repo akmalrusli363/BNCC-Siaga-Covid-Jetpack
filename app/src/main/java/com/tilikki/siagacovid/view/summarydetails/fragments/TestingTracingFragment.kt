@@ -44,10 +44,7 @@ class TestingTracingFragment : BaseCaseDetailFragment() {
             ViewModelProvider(this).get(VaccineTestingViewModel::class.java)
 
         binding = FragmentCaseDetailTestingTracingBinding.inflate(inflater, container, false)
-        pcrTestString = getString(R.string.pcr_tcm_test)
-        antigenTestString = getString(R.string.antigen_test)
-        testSampleString = getString(R.string.test_samples)
-        peopleTestedString = getString(R.string.people_tested)
+        mapStringResources()
         if (!vaccineTestingViewModel.isFetched) {
             vaccineTestingViewModel.fetchData()
         }
@@ -250,6 +247,13 @@ class TestingTracingFragment : BaseCaseDetailFragment() {
                 combinedChart.marker = null
             }
         }
+    }
+
+    private fun mapStringResources() {
+        pcrTestString = getString(R.string.pcr_tcm_test)
+        antigenTestString = getString(R.string.antigen_test)
+        testSampleString = getString(R.string.test_samples)
+        peopleTestedString = getString(R.string.people_tested)
     }
 
     companion object {
