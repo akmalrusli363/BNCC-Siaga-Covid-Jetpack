@@ -14,6 +14,7 @@ import com.tilikki.siagacovid.model.CaseOverview
 import com.tilikki.siagacovid.utils.AppEventLogging
 import com.tilikki.siagacovid.utils.StringParser
 import com.tilikki.siagacovid.utils.ViewUtility
+import com.tilikki.siagacovid.view.about.AboutAppDialog
 import com.tilikki.siagacovid.view.hotline.HotlineBottomDialogFragment
 import com.tilikki.siagacovid.view.lookup.LookupActivity
 import com.tilikki.siagacovid.view.worldstats.WorldStatisticsActivity
@@ -89,7 +90,7 @@ class OverviewActivity : AppCompatActivity() {
     }
 
     private fun openAboutDialog() {
-        com.tilikki.siagacovid.view.about.AboutAppDialog().show(supportFragmentManager, "aboutAppDialog")
+        AboutAppDialog().show(supportFragmentManager, "aboutAppDialog")
     }
 
     private fun fetchData() {
