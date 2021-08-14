@@ -18,19 +18,13 @@ class WorldStatLookupViewHolder(private val binding: ItemCountryLookupBinding) :
             tvLookupCountryFlag.text = getCountryFlag(lookupData.countryCode)
 
             ViewUtility.setStatisticPairs(
-                lookupData.confirmedCase,
-                tvLookupConfirmedCase,
-                tvLookupDailyConfirmedCase
+                lookupData.confirmedCase, tvLookupConfirmedCase, tvLookupDailyConfirmedCase
             )
             ViewUtility.setStatisticPairs(
-                lookupData.recoveredCase,
-                tvLookupRecoveredCase,
-                tvLookupDailyRecoveredCase
+                lookupData.recoveredCase, tvLookupRecoveredCase, tvLookupDailyRecoveredCase
             )
             ViewUtility.setStatisticPairs(
-                lookupData.deathCase,
-                tvLookupDeathCase,
-                tvLookupDailyDeathCase
+                lookupData.deathCase, tvLookupDeathCase, tvLookupDailyDeathCase
             )
             tvLookupConfirmedCaseDesc.text =
                 getPercentageData(lookupData.positivityRate(), activeLabel)
