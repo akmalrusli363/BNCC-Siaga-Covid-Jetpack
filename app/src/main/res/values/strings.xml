@@ -71,6 +71,7 @@
     <string name="reload_data">Reload Data</string>
     <string name="unknown">\???</string>
     <string name="loading">…</string>
+    <string name="see_details">See details</string>
     <string name="data_provided_url">Data provided from <a href="https://data.covid19.go.id/public/index.html">data.covid19.go.id</a></string>
 
     <!-- 3M Tips for COVID19 Preventions -->
@@ -102,6 +103,12 @@
         \n\nData updates/changes may occur at any time.
     </string>
 
+    <!-- Testing & Tracing -->
+    <string name="pcr_tcm_test">PCR + TCM</string>
+    <string name="antigen_test">Antigen</string>
+    <string name="people_tested">People Tested</string>
+    <string name="test_samples">Samples</string>
+
     <string-array name="sortLookup">
         <item>Positive Cases</item>
         <item>Recovered Cases</item>
@@ -111,6 +118,7 @@
         <item>Daily Death Cases</item>
     </string-array>
 
+    <!-- Covid data details -->
     <string name="title_home">Home</string>
     <string name="title_covid_case">COVID-19 Cases</string>
     <string name="bottom_title_covid_case">COVID-19 Cases</string>
@@ -119,15 +127,6 @@
     <string name="title_covid_testing">COVID-19 Testing</string>
     <string name="bottom_title_covid_testing">Testing</string>
     <string name="title_covid_detail_overview">COVID-19 Overview</string>
-
-    <string name="see_details">See details</string>
-
-    <string name="pcr_tcm_test">PCR + TCM</string>
-    <string name="antigen_test">Antigen</string>
-    <string name="people_tested">People Tested</string>
-    <string name="test_samples">Samples</string>
-    <string name="first_dose">First Dose</string>
-    <string name="second_dose">Full Vaccinated</string>
 
     <string name="heading_total_case">Total Cases</string>
     <string name="heading_vaccination">Vaccination</string>
