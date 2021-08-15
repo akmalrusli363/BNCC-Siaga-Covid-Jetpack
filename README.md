@@ -54,6 +54,22 @@ Summarily, the list of API we've provided for this app:
 | Hotline | https://bncc-corona-versus.firebaseio.com/v1/hotlines.json | ? | any |
 
 
+## Changelog
+
+> For newer version, see `develop` branch or visit each representative version on `version/x.x` branch.
+
+### 1.2.x
+Changed and migrated to Jetpack version (from MVP to MVVM, OkHttp to Retrofit + RxJava).
+
+### 1.1.x
+Use [data.covid19.go.id](https://data.covid19.go.id) as main COVID-19 data source.
+- Introduced sorting in region lookup.
+  
+### 1.0.x
+Initial release (fresh from BNCC x Gojek Academy application demonstration).
+- Uses [api.kawalcorona.com](https://api.kawalcorona.com/) as main COVID-19 data source.
+
+
 ## Image/Asset Credits
 
 The project concepts/mockups:
