@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tilikki.siagacovid.databinding.ItemCountryLookupBinding
 import com.tilikki.siagacovid.model.CountryLookupData
 import com.tilikki.siagacovid.utils.FlagUtils
+import com.tilikki.siagacovid.utils.StringParser
 import com.tilikki.siagacovid.utils.ViewUtility
 
 class WorldStatLookupViewHolder(private val binding: ItemCountryLookupBinding) :
@@ -40,9 +41,8 @@ class WorldStatLookupViewHolder(private val binding: ItemCountryLookupBinding) :
     }
 
     private fun getPercentageData(percentage: Double, label: String?): String {
-        return if (!label.isNullOrBlank()) "(${formatPercentage(percentage)}% $label)"
-        else "(${formatPercentage(percentage)}%)"
+        val percentageFormat = StringParser.formatPercentage(percentage)
+        return if (!label.isNullOrBlank()) "($percentageFormat $label)"
+        else "($percentageFormat)"
     }
-
-    private fun formatPercentage(percentage: Double) = "%.${2}f".format((percentage * 100))
 }

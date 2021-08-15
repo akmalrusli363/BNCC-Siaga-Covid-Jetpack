@@ -18,6 +18,7 @@ import com.tilikki.siagacovid.view.about.AboutAppDialog
 import com.tilikki.siagacovid.view.hotline.HotlineBottomDialogFragment
 import com.tilikki.siagacovid.view.lookup.LookupActivity
 import com.tilikki.siagacovid.view.summarydetails.CaseSummaryDetailActivity
+import com.tilikki.siagacovid.view.vaccine.VaccinationActivity
 import com.tilikki.siagacovid.view.worldstats.WorldStatisticsActivity
 
 class OverviewActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class OverviewActivity : AppCompatActivity() {
 
     companion object {
         const val callLookupActivity = "GOTO_LOOKUP_ACTIVITY"
+        const val callVaccinationActivity = "GOTO_VACCINATION_ACTIVITY"
         const val callWorldStatActivity = "GOTO_WORLD_STATISTICS_ACTIVITY"
     }
 
@@ -55,6 +57,7 @@ class OverviewActivity : AppCompatActivity() {
         binding.apply {
             bottomSheetSummaryView.apply {
                 clLookupButton.setOnClickListener { gotoLookupActivity() }
+                clVaccinationButton.setOnClickListener { gotoVaccinationActivity() }
                 clHotlineButton.setOnClickListener { gotoHotlineActivity() }
                 clWorldStatsButton.setOnClickListener { gotoWorldStatActivity() }
                 btnSeeDetails.setOnClickListener {
@@ -79,6 +82,13 @@ class OverviewActivity : AppCompatActivity() {
     private fun gotoLookupActivity() {
         val intent = Intent(this, LookupActivity::class.java).apply {
             putExtra(callLookupActivity, "Go to lookup activity...")
+        }
+        startActivity(intent)
+    }
+
+    private fun gotoVaccinationActivity() {
+        val intent = Intent(this, VaccinationActivity::class.java).apply {
+            putExtra(callWorldStatActivity, "Go to vaccination activity...")
         }
         startActivity(intent)
     }

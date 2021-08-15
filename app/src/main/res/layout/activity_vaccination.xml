@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.vaccine.VaccinationActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/h4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vaccination"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccentLight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLastUpdated"
+            style="@style/b2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/data_source_info"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <ImageButton
+            android:id="@+id/ivReturnIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_haptic_image"
+            android:contentDescription="@string/back_to_overview"
+            android:src="?attr/actionModeCloseDrawable"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorAccentLight" />
+
+        <ImageButton
+            android:id="@+id/ivInformation"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="@drawable/btn_haptic_image"
+            android:contentDescription="@string/related_information"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_outline_info"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/colorAccentLight" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/vSeparator1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/muteGray" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvHeadingNationalStatistics"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"
+                android:text="@string/national_vaccination_data"
+                android:textAlignment="center"
+                android:textAppearance="@style/h4"
+                android:textColor="@color/colorAccent" />
+
+            <LinearLayout
+                android:id="@+id/llVaccinationTarget"
+                style="@style/SummaryFieldBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="24dp">
+
+                <ProgressBar
+                    android:id="@+id/pbFetchVaccinationTarget"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminateTint="@color/colorAccentDark"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tvVaccinationTarget"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/h1"
+                    android:textColor="@color/colorAccentDark"
+                    tools:text="456789012" />
+
+                <TextView
+                    android:id="@+id/tvVaccinationTargetLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/vaccination_target_total"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/b1"
+                    android:textColor="@color/colorAccentDark" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llTotalVaccinationDoses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/llFirstDose"
+                    style="@style/SummaryFieldBox.Grid"
+                    android:backgroundTint="@color/colorAccent"
+                    android:gravity="center">
+
+                    <ProgressBar
+                        android:id="@+id/pbFetchFirstDose"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/colorAccentDark"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tvFirstDose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/h3"
+                        android:textColor="@color/colorAccentDark"
+                        tools:text="306789072" />
+
+                    <TextView
+                        android:id="@+id/tvFirstDosePercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/h6"
+                        android:textColor="@color/colorAccentDark"
+                        tools:text="(55.6%)" />
+
+                    <TextView
+                        android:id="@+id/tvFirstDoseLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/first_dose"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/b1"
+                        android:textColor="@color/colorAccentDark" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSecondDose"
+                    style="@style/SummaryFieldBox.Grid"
+                    android:backgroundTint="@color/colorAccent"
+                    android:gravity="center">
+
+                    <ProgressBar
+                        android:id="@+id/pbFetchSecondDose"
+                        style="?android:attr/progressBarStyleSmall"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/colorAccentDark"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/tvSecondDose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/h3"
+                        android:textColor="@color/colorAccentDark"
+                        tools:text="256789023" />
+
+                    <TextView
+                        android:id="@+id/tvSecondDosePercentage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/h6"
+                        android:textColor="@color/colorAccentDark"
+                        tools:text="(25.6%)" />
+
+                    <TextView
+                        android:id="@+id/tvSecondDoseLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/second_dose"
+                        android:textAlignment="center"
+                        android:textAppearance="@style/b1"
+                        android:textColor="@color/colorAccentDark" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp" />
+
+            <TextView
+                android:id="@+id/tvVaccinationTargetGroups"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="8dp"
+                android:text="@string/vaccination_target"
+                android:textAlignment="center"
+                android:textAppearance="@style/h4"
+                android:textColor="@color/colorAccent" />
+
+            <ProgressBar
+                android:id="@+id/pbFetchVaccinationDetails"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvVaccinationTargetGroups"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_vaccination_group" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

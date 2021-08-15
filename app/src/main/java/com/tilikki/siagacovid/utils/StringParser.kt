@@ -37,4 +37,8 @@ object StringParser {
         val dateFormat: DateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK)
         return dateFormat.format(date)
     }
+
+    fun formatPercentage(percentage: Double): String {
+        return "%.${2}f%%".format((percentage * 100))
+    }
 }

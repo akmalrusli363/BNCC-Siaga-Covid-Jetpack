@@ -28,6 +28,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".view.vaccine.VaccinationActivity"
+            android:theme="@style/AppTheme.Light" />
+        <activity
             android:name=".view.lookup.LookupActivity"
             android:theme="@style/AppTheme.Light" />
         <activity

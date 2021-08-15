@@ -2,5 +2,6 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">kawalcorona.com</domain>
+        <domain includeSubdomains="true">cekdiri.id</domain>
     </domain-config>
 </network-security-config>

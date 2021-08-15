@@ -91,6 +91,12 @@
         <item name="android:textSize">32sp</item>
     </style>
 
+    <style name="h2">
+        <item name="android:fontFamily">@font/rubik</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
     <style name="h3">
         <item name="android:fontFamily">@font/rubik</item>
         <item name="android:textStyle">bold</item>
@@ -148,6 +154,7 @@
     <style name="DataFieldBox">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:minHeight">80dp</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
@@ -163,7 +170,7 @@
     </style>
 
     <style name="SummaryFieldBox">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">4dp</item>
         <item name="android:background">@drawable/shape_round_highlight_box</item>
@@ -174,13 +181,18 @@
         <item name="android:paddingBottom">16dp</item>
     </style>
 
+    <style name="SummaryFieldBox.Grid" parent="SummaryFieldBox">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
     <style name="SummaryFieldBox.Heading" parent="SummaryFieldBox">
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@drawable/shape_gray_round_box</item>
         <item name="android:backgroundTint">@color/indigo</item>
     </style>
 
-    <style name="SummaryFieldBox.Square" parent="SummaryFieldBox">
+    <style name="SummaryFieldBox.Square" parent="SummaryFieldBox.Grid">
         <item name="android:paddingTop">16dp</item>
         <item name="android:paddingBottom">16dp</item>
         <item name="android:layout_height">108dp</item>
@@ -189,6 +201,12 @@
     <style name="SummaryFieldBox.Compact" parent="SummaryFieldBox">
         <item name="android:paddingTop">12dp</item>
         <item name="android:paddingBottom">12dp</item>
+    </style>
+
+    <style name="SummaryFieldBox.Flexible" parent="SummaryFieldBox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
     </style>
 
     <style name="corona_access_menu">
@@ -216,6 +234,13 @@
     <style name="CorneredButton">
         <item name="cornerSize">16dp</item>
         <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="MultiProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:secondaryProgressTintMode">multiply</item>
+        <item name="android:indeterminate">false</item>
     </style>
 
 </resources>
