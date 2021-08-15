@@ -10,7 +10,7 @@ This repository is a **forked & Android Jetpack version** of [BNCC x Gojek Acade
 
 In forked/spin-off version of **BNCC Siaga COVID-19**, main API source are provided from `data.covid19.go.id` by default. Also, additional features from the app are published in this repository for advanced development of **Siaga COVID-19** app, especially for vaccination, testing, statistics, and more. 
 
-> **INFO:** This branch contains **beyond statistical data** provided for COVID-19 statistics, especially for world data and additional COVID-19 statistics in Indonesia which contains more detailed data (rates in percentage, testing, and historical data) which divided into parts of experimental branches and may added or removed in that branch before applied into advanced version of Siaga COVID19 App.
+> **INFO:** This branch/version contains **more statistical data** provided for COVID-19 statistics, especially for world data and additional COVID-19 statistics in Indonesia which contains more detailed data (rates in percentage, testing, and historical data) which divided into parts of experimental branches and may added or removed in that branch before applied into advanced version of Siaga COVID19 App.
 
 ## Parts & Features
 
@@ -41,7 +41,7 @@ This feature will show the number of coronavirus cases around Indonesia. You can
 
 In [`dev/public_api-sorting`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api-sorting), you can sort for total cases, recovered cases, death cases, and their daily cases too.
 
-### World Statistics (`develop` & experimental branch only!)
+### World Statistics (version 1.3.x or newer)
 This feature shows the number of coronavirus cases around the world. Each country has confirmed cases, active cases in percentage, recovery, and death cases (in counts and percentages). Not all data from the country may be accurate served because some countries may not served some data parts (such as recovery counts) due of data confidentiality in that country.
 
 User can search countries using search box in world stat page and sort the country list based on country code, name, overall cases, or daily cases (e.g. confirmed, recovery, and deaths) from world stat menu.
@@ -59,6 +59,25 @@ Summarily, the list of API we've provided for this app:
 |  | https://api.kawalcorona.com/indonesia/provinsi | [BNPB Indonesia](https://bnpb-inacovid19.hub.arcgis.com/) | `develop` |
 | Hotline | https://bncc-corona-versus.firebaseio.com/v1/hotlines.json | ? | any |
 | World Statistics (summary + countries) | https://api.covid19api.com/summary | [Johns Hopkins University CSSE](https://coronavirus.jhu.edu/map.html) | `develop` |
+
+
+## Changelog
+
+### 1.3.x
+- **1.3.1** : Migrated to Jetpack version (from MVP to MVVM, OkHttp to Retrofit + RxJava) for `develop` branch.
+- Added world case overview.
+- Supports [api.kawalcorona.com](https://api.kawalcorona.com/) as COVID-19 region lookup data source (provided from BNPB Indonesia)
+
+### 1.2.x
+Changed and migrated to Jetpack version (from MVP to MVVM, OkHttp to Retrofit + RxJava).
+
+### 1.1.x
+Use [data.covid19.go.id](https://data.covid19.go.id) as main COVID-19 data source.
+- Introduced sorting in region lookup.
+  
+### 1.0.x
+Initial release (fresh from BNCC x Gojek Academy application demonstration).
+- Uses [api.kawalcorona.com](https://api.kawalcorona.com/) as main COVID-19 data source.
 
 
 ## Image/Asset Credits
