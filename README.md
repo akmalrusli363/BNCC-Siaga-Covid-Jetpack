@@ -18,7 +18,7 @@ In forked/spin-off version of **BNCC Siaga COVID-19**, main API source are provi
 
 ![Main Page](screenshots/home.png "Main Page")
 
-This page contains Indonesia's statistical data about COVID-19 cases such as total cases, positive cases, recovered cases, and total cases (with additional daily case supplied at branch [`dev/public_api`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api)).
+This page contains Indonesia's statistical data about COVID-19 cases such as total cases, positive cases, recovered cases, and total cases (with additional daily case).
 
 ### Info/About Dialog
 
@@ -33,21 +33,68 @@ This feature will show information about the app version, sponsorships, and act 
 
 This feature will show a list of phone number that you can reach out if you are experiencing a minor or major COVID-19 symptoms (e.g. fever, dry cough, tiredness, heavy breathes, etc). This feature implements MaterialUI BottomSheetDialogFragment to show a bottom sheet that appears from the bottom of the screen. This feature also lets the user quickly open the phone app to make a phone call to the chosen phone number.
 
-### Lookup Feature
+### Region Lookup
 
 ![Regional Case Lookup](screenshots/region-lookup.png "Regional Case Lookup")
 
 This feature will show the number of coronavirus cases around Indonesia. You can search for your region for total cases, recovered cases, and death cases in your region (for example: DKI Jakarta, South Sulawesi, West Java, Bali, etc).
 
-In [`dev/public_api-sorting`](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo/tree/dev/public_api-sorting), you can sort for total cases, recovered cases, death cases, and their daily cases too.
+Additionally, you can sort for total cases, recovered cases, death cases, and their daily cases too.
 
 ### World Statistics (version 1.3.x or newer)
+
+![World Statistics](screenshots/world-stat.png "World Statistics")
+
+> Note: the data provider for world statistics (JHU CSSE) has not longer provide recovery count. See [CSSE COVID-19 data issue #4465](https://github.com/CSSEGISandData/COVID-19/issues/4465) for more detail.
+
 This feature shows the number of coronavirus cases around the world. Each country has confirmed cases, active cases in percentage, recovery, and death cases (in counts and percentages). Not all data from the country may be accurate served because some countries may not served some data parts (such as recovery counts) due of data confidentiality in that country.
 
 User can search countries using search box in world stat page and sort the country list based on country code, name, overall cases, or daily cases (e.g. confirmed, recovery, and deaths) from world stat menu.
 
+### Vaccination (version 1.4.x or newer)
+
+![Vaccination](screenshots/vaccination.png "Vaccination")
+
+This feature shows COVID vaccination information which informs vaccination target, number of vaccinated persons (first dose/completed), vaccination progress, and vaccination group (with details & percentage of vaccinated persons in group).
+
+Each vaccination group categorized in each color as follow:
+
+- Medical group *(tenaga medis)*: red
+- Public services *(tenaga publik)*: green
+- Elders *(lansia)*: yellow
+- General public/persons *(masyarakat umum/rentan)*: blue
+- Teenagers *(kelompok usia 12-17 tahun/remaja)*: pink
+
+### COVID-19 Testing & Vaccination (official data, version 1.4.x or newer)
+
+![COVID-19 Summary Overview](screenshots/case-summary-1.png "COVID-19 Summary Overview")
+
+This feature displays COVID-19 testing and vaccination data, alongside with COVID-19 case data summary. For COVID-19 testing & vaccination has data field as follow:
+
+1. COVID-19 Testing:
+  - PCR & Antigen samples
+  - Person tested with PCR & Antigen test
+  - Total samples & person tested
+2. COVID-19 Vaccination (first dose and full-vaccinated)
+
+The COVID-19 testing & vaccination can be accessed in **COVID-19 case details**.
+
+### COVID-19 Case details (with history & chart, version 1.4.x or newer)
+
+![COVID-19 Case Data](screenshots/case-summary-2.png "COVID-19 Case Data")
+![COVID-19 Testing & Tracing Data](screenshots/case-summary-3.png "COVID-19 Testing & Tracing Data")
+![COVID-19 Vaccination Data](screenshots/case-summary-4.png "COVID-19 Vaccination Data")
+
+The COVID-19 case details feature divided in four section:
+
+1. Summary: displays complete COVID-19 summary (including COVID-19 testing and vaccination).
+2. COVID-19 case: displays COVID-19 case information & timeline history in chart.
+3. Testing & tracing: displays COVID-19 testing & tracing information (samples/person tested) with timeline in chart.
+4. Vaccination: displays COVID-19 vaccination information (first dose/full-vaccinated) with timeline in chart.
 
 ## The COVID-19 API URL
+> Note: Data from BNPB has been deprecated. This dataset will be removed in future release, together with world statistics data source changes.
+
 This application uses COVID-19 data API supplied from [data.covid19.go.id](https://data.covid19.go.id) which fetches data for Case Overview and Regional Lookup features. For emergency call and phone number for regional emergency services, we uses BNCC Corona's Firebase API Services provided at [bncc-corona-versus.firebaseio.com/v1/hotlines.json](https://bncc-corona-versus.firebaseio.com/v1/hotlines.json).
 
 Summarily, the list of API we've provided for this app:
@@ -56,12 +103,17 @@ Summarily, the list of API we've provided for this app:
 | --- | --- | :---: | :---: |
 | National Data Overview | https://data.covid19.go.id/public/api/update.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | any |
 | Regional Data Overview | https://data.covid19.go.id/public/api/prov.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | any |
-|  | https://api.kawalcorona.com/indonesia/provinsi | [BNPB Indonesia](https://bnpb-inacovid19.hub.arcgis.com/) | `develop` |
+|  | ~~https://api.kawalcorona.com/indonesia/provinsi~~ | ~~[BNPB Indonesia](https://bnpb-inacovid19.hub.arcgis.com/)~~ | ~~`develop`~~ |
 | Hotline | https://bncc-corona-versus.firebaseio.com/v1/hotlines.json | ? | any |
 | World Statistics (summary + countries) | https://api.covid19api.com/summary | [Johns Hopkins University CSSE](https://coronavirus.jhu.edu/map.html) | `develop` |
+| Testing & Vaccination | https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | `develop-1.4` |
+| Vaccination Overview | https://cekdiri.id/vaksinasi | [Kementerian Kesehatan](https://vaksin.kemkes.go.id/) | `develop-1.4` |
 
 
 ## Changelog
+
+### 1.4.x
+Added COVID-19 Testing & Vaccination (provided from Satgas COVID-19 & Kemenkes).
 
 ### 1.3.x
 - **1.3.1** : Migrated to Jetpack version (from MVP to MVVM, OkHttp to Retrofit + RxJava) for `develop` branch.
@@ -97,3 +149,4 @@ Image/asset related URL's:
 9. Close icon: https://www.flaticon.com/free-icon/close_1828774
 10. Arrow icon: https://www.flaticon.com/free-icon/arrow_507257
 11. Globe icon: https://www.flaticon.com/free-icon/global_3190466
+12. Vaccine icon: https://www.flaticon.com/free-icon/vaccine_4490652
