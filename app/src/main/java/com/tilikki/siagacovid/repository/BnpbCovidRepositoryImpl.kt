@@ -5,6 +5,7 @@ import com.tilikki.siagacovid.view.lookup.netmodel.BnpbRegionalRootData
 import io.reactivex.Observable
 import retrofit2.Response
 
+@Deprecated("Data provider is not longer updated")
 class BnpbCovidRepositoryImpl : BnpbCovidRepository, BaseRepository() {
     private val apiInterface = retrofit.create(BnpbCovidApiInterface::class.java)
 
