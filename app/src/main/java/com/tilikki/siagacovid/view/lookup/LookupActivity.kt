@@ -19,14 +19,13 @@ class LookupActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLookupBinding
     private lateinit var lookupAdapter: LookupAdapter
 
-    private val governmentFirst = true
+    private val dailyCaseVisibility = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLookupBinding.inflate(layoutInflater).also {
-            it.tbDataProviderSwitch.isChecked = !governmentFirst
-            viewModel = LookupViewModel(governmentFirst)
-            lookupAdapter = LookupAdapter(governmentFirst)
+            viewModel = LookupViewModel()
+            lookupAdapter = LookupAdapter(dailyCaseVisibility)
         }
         setContentView(binding.root)
         setupComponents()
@@ -46,9 +45,6 @@ class LookupActivity : AppCompatActivity() {
     private fun setupComponents() {
         binding.ivReturnIcon.setOnClickListener {
             finish()
-        }
-        binding.tbDataProviderSwitch.setOnCheckedChangeListener { buttonView, isChecked ->
-            viewModel.toggleDataSource(!isChecked)
         }
     }
 
@@ -82,12 +78,10 @@ class LookupActivity : AppCompatActivity() {
                 }
             }
         }
-        viewModel.fromGovernment.observe(this) {
-            lookupAdapter.toggleDailyCaseVisibility(it)
-            setSearchSort(it)
-            viewModel.fetchData()
-            toggleLoadingState(true)
-        }
+        lookupAdapter.toggleDailyCaseVisibility(dailyCaseVisibility)
+        setSearchSort(dailyCaseVisibility)
+        viewModel.fetchData()
+        toggleLoadingState(true)
     }
 
     private fun getDataSourceInformation(): String {
@@ -110,8 +104,7 @@ class LookupActivity : AppCompatActivity() {
     }
 
     private fun setupSearchSorting() {
-        val sortTypes: List<LookupComparator> =
-            CaseDataSorter.getSortTypes(viewModel.fromGovernment.value ?: true)
+        val sortTypes: List<LookupComparator> = CaseDataSorter.getSortTypes(dailyCaseVisibility)
 
         val adapter: ArrayAdapter<LookupComparator> =
             ArrayAdapter(this, R.layout.custom_spinner_dropdown_item, sortTypes)
