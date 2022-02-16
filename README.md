@@ -66,7 +66,7 @@ Summarily, the list of API we've provided for this app:
 ### 1.3.x
 - **1.3.1** : Migrated to Jetpack version (from MVP to MVVM, OkHttp to Retrofit + RxJava) for `develop` branch.
 - Added world case overview.
-- Supports [api.kawalcorona.com](https://api.kawalcorona.com/) as COVID-19 region lookup data source (provided from BNPB Indonesia)
+- ~~Supports [api.kawalcorona.com](https://api.kawalcorona.com/) as COVID-19 region lookup data source (provided from BNPB Indonesia)~~ **_(removed in 1.3.2)_**
 
 ### 1.2.x
 Changed and migrated to Jetpack version (from MVP to MVVM, OkHttp to Retrofit + RxJava).
