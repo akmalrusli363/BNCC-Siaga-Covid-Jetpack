@@ -4,6 +4,11 @@
 
 ![BNCC Siaga Project Banner](project-banner.png)
 
+> [!NOTE]
+> This project has been **archived** due to most COVID-19 API services/data sources are not longer available.
+>
+> Also, this project is now an Android project to demonstrate statistical data for portfolio purpose, whlist the data sources is not longer available for now.
+
 A repository for an app made during BNCC x Gojek Academy demonstrated using Kotlin, which shows data about COVID-19 statistics in Indonesia.
 
 This repository is a **forked & Android Jetpack version** of [BNCC x Gojek Academy App: Siaga COVID19](https://github.com/akmalrusli363/BNCC-Academy-Kotlin-Demo) where the app was rebuilt under Android Jetpack in help to follow best practices, reduces boilerplate, clean and better maintainability of codes. This includes applied MVVM Architecture and usage of Retrofit, Moshi, and ReactiveX instead of plain OkHttp call and manual JSON parsing in parsing API network calls.
@@ -93,7 +98,9 @@ The COVID-19 case details feature divided in four section:
 4. Vaccination: displays COVID-19 vaccination information (first dose/full-vaccinated) with timeline in chart.
 
 ## The COVID-19 API URL
-> Note: Data from BNPB has been deprecated. This dataset will be removed in future release, together with world statistics data source changes.
+
+> [!NOTE]
+> The COVID-19 API URLs are not longer available.
 
 This application uses COVID-19 data API supplied from [data.covid19.go.id](https://data.covid19.go.id) which fetches data for Case Overview and Regional Lookup features. For emergency call and phone number for regional emergency services, we uses BNCC Corona's Firebase API Services provided at [bncc-corona-versus.firebaseio.com/v1/hotlines.json](https://bncc-corona-versus.firebaseio.com/v1/hotlines.json).
 
@@ -103,7 +110,6 @@ Summarily, the list of API we've provided for this app:
 | --- | --- | :---: | :---: |
 | National Data Overview | https://data.covid19.go.id/public/api/update.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | any |
 | Regional Data Overview | https://data.covid19.go.id/public/api/prov.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | any |
-|  | ~~https://api.kawalcorona.com/indonesia/provinsi~~ | ~~[BNPB Indonesia](https://bnpb-inacovid19.hub.arcgis.com/)~~ | ~~`develop`~~ |
 | Hotline | https://bncc-corona-versus.firebaseio.com/v1/hotlines.json | ? | any |
 | World Statistics (summary + countries) | https://api.covid19api.com/summary | [Johns Hopkins University CSSE](https://coronavirus.jhu.edu/map.html) | `develop` |
 | Testing & Vaccination | https://data.covid19.go.id/public/api/pemeriksaan-vaksinasi.json | [Satgas COVID-19](https://data.covid19.go.id/public/index.html) | `develop-1.4` |
